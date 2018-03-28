@@ -3,6 +3,7 @@
 let mix = require('laravel-mix');
 const webpack = require('webpack');
 const path = require('path');
+require('laravel-mix-auto-extract');
 
 /*
  |--------------------------------------------------------------------------
@@ -34,8 +35,13 @@ mix.options({
   }
 });
 
-mix.js('resources/assets/js/app.js', 'public/js')
-  .sass('resources/assets/sass/app.scss', 'public/css')
+mix.js('./resources/assets/js/app.js', './public/js')
+  .autoload({
+    'jquery/dist/jquery.slim': ['$', 'window.jQuery', 'jQuery'],
+  })
+  .sass('./resources/assets/sass/app.scss', './public/css')
+  .sass('./resources/assets/sass/vendor.scss', './public/css/')
+  .autoExtract()
   .sourceMaps(false)
   .disableNotifications();
 
