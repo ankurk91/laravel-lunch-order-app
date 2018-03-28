@@ -150,6 +150,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Vinkla\Alert\AlertServiceProvider::class,
 
         /*
          * Application Service Providers...
