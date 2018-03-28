@@ -19,3 +19,77 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+# https://github.com/h5bp/server-configs-apache
+
+# Cache these type of files for 7 days
+<IfModule mod_headers.c>
+<FilesMatch "\.(jpg|jpeg|png|ico|gif|css|js|eot|otf|tt[cf]|woff|woff2|svg|webp|webm)$">
+    Header set Cache-Control "max-age=604800, must-revalidate"
+    Header unset ETag
+    FileETag None
+</FilesMatch>
+
+# Cache static html files for 1 hour
+<FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "max-age=3600, must-revalidate"
+    Header unset ETag
+    FileETag None
+</FilesMatch>
+</IfModule>
+
+# Character encodings
+AddDefaultCharset utf-8
+
+# Mime type for web fonts
+<IfModule mod_mime.c>
+    AddType application/vnd.ms-fontobject   eot
+    AddType application/x-font-ttf          ttf ttc
+    AddType font/opentype                   otf
+    AddType application/x-font-woff         woff woff2
+    AddType image/svg+xml                   svg svgz
+    AddEncoding gzip                        svgz
+</IfModule>
+
+# Compressing output
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/text text/html text/plain text/css application/json
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript text/javascript
+    AddOutputFilterByType DEFLATE text/xml application/xml text/x-component
+    AddOutputFilterByType DEFLATE application/xhtml+xml application/rss+xml application/atom+xml
+    AddOutputFilterByType DEFLATE image/svg+xml application/vnd.ms-fontobject application/x-font-ttf font/opentype
+</IfModule>
+
+# Keep alive for persistent connections
+<IfModule mod_headers.c>
+    Header set Connection Keep-Alive
+</IfModule>
+
+# Set default files if not set
+<IfModule dir_module>
+    DirectoryIndex index.php index.html
+</IfModule>
+
+# Block access to directories without a default document
+<IfModule mod_autoindex.c>
+    Options -Indexes
+</IfModule>
+
+# Hide php version
+php_value expose_php off
+
+# Hide Server software information
+ServerSignature Off
+
+# Enhance Security
+<IfModule mod_headers.c>
+    # Protect against XSS attacks
+    Header set X-XSS-Protection "1; mode=block"
+    # Protect against content-sniffing
+    Header set X-Content-Type-Options "nosniff"
+    # Prevent clickjacking, don't allow this domain inside iframe
+    Header always append X-Frame-Options SAMEORIGIN
+    # Hide web server info
+    Header unset X-Powered-By
+    Header always set Strict-Transport-Security "max-age=15552000; includeSubdomains; preload"
+</IfModule>

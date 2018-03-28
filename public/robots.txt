@@ -1,2 +1,3 @@
+# Also check X-Robots-Tag HTTP headers
 User-agent: *
-Disallow:
+Disallow: /

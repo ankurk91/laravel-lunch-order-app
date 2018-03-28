@@ -1,13 +1,89 @@
-/node_modules
+# https://github.com/github/gitignore
+# http://git-scm.com/docs/gitignore
+
+# phpstorm, webstorm
+.idea/
+
+# sublime and other ide
+.project
+*.sublime-project
+*.sublime-workspace
+.brackets.json
+.vscode
+
+# logs and cache
+/logs/
+*.log
+npm-debug.log*
+error_log
+.sass-cache
+.cache
+.php_cs.cache
+
+
+# OS generated files
+[Tt]humbs.db
+ehthumbs.db
+*~
+.*~
+._*
+*.bak
+*.sw[a-p]
+
+# Recycle bin folder used by different os
+.Trash-*
+$RECYCLE.BIN/
+
+
+# Windows shortcuts
+*.lnk
+
+
+# Folder config file
+[Dd]esktop.ini
+.DS_Store
+*.DS_Store
+.Spotlight-V100
+
+
+# node packages
+# https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
+node_modules/
+
+
+# Bower packages
+bower_components/
+
+# composer
+/vendor/
+composer.phar
+
+# Security tokens
+*.pem
+*.pub
+*.crt
+*.key
+
+# Project related
+.env
 /public/hot
 /public/storage
-/storage/*.key
-/vendor
-/.idea
-/.vscode
-/.vagrant
 Homestead.json
 Homestead.yaml
-npm-debug.log
-yarn-error.log
-.env
+
+# Laravel IDE helper
+_ide_helper.*
+.phpstorm.*
+
+# Project
+/public/js
+/public/css
+/public/fonts
+/public/images
+/public/mix-manifest.json
+/public/*.js
+/public/*.css
+
+# Force yarn usage
+package-lock.json
+
