@@ -218,4 +218,8 @@ return [
 
     ],
 
+    'debug_blacklist' => [
+        '_SERVER' => array_keys($_SERVER),
+        '_ENV' => array_keys($_ENV),
+    ],
 ];
