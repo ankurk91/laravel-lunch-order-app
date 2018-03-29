@@ -152,6 +152,7 @@ return [
          */
         Vinkla\Alert\AlertServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
         /*
          * Application Service Providers...

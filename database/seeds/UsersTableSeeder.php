@@ -1,0 +1,20 @@
+<?php
+
+use Illuminate\Database\Seeder;
+
+class UsersTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $roles = config('project.available_roles');
+        // Create some dummy accounts
+        factory(\App\Models\User::class, 100)->create()->each(function ($user) use ($roles) {
+            $user->assignRole($roles[array_rand($roles)]);
+        });
+    }
+}

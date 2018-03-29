@@ -96,6 +96,7 @@ class SocialiteController extends Controller
             if (!$user->exists) {
                 $user->name = $providerUser->getName();
                 $user->save();
+                $user->assignRole('customer');
             }
 
             $social->user()->associate($user);
