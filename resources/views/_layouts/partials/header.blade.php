@@ -1,7 +1,7 @@
-<header class="header mb-3">
+<header class="header">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand mb-0 h1" href="{{url('/')}}">
         {{config('app.name')}}
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav"
@@ -10,35 +10,46 @@
       </button>
 
       <div class="collapse navbar-collapse" id="mobile-nav">
+
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{{url('/')}}"><i class="fas fa-home"></i> Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-dolly"></i> Orders</a>
-          </li>
+          @auth
+            <li class="nav-item active">
+              <a class="nav-link" href="#"><i class="fas fa-dolly"></i> Orders</a>
+            </li>
+          @endauth
         </ul>
-        <div class="right-section">
+
+
+        <ul class="navbar-nav ml-auto">
           @guest
-            <a href="{{route('oauth.login','google')}}" class="btn btn-sm btn-danger" role="button">
-              <i class="fab fa-google"></i>&ensp;Login</a>
+            <li class="nav-item active">
+              <a href="{{route('login')}}" class="nav-link">
+                <i class="fas fa-sign-in-alt"></i>&ensp;Login</a>
+            </li>
           @endguest
           @auth
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="user-dropdown" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fas fa-user-circle"></i> {{auth()->user()->email}}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="user-dropdown" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user-circle"></i> {{auth()->user()->email}}
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-dropdown">
+                <a class="dropdown-item" href="#">Profile</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                                     document.querySelector('#logout-form').submit();">
+                  Logout
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-dropdown">
-                  <a class="dropdown-item" href="#">Profile</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Logout</a>
-                </div>
-              </li>
-            </ul>
-          @endauth
-        </div>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+                </form>
+              </div>
+            </li>
+        </ul>
+        @endauth
+
       </div>
     </div>
   </nav>

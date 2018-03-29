@@ -18,11 +18,11 @@
   </script>
 
 </head>
-<body class="{{'env-'.config('app.env', 'production')}} @yield('bodyClass')">
+<body class="bg-light {{'env-'.config('app.env', 'production')}} @yield('bodyClass')">
 <main id="app" role="main">
 @include('_layouts.partials.header')
 <!-- Main content starts -->
-  <div class="container">
+  <div class="container mt-1 mb-5">
     @yield('content')
   </div>
   @include('_layouts.partials.footer')

@@ -3,5 +3,7 @@
 @section('pageTitle','Home')
 
 @section('content')
-  <h1>Welcome</h1>
+  @component('components.breadcrumb')
+    Dashboard
+  @endcomponent
 @endsection

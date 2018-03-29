@@ -1,8 +1,8 @@
-<footer class="footer text-center text-muted mt-4">
+<footer class="footer text-muted mt-4">
   <div class="footer-content container">
     <div class="row">
-      <div class="col-lg-6 col-md-12 text-lg-left">&copy; Ankur Kumar</div>
-      <div class="col-lg-6 col-md-12 text-lg-right">Powered by
+      <div class="col-6 text-left">&copy; ankurk91</div>
+      <div class="col-6 text-right">Powered by
         <i class="fab fa-laravel"></i>
       </div>
     </div>
