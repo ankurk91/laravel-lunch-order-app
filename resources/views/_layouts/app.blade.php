@@ -20,7 +20,7 @@
 </head>
 <body class="bg-light {{'env-'.config('app.env', 'production')}} @yield('bodyClass')">
 <main id="app" role="main">
-@include('_layouts.partials.header')
+@include('_layouts.partials.navbar')
 <!-- Main content starts -->
   <div class="container mt-1 mb-5">
     @yield('content')

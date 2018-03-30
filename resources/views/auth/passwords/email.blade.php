@@ -11,6 +11,9 @@
   @if (session('status'))
     <div class="alert alert-success">
       {{ session('status') }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
   @endif
 
@@ -40,13 +43,13 @@
                 <i class="fas fa-envelope"></i> Send Password Reset Link
               </button>
             </div>
-            <div class="text-center">
-              <a class="btn btn-link" href="{{ route('login') }}">
-                Back to Login
-              </a>
-            </div>
           </form>
         </div>
+      </div>
+      <div class="text-center">
+        <a class="btn btn-link" href="{{ route('login') }}">
+          Back to Login
+        </a>
       </div>
     </div>
   </div>

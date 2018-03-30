@@ -21,7 +21,7 @@
 
             <input type="hidden" name="token" value="{{ $token }}">
 
-            <div class="form-group ">
+            <div class="form-group">
               <label for="email"> E-Mail Address</label>
 
               <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
@@ -55,7 +55,7 @@
 
               <input id="password-confirm" type="password"
                      class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}"
-                     name="password_confirmation" placeholder="Password" required>
+                     name="password_confirmation" placeholder="Confirm Password" required>
 
               @if ($errors->has('password_confirmation'))
                 <div class="invalid-feedback">
@@ -69,13 +69,13 @@
                 <i class="fas fa-check"></i> Reset Password
               </button>
             </div>
-            <div class="text-center">
-              <a class="btn btn-link" href="{{ route('login') }}">
-                Back to Login
-              </a>
-            </div>
           </form>
         </div>
+      </div>
+      <div class="text-center">
+        <a class="btn btn-link" href="{{ route('login') }}">
+          Back to Login
+        </a>
       </div>
     </div>
   </div>

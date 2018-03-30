@@ -51,7 +51,7 @@
             </div>
 
             <div class="form-group">
-              <button type="submit" class="btn btn-success btn-block">
+              <button type="submit" class="btn btn-primary btn-block">
                 <i class="fas fa-check"></i> Login
               </button>
             </div>
@@ -60,19 +60,19 @@
                 <i class="fab fa-google"></i> Login with Google
               </a>
             </div>
-            <div class="text-center">
-              <a class="btn btn-link" href="{{ route('password.request') }}">
-                Forgot Your Password?
-              </a>
-            </div>
           </form>
         </div>
+      </div>
+      <div class="text-center">
+        <a class="btn btn-link" href="{{ route('password.request') }}">
+          Forgot Your Password?
+        </a>
       </div>
     </div>
 
     <div class="col-sm-7 order-sm-last order-lg-first mt-sm-0 mt-lg-0 mt-3">
       <div class="jumbotron pt-4">
-        <h1 class="display-4">Hello, world!</h1>
+        <h1 class="display-4">Hello, there!</h1>
         <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
           featured content or information.</p>
         <hr class="my-4">
