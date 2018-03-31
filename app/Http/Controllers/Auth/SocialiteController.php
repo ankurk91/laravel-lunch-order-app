@@ -48,7 +48,7 @@ class SocialiteController extends Controller
         DB::beginTransaction();
         try {
             $user = $this->createOrGetUser($provider, $providerUser);
-            Auth::login($user);
+            Auth::login($user, true);
             // This session variable determines if user can change his password without entering old
             session()->put(['auth.social_id' => $providerUser->getId()]);
 
