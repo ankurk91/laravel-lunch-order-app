@@ -10,7 +10,7 @@
   @include('alert::bootstrap')
 
   <div class="row">
-    <div class="col-sm-5 order-sm-first order-lg-last">
+    <section class="col-sm-5 order-sm-first order-lg-last">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Login to your account</h5>
@@ -68,9 +68,9 @@
           Forgot Your Password?
         </a>
       </div>
-    </div>
+    </section>
 
-    <div class="col-sm-7 order-sm-last order-lg-first mt-sm-0 mt-lg-0 mt-3">
+    <aside class="col-sm-7 order-sm-last order-lg-first mt-sm-0 mt-lg-0 mt-3">
       <div class="jumbotron pt-4">
         <h1 class="display-4">Hello, there!</h1>
         <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
@@ -79,7 +79,7 @@
         <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
         <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
       </div>
-    </div>
+    </aside>
   </div>
 
 @endsection

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SocialAccount extends Model
+class UserProfile extends Model
 {
     use Traits\BelongsToUser;
 
@@ -14,7 +14,7 @@ class SocialAccount extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'provider_user_id', 'provider'
+        'first_name', 'last_name', 'primary_phone', 'avatar', 'user_id',
     ];
 
 }

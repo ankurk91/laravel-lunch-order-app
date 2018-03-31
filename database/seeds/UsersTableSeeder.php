@@ -15,6 +15,9 @@ class UsersTableSeeder extends Seeder
         // Create some dummy accounts
         factory(\App\Models\User::class, 100)->create()->each(function ($user) use ($roles) {
             $user->assignRole($roles[array_rand($roles)]);
+            if (rand(0, 1)) {
+                $user->profile()->save(factory(App\Models\UserProfile::class)->make());
+            }
         });
     }
 }

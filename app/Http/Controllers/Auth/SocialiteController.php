@@ -94,9 +94,9 @@ class SocialiteController extends Controller
             ]);
 
             if (!$user->exists) {
-                $user->name = $providerUser->getName();
                 $user->save();
                 $user->assignRole('customer');
+                $user->profile()->create($this->getProfileData($providerUser));
             }
 
             $social->user()->associate($user);
@@ -106,5 +106,16 @@ class SocialiteController extends Controller
 
         }
 
+    }
+
+
+    private function getProfileData($providerUser)
+    {
+        $nameParts = explode(' ', $providerUser->getName());
+        return [
+            'first_name' => $nameParts[0],
+            'last_name' => $nameParts[1],
+            'avatar' => preg_replace('/\?sz=[\d]*$/', '', $providerUser->getAvatar()),
+        ];
     }
 }

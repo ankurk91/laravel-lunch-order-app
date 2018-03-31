@@ -34,7 +34,7 @@
                 <i class="fas fa-user-circle"></i> {{auth()->user()->email}}
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-dropdown">
-                <a class="dropdown-item" href="#">Profile</a>
+                <a class="dropdown-item" href="{{route('account.edit')}}">Profile</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
