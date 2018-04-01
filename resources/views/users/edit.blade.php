@@ -3,7 +3,11 @@
 @section('pageTitle','Edit User')
 
 @section('content')
-  @component('components.breadcrumb')
+  @component('components.breadcrumb',[
+    'links' => [
+      'users' => route('admin.users.index')
+    ]
+  ])
     Edit User
   @endcomponent
 
