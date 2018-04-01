@@ -87,6 +87,7 @@
             </div>
           </div>
           <div class="card-footer text-right">
+            <a class="small text-muted btn btn-link" href="{{route('account.password.edit')}}">Change password</a>
             <button type="submit" class="btn btn-primary"><i class="fas fa-pencil-alt"></i> Update</button>
           </div>
         </div>

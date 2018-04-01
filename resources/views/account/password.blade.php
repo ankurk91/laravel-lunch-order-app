@@ -3,7 +3,10 @@
 
 @section('content')
 
-  @component('components.breadcrumb')
+  @component('components.breadcrumb',[
+  'links'=>[
+    'profile'=> route('account.edit')
+  ]])
     Change Password
   @endcomponent
 

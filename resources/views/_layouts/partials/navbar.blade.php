@@ -1,5 +1,5 @@
-<header class="header">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<header class="app-header">
+  <nav class="navbar navbar-expand-md fixed-top navbar-light bg-white border-bottom">
     <div class="container">
       <a class="navbar-brand mb-0 h1" href="{{url('/')}}">
         {{config('app.name')}}
