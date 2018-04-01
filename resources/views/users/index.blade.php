@@ -7,6 +7,8 @@
     Users
   @endcomponent
 
+  @include('alert::bootstrap')
+
   <section class="card mb-3">
     <div class="card-body">
       <form id="search-form" class="form-inline" method="GET"
@@ -21,7 +23,7 @@
 
         <div class="form-group mx-sm-3">
           <input type="text" class="form-control" placeholder="Search" name="search"
-                 value="{{request('search')}}">
+                 value="{{request('search')}}" autofocus>
         </div>
         <div class="form-group mb-0">
           <button type="submit" value="1" class="btn btn-primary"><i class="fa fa-search fa-fw"></i>Search
@@ -55,7 +57,7 @@
         </tr>
       @empty
         <tr>
-          <td colspan="4" class="text-center">No users found</td>
+          <td colspan="4" class="text-center">No records found</td>
         </tr>
       @endforelse
       </tbody>

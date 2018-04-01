@@ -12,6 +12,8 @@
 |
 */
 
+Route::post('/users/{user}/update-roles', 'UsersController@updateRoles')->name('users.update-roles');
+
 Route::resource(
     'users', 'UsersController', ['only' => [
         'index', 'edit', 'update'

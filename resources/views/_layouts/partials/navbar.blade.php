@@ -12,14 +12,14 @@
       <div class="collapse navbar-collapse" id="mobile-nav">
 
         <ul class="navbar-nav mr-auto">
-          @auth
+          @hasrole('admin')
             <li class="nav-item active">
               <a class="nav-link" href="#"><i class="fas fa-dolly"></i> Orders</a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="{{route('admin.users.index')}}"><i class="fas fa-users"></i> Users</a>
             </li>
-          @endauth
+          @endhasrole
         </ul>
 
 

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\ProfileUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\UserProfile;
+use Spatie\Permission\Models\Role;
 
 class UsersController extends Controller
 {
@@ -77,8 +80,29 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        $user->load('profile');
-        return view('users.edit', compact('user'));
+        $user->load(['profile', 'roles']);
+        $availableRoles = Role::all();
+        return view('users.edit', compact('user', 'availableRoles'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  ProfileUpdateRequest $request
+     * @param  \App\Models\User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function update(ProfileUpdateRequest $request, User $user)
+    {
+        UserProfile::updateOrCreate(
+            ['user_id' => $user->id],
+            $request->only(
+                ['first_name', 'last_name', 'primary_phone']
+            )
+        );
+
+        alert()->success('User profile was updated successfully.');
+        return back();
     }
 
     /**
@@ -88,9 +112,16 @@ class UsersController extends Controller
      * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function updateRoles(Request $request, User $user)
     {
-        //
+        $this->validate($request, [
+            'roles' => 'required|array|exists:roles,id',
+        ]);
+
+        $user->syncRoles($request->input('roles'));
+
+        alert()->success('User roles were updated successfully.');
+        return back();
     }
 
     /**
