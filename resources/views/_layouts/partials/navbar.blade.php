@@ -13,19 +13,19 @@
 
         <ul class="navbar-nav mr-auto">
           @hasrole('admin')
-            <li class="nav-item active">
-              <a class="nav-link" href="#"><i class="fas fa-dolly"></i> Orders</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="{{route('admin.users.index')}}"><i class="fas fa-users"></i> Users</a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-dolly"></i> Orders</a>
+          </li>
+          <li class="nav-item {{isActiveRoute('admin.users.index')}}">
+            <a class="nav-link" href="{{route('admin.users.index')}}"><i class="fas fa-users"></i> Users</a>
+          </li>
           @endhasrole
         </ul>
 
 
         <ul class="navbar-nav ml-auto">
           @guest
-            <li class="nav-item active">
+            <li class="nav-item {{isActiveRoute('login')}}">
               <a href="{{route('login')}}" class="nav-link">
                 <i class="fas fa-sign-in-alt"></i>&ensp;Login</a>
             </li>
