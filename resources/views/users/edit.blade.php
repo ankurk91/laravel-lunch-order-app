@@ -135,21 +135,6 @@
         </div>
       </form>
 
-      <form onsubmit="return confirm('Are you sure?')" action="{{route('admin.users.destroy',$user->id)}}"
-            method="POST">
-        @csrf
-        @method('delete')
-        <div class="card mt-4">
-          <div class="card-body">
-            <h5 class="card-title">Delete user</h5>
-            <p class="card-text">You can only delete this user if there is no purchase history associated.</p>
-          </div>
-          <div class="card-footer text-right">
-            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</button>
-          </div>
-        </div>
-      </form>
-
       <form onsubmit="return confirm('Are you sure?')" action="{{route('admin.users.toggle-block',$user->id)}}"
             method="POST">
         @csrf
@@ -168,6 +153,23 @@
             @else
               <button type="submit" class="btn btn-warning"><i class="fas fa-lock"></i> Block</button>
             @endif
+          </div>
+        </div>
+      </form>
+
+      <form onsubmit="return confirm('Are you sure?')" action="{{route('admin.users.destroy',$user->id)}}"
+            method="POST">
+        @csrf
+        @method('delete')
+        <div class="card mt-4">
+          <div class="card-body">
+            <h5 class="card-title text-danger">Delete user</h5>
+            <p class="card-text">You can only delete this user if there is no purchase history associated.<br>
+            This operation can't be undone.
+            </p>
+          </div>
+          <div class="card-footer text-right">
+            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</button>
           </div>
         </div>
       </form>

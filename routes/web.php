@@ -43,4 +43,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'account', 'as' => 'account.
         Route::post('/edit', 'Account\PasswordController@update')->name('update');
     });
 
+    Route::group(['prefix' => 'actions', 'as' => 'actions.'], function () {
+        Route::post('/logout-other-devices', 'Account\ActionController@logoutOtherDevices')->name('logout-other-devices');
+    });
+
 });
