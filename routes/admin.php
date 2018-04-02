@@ -12,10 +12,13 @@
 |
 */
 
-Route::post('/users/{user}/update-roles', 'UsersController@updateRoles')->name('users.update-roles');
+Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
+    Route::patch('/{user}/update-roles', 'UserController@updateRoles')->name('update-roles');
+    Route::patch('/{user}/toggle-block', 'UserController@toggleBlockedStatus')->name('toggle-block');
+});
 
 Route::resource(
-    'users', 'UsersController', ['only' => [
-        'index', 'edit', 'update'
+    'users', 'UserController', ['only' => [
+        'index', 'edit', 'update', 'destroy'
     ]]
 );

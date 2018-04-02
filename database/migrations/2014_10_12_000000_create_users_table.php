@@ -18,6 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             // null when login via oauth
             $table->string('password')->nullable()->default(null);
+
+            // User account is considered blocked if this field has a date string
+            $table->timestamp('blocked_at')->nullable()->default(NULL);
             $table->rememberToken();
             $table->timestamps();
         });

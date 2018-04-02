@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\UserProfile;
 use Spatie\Permission\Models\Role;
 
-class UsersController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -132,6 +132,25 @@ class UsersController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        //todo check for purchase history before deleting
+        $user->delete();
+        alert()->success('User was deleted successfully.');
+        return redirect()->route('admin.users.index');
     }
+
+    /**
+     * Toggle user's account locked status.
+     *
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function toggleBlockedStatus(User $user)
+    {
+        $user->blocked_at = $user->blocked_at ? null : now();
+        $user->save();
+
+        alert()->success('User status was changed successfully.');
+        return back();
+    }
+
 }

@@ -48,7 +48,7 @@
       @forelse($users as $item)
         <tr>
           <td class="align-middle">{{$item->email}}</td>
-          <td class="align-middle">{{optional($item->profile)->first_name}}</td>
+          <td class="align-middle">{{optional($item->profile)->full_name}}</td>
           <td class="align-middle">{{$item->created_at->format('j M Y, g:i a, T')}}</td>
           <td class="text-center">
             <a href="{{route('admin.users.edit',$item->id)}}" class="btn btn-sm btn-secondary mb-0"><i

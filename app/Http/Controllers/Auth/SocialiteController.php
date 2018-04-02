@@ -16,7 +16,8 @@ class SocialiteController extends Controller
 
     /**
      * Redirect the user to the Provider authentication page.
-     * @param $provider
+     *
+     * @param $provider String
      * @return mixed
      */
     public function redirectToProvider($provider)
@@ -54,7 +55,8 @@ class SocialiteController extends Controller
 
             DB::commit();
 
-            return redirect()->intended('/');
+            return $this->authenticated($user)
+                ?: redirect()->intended('/');
         } catch (\Exception $e) {
             DB::rollBack();
 
@@ -108,13 +110,36 @@ class SocialiteController extends Controller
 
     }
 
+    /**
+     * The user has been authenticated.
+     *
+     * @param  User $user
+     * @return mixed
+     */
+    private function authenticated(User $user)
+    {
+        if ($user->is_blocked) {
+            // Logout this user
+            Auth::guard()->logout();
+            session()->invalidate();
 
+            alert()->error('Your account is disabled. Please contact administrator for assistance.');
+            return redirect()->route('login');
+        }
+    }
+
+    /**
+     * Extract user profile data
+     *
+     * @param $providerUser
+     * @return array
+     */
     private function getProfileData($providerUser)
     {
         $nameParts = explode(' ', $providerUser->getName());
         return [
             'first_name' => $nameParts[0],
-            'last_name' => $nameParts[1],
+            'last_name' => optional($nameParts)[1],
             'avatar' => preg_replace('/\?sz=[\d]*$/', '', $providerUser->getAvatar()),
         ];
     }

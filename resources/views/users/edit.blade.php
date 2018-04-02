@@ -105,6 +105,7 @@
 
       <form method="POST" action="{{route('admin.users.update-roles',$user->id)}}">
         @csrf
+        @method('patch')
         <div class="card mt-4">
           <div class="card-body">
             <h5 class="card-title">Edit user roles</h5>
@@ -133,6 +134,44 @@
           </div>
         </div>
       </form>
+
+      <form onsubmit="return confirm('Are you sure?')" action="{{route('admin.users.destroy',$user->id)}}"
+            method="POST">
+        @csrf
+        @method('delete')
+        <div class="card mt-4">
+          <div class="card-body">
+            <h5 class="card-title">Delete user</h5>
+            <p class="card-text">You can only delete this user if there is no purchase history associated.</p>
+          </div>
+          <div class="card-footer text-right">
+            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</button>
+          </div>
+        </div>
+      </form>
+
+      <form onsubmit="return confirm('Are you sure?')" action="{{route('admin.users.toggle-block',$user->id)}}"
+            method="POST">
+        @csrf
+        @method('patch')
+        <div class="card mt-4">
+          <div class="card-body">
+            <h5 class="card-title">Block/unblock user</h5>
+            <p class="card-text">
+              User will not be allowed to login once blocked.
+            </p>
+          </div>
+          <div class="card-footer text-right">
+            @if($user->is_blocked)
+              <time class="text-muted mr-3" title="{{$user->blocked_at}}">Blocked - {{$user->blocked_at->diffForHumans()}}</time>
+              <button type="submit" class="btn btn-success"><i class="fas fa-lock-open"></i> Unblock</button>
+            @else
+              <button type="submit" class="btn btn-warning"><i class="fas fa-lock"></i> Block</button>
+            @endif
+          </div>
+        </div>
+      </form>
+
     </section>
   </div>
 @endsection
