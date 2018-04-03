@@ -31,7 +31,7 @@
             </li>
           @endguest
           @auth
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown {{isActiveRoute('account.edit')}}">
               <a class="nav-link dropdown-toggle" href="#" id="user-dropdown" role="button"
                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-user-circle"></i> {{auth()->user()->email}}

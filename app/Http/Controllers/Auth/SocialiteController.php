@@ -120,8 +120,7 @@ class SocialiteController extends Controller
     {
         if ($user->is_blocked) {
             // Logout this user
-            Auth::guard()->logout();
-            session()->invalidate();
+            Auth::logout();
 
             alert()->error('Your account is disabled. Please contact administrator for assistance.');
             return redirect()->route('login');
@@ -140,6 +139,7 @@ class SocialiteController extends Controller
         return [
             'first_name' => $nameParts[0],
             'last_name' => optional($nameParts)[1],
+            // Get full sized avatar , remove ?sz query parameter
             'avatar' => preg_replace('/\?sz=[\d]*$/', '', $providerUser->getAvatar()),
         ];
     }

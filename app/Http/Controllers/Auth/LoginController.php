@@ -49,22 +49,12 @@ class LoginController extends Controller
     {
         // If user account found disabled
         if ($user->is_blocked) {
-            // Logout immediately
-            $this->forceLogout($request);
+            // Logout user immediately
+            $this->guard()->logout();
 
             alert()->error('Your account is disabled. Please contact administrator for assistance.');
-            return back()->withInput($request->only($this->username()));
+            return redirect()->route('login')
+                ->withInput($request->only($this->username()));
         }
-    }
-
-    /**
-     * Logout from active session
-     *
-     * @param Request $request
-     */
-    protected function forceLogout(Request $request)
-    {
-        $this->guard()->logout();
-        $request->session()->invalidate();
     }
 }

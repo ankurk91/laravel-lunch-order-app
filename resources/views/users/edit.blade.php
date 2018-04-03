@@ -22,7 +22,7 @@
           @else
             <i class="fas fa-8x fa-user-circle text-muted"></i>
           @endif
-          <p class="h6 my-3">{{$user->email}}</p>
+          <p class="h6 my-3 text-nowrap">{{$user->email}}</p>
           <p class="text-capitalize">{{implode(', ',$user->roles->pluck('name')->toArray())}}</p>
           <time datetime="{{$user->created_at->toIso8601String()}}" title="{{$user->created_at}}" class="small text-muted">Member since {{$user->created_at->format('j M Y')}}</time>
         </div>
@@ -143,8 +143,8 @@
         <div class="card mt-4">
           <div class="card-body">
             <h5 class="card-title">Block/unblock user</h5>
-            <p class="card-text">
-              User will not be allowed to login once blocked.
+            <p class="card-text font-weight-light">
+              When blocked; User will be logged out of all active devices and will not be allowed to login back.
             </p>
           </div>
           <div class="card-footer text-right">
@@ -166,7 +166,7 @@
         <div class="card mt-4">
           <div class="card-body">
             <h5 class="card-title text-danger">Delete user</h5>
-            <p class="card-text">You can only delete this user if there is no purchase history associated.<br>
+            <p class="card-text font-weight-light">You can only delete this user if there is no purchase history associated.<br>
               This operation can't be undone.
             </p>
           </div>

@@ -1,16 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
-/*
-|--------------------------------------------------------------------------
-| Detect Active Route
-|--------------------------------------------------------------------------
-|
-| Compare given route with current route and return output if they match.
-| Very useful for navigation, marking if the link is active.
-|
-*/
+/**
+ * Compare given route with current route and return output if they match.
+ *
+ * @param $route String
+ * @param string $output
+ * @return null|string
+ */
 function isActiveRoute($route, $output = "active")
 {
     return (Route::currentRouteName() === $route) ? $output : null;

@@ -1,0 +1,28 @@
+body {
+  font-family: 'Open Sans', var(--font-family-sans-serif);
+  padding-top: 3.4rem !important; /* support fixed-top navbar */
+}
+
+#app {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+#main {
+  flex: 1;
+}
+
+.app-footer {
+  align-items: flex-end;
+  flex-direction: row;
+}
+
+.app-header {
+  .navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  }
+}
+
+
+

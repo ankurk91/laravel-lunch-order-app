@@ -3,13 +3,23 @@
 @section('pageTitle','Profile')
 
 @section('content')
-  @component('components.breadcrumb')
-    Profile
-  @endcomponent
+
+  <section class="row d-flex">
+    <div class="col">
+      @component('components.breadcrumb')
+        Profile
+      @endcomponent
+    </div>
+    <div class="col text-right">
+      <div class="mt-2">
+        <a class="small text-muted" href="{{route('account.password.edit')}}">Change password</a>
+      </div>
+    </div>
+  </section>
 
   @include('alert::bootstrap')
 
-  <div class="row">
+  <section class="row">
     <aside class="col-md-4">
       <div class="card">
         <div class="card-body text-center">
@@ -38,7 +48,7 @@
 
             <div class="row">
               <div class="col-md-6">
-                <div class="form-group">
+                <div class="form-group required">
                   <label for="first_name">First name</label>
                   <input id="first_name" type="text"
                          class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}"
@@ -87,7 +97,6 @@
             </div>
           </div>
           <div class="card-footer text-right">
-            <a class="small text-muted btn btn-link" href="{{route('account.password.edit')}}">Change password</a>
             <button type="submit" class="btn btn-primary"><i class="fas fa-pencil-alt"></i> Update</button>
           </div>
         </div>
@@ -99,8 +108,11 @@
         <div class="card mt-4">
           <div class="card-body">
             <h5 class="card-title">Logout from other devices</h5>
-            <p class="card-text small">You will be logged-out from all of your active devices except current.</p>
-            <div class="form-group">
+            <p class="card-text small font-weight-light">
+              <i class="fas fa-exclamation-triangle"></i> You will be logged-out from all of
+              your active devices except current.
+            </p>
+            <div class="form-group required">
               <label for="current_password">Current Password</label>
               <input id="current_password" type="password"
                      class="form-control{{ $errors->has('current_password') ? ' is-invalid' : '' }}"
@@ -120,5 +132,5 @@
         </div>
       </form>
     </section>
-  </div>
+  </section>
 @endsection

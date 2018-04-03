@@ -13,32 +13,28 @@
     <div class="card-body">
       <form id="search-form" class="form-inline" method="GET"
             action="{{route('admin.users.index')}}">
-        <div class="form-group">
-          <select class="form-control" name="per_page">
-            <option disabled>Per Page</option>
-            <option value="10" @if(request('per_page') === '10') selected @endif>10</option>
-            <option value="30" @if(request('per_page') === '30') selected @endif>30</option>
-            <option value="50" @if(request('per_page') === '50') selected @endif>50</option>
-          </select>
-        </div>
 
-        <div class="form-group mx-sm-3">
-          <select class="form-control" name="active_status">
-            <option disabled>Status</option>
-            <option value="active" @if(request('active_status') === 'active') selected @endif>Active</option>
-            <option value="blocked" @if(request('active_status') === 'blocked') selected @endif>Blocked</option>
-            <option value="all" @if(request('active_status') === 'all') selected @endif>All</option>
-          </select>
-        </div>
+        <select class="form-control mb-2 mb-sm-0 mr-sm-2" name="per_page">
+          <option disabled>Per Page</option>
+          <option value="10" @if(request('per_page') === '10') selected @endif>10</option>
+          <option value="30" @if(request('per_page') === '30') selected @endif>30</option>
+          <option value="50" @if(request('per_page') === '50') selected @endif>50</option>
+        </select>
 
-        <div class="form-group mx-sm-3">
-          <input type="text" class="form-control" placeholder="Search" name="search"
-                 value="{{request('search')}}" autofocus>
-        </div>
-        <div class="form-group mb-0">
-          <button type="submit" value="1" class="btn btn-primary"><i class="fa fa-search fa-fw"></i>Search
-          </button>
-        </div>
+        <select class="form-control mb-2 mb-sm-0 mx-sm-2" name="active_status">
+          <option disabled>Status</option>
+          <option value="active" @if(request('active_status') === 'active') selected @endif>Active</option>
+          <option value="blocked" @if(request('active_status') === 'blocked') selected @endif>Blocked</option>
+          <option value="all" @if(request('active_status') === 'all') selected @endif>All</option>
+        </select>
+
+        <input type="text" class="form-control mb-2 mb-sm-0 mr-sm-2" placeholder="Search" name="search"
+               value="{{request('search')}}" autofocus>
+
+
+        <button type="submit" value="1" class="btn btn-primary mb-0 mb-sm-0 mr-sm-2"><i class="fa fa-search fa-fw"></i>Search
+        </button>
+
       </form>
     </div>
   </section>
@@ -92,7 +88,7 @@
         <h5 class="mt-sm-2 mt-0 mb-0">Found {{$users->total()}} entries</h5>
       </div>
       <div class="col-md-8 d-flex">
-        <div class="mx-auto ml-sm-auto mr-sm-0">
+        <div class="mx-auto ml-sm-auto mr-sm-0 table-responsive-sm">
           {{$users->appends(request()->all())->links()}}
         </div>
       </div>

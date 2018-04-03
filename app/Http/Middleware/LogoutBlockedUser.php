@@ -16,7 +16,7 @@ class LogoutBlockedUser
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::guard()->check() && Auth::user()->is_blocked) {
+        if (Auth::check() && Auth::user()->is_blocked) {
             // Logout this user
             Auth::logout();
 

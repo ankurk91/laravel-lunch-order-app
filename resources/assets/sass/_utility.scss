@@ -1,0 +1,7 @@
+/**
+* Indicate require field
+*/
+.form-group.required > label:after {
+  content: "*";
+  color: var(--red);
+}

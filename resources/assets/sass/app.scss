@@ -1,26 +1,2 @@
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  font-family: 'Open Sans', var(--font-family-sans-serif);
-  padding-top: 3.4rem !important; /* support fixed-top navbar */
-  margin-bottom: 40px; /* Margin bottom by footer height */
-}
-
-.app-header {
-  .navbar {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-  }
-}
-
-.app-footer {
-  position: absolute;
-  bottom: 0;
-  height: 40px; /* Set the fixed height of the footer here */
-  line-height: 40px; /* Vertically center the text there */
-}
-
-
+@import "utility";
+@import "theme";
