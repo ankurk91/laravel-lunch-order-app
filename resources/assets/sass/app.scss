@@ -5,6 +5,7 @@ html {
 }
 
 body {
+  font-family: 'Open Sans', var(--font-family-sans-serif);
   padding-top: 3.4rem !important; /* support fixed-top navbar */
   margin-bottom: 40px; /* Margin bottom by footer height */
 }
