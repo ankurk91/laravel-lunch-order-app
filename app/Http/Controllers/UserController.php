@@ -32,6 +32,17 @@ class UserController extends Controller
             });
         }
 
+        if ($request->filled('active_status')) {
+            if ($request->input('active_status') === 'active') {
+                $users->OnlyActive();
+            } elseif ($request->input('active_status') === 'blocked') {
+                $users->OnlyBlocked();
+            }
+        } else {
+            // Load only active users by default
+            $users->OnlyActive();
+        }
+
         $users = $users->latest()
             ->paginate($request->filled('per_page') ? (int)$request->input('per_page') : 10);
 

@@ -24,6 +24,7 @@
           @endif
           <p class="h6 my-3">{{$user->email}}</p>
           <p class="text-capitalize">{{implode(', ',$user->roles->pluck('name')->toArray())}}</p>
+          <time datetime="{{$user->created_at->toIso8601String()}}" title="{{$user->created_at}}" class="small text-muted">Member since {{$user->created_at->format('j M Y')}}</time>
         </div>
       </div>
     </aside>
@@ -148,7 +149,8 @@
           </div>
           <div class="card-footer text-right">
             @if($user->is_blocked)
-              <time class="text-muted mr-3" title="{{$user->blocked_at}}">Blocked - {{$user->blocked_at->diffForHumans()}}</time>
+              <time datetime="{{$user->blocked_at->toIso8601String()}}" class="text-muted mr-3" title="{{$user->blocked_at}}">Blocked
+                - {{$user->blocked_at->diffForHumans()}}</time>
               <button type="submit" class="btn btn-success"><i class="fas fa-lock-open"></i> Unblock</button>
             @else
               <button type="submit" class="btn btn-warning"><i class="fas fa-lock"></i> Block</button>
@@ -165,7 +167,7 @@
           <div class="card-body">
             <h5 class="card-title text-danger">Delete user</h5>
             <p class="card-text">You can only delete this user if there is no purchase history associated.<br>
-            This operation can't be undone.
+              This operation can't be undone.
             </p>
           </div>
           <div class="card-footer text-right">

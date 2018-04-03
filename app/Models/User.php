@@ -64,4 +64,26 @@ class User extends Authenticatable
     {
         return !is_null($this->blocked_at);
     }
+
+    /**
+     * Scope a query to only active users.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOnlyActive($query)
+    {
+        return $query->where('blocked_at', null);
+    }
+
+    /**
+     * Scope a query to only blocked users.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOnlyBlocked($query)
+    {
+        return $query->where('blocked_at', '!=', null);
+    }
 }

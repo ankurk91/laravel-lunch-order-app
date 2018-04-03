@@ -99,7 +99,7 @@
         <div class="card mt-4">
           <div class="card-body">
             <h5 class="card-title">Logout from other devices</h5>
-            <p class="card-text">You will be logged-out from all of your active devices except current.</p>
+            <p class="card-text small">You will be logged-out from all of your active devices except current.</p>
             <div class="form-group">
               <label for="current_password">Current Password</label>
               <input id="current_password" type="password"

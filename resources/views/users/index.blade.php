@@ -15,9 +15,19 @@
             action="{{route('admin.users.index')}}">
         <div class="form-group">
           <select class="form-control" name="per_page">
+            <option disabled>Per Page</option>
             <option value="10" @if(request('per_page') === '10') selected @endif>10</option>
             <option value="30" @if(request('per_page') === '30') selected @endif>30</option>
             <option value="50" @if(request('per_page') === '50') selected @endif>50</option>
+          </select>
+        </div>
+
+        <div class="form-group mx-sm-3">
+          <select class="form-control" name="active_status">
+            <option disabled>Status</option>
+            <option value="active" @if(request('active_status') === 'active') selected @endif>Active</option>
+            <option value="blocked" @if(request('active_status') === 'blocked') selected @endif>Blocked</option>
+            <option value="all" @if(request('active_status') === 'all') selected @endif>All</option>
           </select>
         </div>
 
@@ -40,18 +50,30 @@
       <tr>
         <th>Email</th>
         <th>Name</th>
-        <th>Registered at</th>
+        @if(request('active_status') === 'all')
+          <th>Status</th>
+        @endif
         <th>Actions</th>
       </tr>
       </thead>
       <tbody>
-      @forelse($users as $item)
+      @forelse($users as $user)
         <tr>
-          <td class="align-middle">{{$item->email}}</td>
-          <td class="align-middle">{{optional($item->profile)->full_name}}</td>
-          <td class="align-middle">{{$item->created_at->format('j M Y, g:i a, T')}}</td>
+          <td class="align-middle">
+            {{$user->email}}
+          </td>
+          <td class="align-middle">{{optional($user->profile)->full_name}}</td>
+          @if(request('active_status') === 'all')
+            <td class="align-middle">
+              @if($user->is_blocked)
+                <span class="badge badge-secondary">Blocked</span>
+              @else
+                <span class="badge badge-success">Active</span>
+              @endif
+            </td>
+          @endif
           <td class="text-center">
-            <a href="{{route('admin.users.edit',$item->id)}}" class="btn btn-sm btn-secondary mb-0"><i
+            <a href="{{route('admin.users.edit',$user->id)}}" class="btn btn-sm btn-secondary mb-0"><i
                 class="fas fa-pencil-alt"></i> Edit</a>
           </td>
         </tr>
@@ -64,7 +86,7 @@
     </table>
   </section>
 
-  @if($users->total() > 0)
+  @if($users->total() > 1)
     <div class="row">
       <div class="col-md-4 mb-sm-0 mb-3 text-center text-sm-left">
         <h5 class="mt-sm-2 mt-0 mb-0">Found {{$users->total()}} entries</h5>
