@@ -27,7 +27,13 @@
           @endif
           <p class="h5 my-3 text-nowrap">{{$user->email}}</p>
           <p class="text-capitalize">{{implode(', ',$user->roles->pluck('name')->toArray())}}</p>
-          <time datetime="{{$user->created_at->toIso8601String()}}" title="{{$user->created_at}}" class="small text-muted">Member since {{$user->created_at->format('j M Y')}}</time>
+          <p class="small text-muted mb-0">
+            Member since -
+            <time data-local="time"
+                  data-format="%B %e, %Y %l:%M%P"
+                  datetime="{{$user->created_at->toIso8601String()}}">
+              {{$user->created_at}}</time>
+          </p>
         </div>
       </div>
     </aside>
@@ -152,7 +158,8 @@
           </div>
           <div class="card-footer text-right">
             @if($user->is_blocked)
-              <time datetime="{{$user->blocked_at->toIso8601String()}}" class="text-muted mr-3" title="{{$user->blocked_at}}">Blocked
+              <time datetime="{{$user->blocked_at->toIso8601String()}}" class="text-muted mr-3"
+                    title="{{$user->blocked_at}}">Blocked
                 - {{$user->blocked_at->diffForHumans()}}</time>
               <button type="submit" class="btn btn-success"><i class="fas fa-lock-open"></i> Unblock</button>
             @else
@@ -169,7 +176,8 @@
         <div class="card mt-4">
           <div class="card-body">
             <h5 class="card-title text-danger">Delete user</h5>
-            <p class="card-text font-weight-light">You can only delete this user if there is no purchase history associated.<br>
+            <p class="card-text font-weight-light">You can only delete this user if there is no purchase history
+              associated.<br>
               This operation can't be undone.
             </p>
           </div>
