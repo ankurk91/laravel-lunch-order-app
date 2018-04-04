@@ -3,9 +3,23 @@
 @section('pageTitle','Users')
 
 @section('content')
-  @component('components.breadcrumb')
-    Users
-  @endcomponent
+
+  <section class="row d-flex">
+    <div class="col">
+      @component('components.breadcrumb')
+        Users
+      @endcomponent
+    </div>
+    <div class="col pt-1 text-right">
+      <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('admin.users.create')}}">
+            <i class="fas fa-user-plus"></i> Add new user
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
 
   @include('alert::bootstrap')
 
@@ -31,8 +45,8 @@
         <input type="text" class="form-control mb-2 mb-sm-0 mr-sm-2" placeholder="Search" name="search"
                value="{{request('search')}}" autofocus>
 
-
-        <button type="submit" value="1" class="btn btn-primary mb-0 mb-sm-0 mr-sm-2"><i class="fa fa-search fa-fw"></i>Search
+        <button type="submit" value="1" class="btn btn-primary mb-0 mb-sm-0 mr-sm-2">
+          <i class="fa fa-search fa-fw"></i>Search
         </button>
 
       </form>

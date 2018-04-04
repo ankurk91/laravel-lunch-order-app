@@ -14,7 +14,7 @@ class PasswordUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return auth()->check();
     }
 
     /**

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\User\ProfileUpdateRequest;
+use App\Http\Requests\User\StoreRequest as UserStoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\UserProfile;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -58,18 +60,33 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $availableRoles = Role::all();
+        return view('users.create', compact('availableRoles'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  UserStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
-        //
+        DB::beginTransaction();
+
+        $user = new User();
+        $user = $user->create($request->only([
+            'email',
+        ]));
+        $user->profile()->create($request->only([
+            'first_name', 'last_name', 'primary_phone'
+        ]));
+        $user->assignRole($request->input('roles'));
+
+        DB::commit();
+        //todo send invite
+        alert()->success('User was created successfully.');
+        return redirect()->route('admin.users.edit', $user->id);
     }
 
     /**
@@ -126,7 +143,7 @@ class UserController extends Controller
     public function updateRoles(Request $request, User $user)
     {
         $this->validate($request, [
-            'roles' => 'required|array|exists:roles,id',
+            'roles' => 'bail|required|array|exists:roles,id',
         ]);
 
         $user->syncRoles($request->input('roles'));

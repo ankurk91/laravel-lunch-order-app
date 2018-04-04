@@ -41,36 +41,26 @@ class SocialiteController extends Controller
             if (config('app.debug')) {
                 throw $e;
             }
+            // Lets Suppress this error
             // We are not logging this error to error reporting service
             alert()->error('Unable to authenticate. Please try again.');
             return redirect()->route('login');
         }
 
         DB::beginTransaction();
-        try {
-            $user = $this->createOrGetUser($provider, $providerUser);
-            Auth::login($user, true);
-            // This session variable determines if user can change his password without entering old
-            session()->put(['auth.social_id' => $providerUser->getId()]);
 
-            DB::commit();
+        $user = $this->createOrGetUser($provider, $providerUser);
+        Auth::login($user, true);
+        // This session variable can be used to check if user is logged-in via socialite
+        session()->put([
+            'auth.social_id' => $providerUser->getId()
+        ]);
 
-            return $this->authenticated($user)
-                ?: redirect()->intended('/');
-        } catch (\Exception $e) {
-            DB::rollBack();
+        DB::commit();
 
-            // Send actual error message in development
-            if (config('app.debug')) {
-                throw $e;
-            }
+        return $this->authenticated($user)
+            ?: redirect()->intended('/');
 
-            // Log errors
-            Log::error($e);
-        }
-
-        alert()->error('Something went wrong. Please try again.');
-        return redirect()->route('login');
     }
 
     /**

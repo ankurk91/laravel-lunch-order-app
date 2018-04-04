@@ -1,5 +1,5 @@
 <nav aria-label="breadcrumb">
-  <ol class="breadcrumb mb-0 px-0 bg-light">
+  <ol class="breadcrumb mb-0 bg-light">
     <li class="breadcrumb-item"><a href="{{url('/')}}">
         <i class="fas fa-home"></i><span class="sr-only">Home</span>
       </a>

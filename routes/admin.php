@@ -13,12 +13,12 @@
 */
 
 Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
-    Route::patch('/{user}/update-roles', 'UserController@updateRoles')->name('update-roles');
-    Route::patch('/{user}/toggle-block', 'UserController@toggleBlockedStatus')->name('toggle-block');
+    Route::patch('/{user}/update-roles', 'UserController@updateRoles')->name('update-roles')->where('user', '[0-9]+');
+    Route::patch('/{user}/toggle-block', 'UserController@toggleBlockedStatus')->name('toggle-block')->where('user', '[0-9]+');
 });
 
 Route::resource(
     'users', 'UserController', ['only' => [
-        'index', 'edit', 'update', 'destroy'
+        'index', 'edit', 'update', 'destroy', 'create', 'store'
     ]]
 );
