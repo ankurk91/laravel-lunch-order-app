@@ -8,7 +8,7 @@
       'users' => route('admin.users.index')
     ]
   ])
-    Edit User
+    Edit user
   @endcomponent
 
   @include('alert::bootstrap')
@@ -18,18 +18,21 @@
       <div class="card">
         <div class="card-body text-center">
           @if(optional($user->profile)->avatar)
-            <img class="rounded-circle" src="{{$user->profile->avatar}}?sz=200" alt="avatar" height="200">
+            <a href="{{$user->profile->avatar}}" target="_blank">
+              <img class="rounded-circle border" src="{{$user->profile->avatar}}?sz=200" alt="avatar" height="200">
+              <span class="sr-only">View large image</span>
+            </a>
           @else
             <i class="fas fa-8x fa-user-circle text-muted"></i>
           @endif
-          <p class="h6 my-3 text-nowrap">{{$user->email}}</p>
+          <p class="h5 my-3 text-nowrap">{{$user->email}}</p>
           <p class="text-capitalize">{{implode(', ',$user->roles->pluck('name')->toArray())}}</p>
           <time datetime="{{$user->created_at->toIso8601String()}}" title="{{$user->created_at}}" class="small text-muted">Member since {{$user->created_at->format('j M Y')}}</time>
         </div>
       </div>
     </aside>
 
-    <section class="col-md-8 mt-sm-0 mt-lg-0 mt-3">
+    <section class="col-md-8 mt-sm-0 mt-lg-0 mt-4">
       <form method="POST" action="{{ route('admin.users.update',$user->id) }}">
         @csrf
         @method('PUT')
@@ -37,7 +40,7 @@
           <div class="card-body">
             <h5 class="card-title">Edit user profile</h5>
             <div class="form-group">
-              <label for="email">E-Mail Address</label>
+              <label for="email">E-Mail address</label>
               <input id="email" type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}"
                      name="email" placeholder="Email" value="{{ old('email',$user->email) }}" disabled>
 
@@ -50,7 +53,7 @@
 
             <div class="row">
               <div class="col-md-6">
-                <div class="form-group">
+                <div class="form-group required">
                   <label for="first_name">First name</label>
                   <input id="first_name" type="text"
                          class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}"
@@ -84,7 +87,7 @@
               </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group mb-0">
               <label for="primary_phone">Primary phone</label>
               <input id="primary_phone" type="tel"
                      class="form-control{{ $errors->has('primary_phone') ? ' is-invalid' : '' }}"
@@ -110,7 +113,7 @@
         <div class="card mt-4">
           <div class="card-body">
             <h5 class="card-title">Edit user roles</h5>
-            <div class="form-group">
+            <div class="form-group required">
               <label>Select roles</label>
               @foreach($availableRoles as $role)
                 <div class="custom-control custom-checkbox">

@@ -36,7 +36,7 @@ class PasswordController extends Controller
 
         alert()->success('Your password was updated successfully.');
 
-        return redirect()->route('account.edit');
+        return back();
     }
 
 }

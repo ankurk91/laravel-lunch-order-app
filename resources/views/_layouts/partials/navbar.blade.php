@@ -32,20 +32,19 @@
           @endguest
           @auth
             <li class="nav-item dropdown {{isActiveRoute('account.edit')}}">
-              <a class="nav-link dropdown-toggle" href="#" id="user-dropdown" role="button"
+              <a class="nav-link dropdown-toggle" href="{{route('account.edit')}}" id="user-dropdown" role="button"
                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-user-circle"></i> {{auth()->user()->email}}
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-dropdown">
-                <a class="dropdown-item" href="{{route('account.edit')}}">Profile</a>
+                <a class="dropdown-item" href="{{route('account.edit')}}">Account</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
-                                                     document.querySelector('#logout-form').submit();">
+                   onclick="event.preventDefault();document.querySelector('#logout-form').submit();">
                   Logout
                 </a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                <form hidden id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   @csrf
                 </form>
               </div>

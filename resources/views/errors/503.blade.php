@@ -5,7 +5,7 @@
 @section('content')
   @component('components.error-page',[
   'errorCode' => '503',
-  'errorHeading' => config('app.name').' is down for maintenance!',
+  'errorHeading' => 'Application is down for maintenance.',
   'actionUrl' => request()->url(),
   'actionLabel' => 'Retry'
   ])

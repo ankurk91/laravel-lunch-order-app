@@ -4,44 +4,23 @@
 
 @section('content')
 
-  <section class="row d-flex">
-    <div class="col">
-      @component('components.breadcrumb')
-        Profile
-      @endcomponent
-    </div>
-    <div class="col text-right">
-      <div class="mt-2">
-        <a class="small text-muted" href="{{route('account.password.edit')}}">Change password</a>
-      </div>
-    </div>
-  </section>
+  @component('components.breadcrumb')
+    Profile
+  @endcomponent
 
   @include('alert::bootstrap')
 
   <section class="row">
-    <aside class="col-md-4">
-      <div class="card">
-        <div class="card-body text-center">
-          @if(optional($profile)->avatar)
-            <img class="rounded-circle" src="{{$profile->avatar}}?sz=200" alt="avatar" height="200">
-          @else
-            <i class="fas fa-8x fa-user-circle text-muted"></i>
-          @endif
-          <p class="h6 my-3">{{$user->email}}</p>
-          <p class="text-capitalize">{{implode(', ',$roles)}}</p>
-        </div>
-      </div>
-    </aside>
+    @include('account.sidebar')
 
-    <section class="col-md-8 mt-sm-0 mt-lg-0 mt-3">
+    <section class="col-md-8">
       <form method="POST" action="{{ route('account.update') }}">
         @csrf
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Edit your profile</h5>
             <div class="form-group">
-              <label for="email">E-Mail Address</label>
+              <label for="email">E-Mail address</label>
               <input id="email" type="email" class="form-control"
                      name="email" value="{{ $user->email }}" disabled>
             </div>
@@ -82,7 +61,7 @@
               </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group mb-0">
               <label for="primary_phone">Primary phone</label>
               <input id="primary_phone" type="tel"
                      class="form-control{{ $errors->has('primary_phone') ? ' is-invalid' : '' }}"
@@ -102,35 +81,6 @@
         </div>
       </form>
 
-      <form onsubmit="return confirm('Are you sure?')" action="{{route('account.actions.logout-other-devices')}}"
-            method="POST">
-        @csrf
-        <div class="card mt-4">
-          <div class="card-body">
-            <h5 class="card-title">Logout from other devices</h5>
-            <p class="card-text small font-weight-light">
-              <i class="fas fa-exclamation-triangle"></i> You will be logged-out from all of
-              your active devices except current.
-            </p>
-            <div class="form-group required">
-              <label for="current_password">Current Password</label>
-              <input id="current_password" type="password"
-                     class="form-control{{ $errors->has('current_password') ? ' is-invalid' : '' }}"
-                     name="current_password"
-                     placeholder="Current Password" required>
-
-              @if ($errors->has('current_password'))
-                <div class="invalid-feedback">
-                  {{ $errors->first('current_password') }}
-                </div>
-              @endif
-            </div>
-          </div>
-          <div class="card-footer text-right">
-            <button type="submit" class="btn btn-outline-danger"><i class="fas fa-sign-out-alt"></i> Sign-out</button>
-          </div>
-        </div>
-      </form>
     </section>
   </section>
 @endsection

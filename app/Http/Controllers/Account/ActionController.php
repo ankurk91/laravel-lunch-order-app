@@ -26,4 +26,5 @@ class ActionController extends Controller
         alert()->success('You have been logged out from other devices.');
         return back();
     }
+
 }
