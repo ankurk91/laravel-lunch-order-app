@@ -13,7 +13,7 @@
   "devDependencies": {
     "cross-env": "^5.1",
     "laravel-mix": "^2.0",
-    "laravel-mix-auto-extract": "^0.0.3",
+    "laravel-mix-auto-extract": "^0.0.4",
     "laravel-mix-purgecss": "^2.0.0"
   },
   "dependencies": {

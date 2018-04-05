@@ -4108,11 +4108,9 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
 
-laravel-mix-auto-extract@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/laravel-mix-auto-extract/-/laravel-mix-auto-extract-0.0.3.tgz#53036e6bf8d19e5fdf82a0be60c17684334c9627"
-  dependencies:
-    laravel-mix ">=2.1.0 <3.0.0"
+laravel-mix-auto-extract@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/laravel-mix-auto-extract/-/laravel-mix-auto-extract-0.0.4.tgz#5164c335f6cd8e77dbf21bee0d5c751a05996c28"
 
 laravel-mix-purgecss@^2.0.0:
   version "2.0.0"
@@ -4121,7 +4119,7 @@ laravel-mix-purgecss@^2.0.0:
     glob-all "^3.1.0"
     purgecss-webpack-plugin "^0.19.0"
 
-"laravel-mix@>=2.1.0 <3.0.0", laravel-mix@^2.0:
+laravel-mix@^2.0:
   version "2.1.11"
   resolved "https://registry.yarnpkg.com/laravel-mix/-/laravel-mix-2.1.11.tgz#3741bde214586f8c171641990c9a487eece5367d"
   dependencies:
