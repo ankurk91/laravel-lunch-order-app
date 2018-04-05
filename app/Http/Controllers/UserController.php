@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\UserProfile;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Password;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -180,5 +181,20 @@ class UserController extends Controller
         alert()->success('User status was changed successfully.');
         return back();
     }
+
+    /**
+     * Send password reset email to user.
+     *
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function sendPasswordResetEmail(User $user)
+    {
+        Password::sendResetLink(['email' => $user->getEmailForPasswordReset()]);
+
+        alert()->success('Password reset email was sent successfully.');
+        return back();
+    }
+
 
 }

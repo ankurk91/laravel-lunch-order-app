@@ -108,7 +108,7 @@
             </div>
           </div>
           <div class="card-footer text-right">
-            <button type="submit" class="btn btn-primary"><i class="fas fa-pencil-alt"></i> Update</button>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-pencil-alt"></i> Update profile</button>
           </div>
         </div>
       </form>
@@ -140,7 +140,25 @@
             </div>
           </div>
           <div class="card-footer text-right">
-            <button type="submit" class="btn btn-primary"><i class="fas fa-pencil-alt"></i> Update</button>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-pencil-alt"></i> Update roles</button>
+          </div>
+        </div>
+      </form>
+
+      <form onsubmit="return confirm('Are you sure?')" action="{{route('admin.users.password-reset-email',$user->id)}}"
+            method="POST">
+        @csrf
+
+        <div class="card mt-4">
+          <div class="card-body">
+            <h5 class="card-title">Send password reset email</h5>
+            <p class="card-text font-weight-light">
+              User will receive an email with password reset link.
+            </p>
+          </div>
+          <div class="card-footer text-right">
+            <button type="submit" class="btn btn-primary"><i class="fas fa-envelope"></i> Send password reset email
+            </button>
           </div>
         </div>
       </form>
@@ -158,9 +176,13 @@
           </div>
           <div class="card-footer text-right">
             @if($user->is_blocked)
-              <time datetime="{{$user->blocked_at->toIso8601String()}}" class="text-muted mr-3"
-                    title="{{$user->blocked_at}}">Blocked
-                - {{$user->blocked_at->diffForHumans()}}</time>
+              <span class="text-muted mr-3">
+                Blocked
+                <time data-local="time-ago"
+                      data-format="%B %e, %Y %l:%M%P"
+                      datetime="{{$user->blocked_at->toIso8601String()}}">
+                  {{$user->blocked_at}}</time>
+              </span>
               <button type="submit" class="btn btn-success"><i class="fas fa-lock-open"></i> Unblock</button>
             @else
               <button type="submit" class="btn btn-warning"><i class="fas fa-lock"></i> Block</button>
@@ -169,7 +191,8 @@
         </div>
       </form>
 
-      <form onsubmit="return confirm('Are you sure?')" action="{{route('admin.users.destroy',$user->id)}}"
+      <form onsubmit="return confirm('Are you sure to delete this user?')"
+            action="{{route('admin.users.destroy',$user->id)}}"
             method="POST">
         @csrf
         @method('delete')
