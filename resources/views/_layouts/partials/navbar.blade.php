@@ -2,9 +2,9 @@
   <nav class="navbar navbar-expand-md fixed-top navbar-light bg-white border-bottom">
     <div class="container">
       <a class="navbar-brand mb-0 h1" href="{{url('/')}}">
-        {{config('app.name')}}
+        <i class="fas fa-utensils"></i> {{config('app.name')}}
       </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav"
+      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#mobile-nav"
               aria-controls="mobile-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

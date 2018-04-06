@@ -70,7 +70,7 @@
       </div>
     </section>
 
-    <aside class="col-sm-7 order-sm-last order-lg-first mt-sm-0 mt-lg-0 mt-3">
+    <aside class="col-sm-7 order-sm-last order-lg-first mt-sm-0 mt-lg-0 mt-4">
       <div class="jumbotron pt-4">
         <h1 class="display-4">Hello, there!</h1>
         <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
