@@ -86,4 +86,9 @@ class User extends Authenticatable
     {
         return $query->where('blocked_at', '!=', null);
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'created_for');
+    }
 }

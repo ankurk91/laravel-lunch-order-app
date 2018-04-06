@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
     {
         $roles = config('project.available_roles');
         // Create some dummy accounts
-        factory(\App\Models\User::class, 100)->create()->each(function ($user) use ($roles) {
+        factory(\App\Models\User::class, rand(50, 100))->create()->each(function ($user) use ($roles) {
             $user->assignRole($roles[array_rand($roles)]);
             if (rand(0, 1)) {
                 $user->profile()->save(factory(App\Models\UserProfile::class)->make());

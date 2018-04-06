@@ -22,7 +22,9 @@ class DatabaseSeeder extends Seeder
 
         // Don't seed these tables when in production
         if (!app()->environment('production')) {
+            $this->call(ProductsTableSeeder::class);
             $this->call(UsersTableSeeder::class);
+            $this->call(OrdersTableSeeder::class);
         }
 
         Model::reguard();
