@@ -18,7 +18,7 @@
             @csrf
 
             <div class="form-group">
-              <label for="email">E-Mail Address</label>
+              <label for="email">E-Mail address</label>
               <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                      name="email" value="{{ old('email') }}" required autofocus placeholder="Email">
 
@@ -46,13 +46,13 @@
               <div class="custom-control custom-checkbox">
                 <input type="checkbox" name="remember"
                        {{ old('remember') ? 'checked' : '' }} class="custom-control-input" id="check-remember">
-                <label class="custom-control-label" for="check-remember">Remember Me</label>
+                <label class="custom-control-label" for="check-remember">Remember me</label>
               </div>
             </div>
 
             <div class="form-group">
               <button type="submit" class="btn btn-primary btn-block">
-                <i class="fas fa-check"></i> Login
+                <i class="fas fa-sign-in-alt"></i> Login
               </button>
             </div>
             <div class="form-group mb-0">
@@ -65,7 +65,7 @@
       </div>
       <div class="text-center">
         <a class="btn btn-link" href="{{ route('password.request') }}">
-          Forgot Your Password?
+          Forgot your password?
         </a>
       </div>
     </section>

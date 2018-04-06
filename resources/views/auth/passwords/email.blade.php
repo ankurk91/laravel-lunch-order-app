@@ -40,7 +40,7 @@
 
             <div class="form-group">
               <button type="submit" class="btn btn-primary btn-block">
-                <i class="fas fa-envelope"></i> Send Password Reset Link
+                <i class="fas fa-envelope"></i> Send password reset link
               </button>
             </div>
           </form>
@@ -48,7 +48,7 @@
       </div>
       <div class="text-center">
         <a class="btn btn-link" href="{{ route('login') }}">
-          Back to Login
+          Back to login
         </a>
       </div>
     </div>

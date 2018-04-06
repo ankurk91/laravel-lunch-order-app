@@ -84,7 +84,7 @@
           @endif
           <td class="text-center">
             <a href="{{route('admin.users.edit',$user->id)}}" class="btn btn-sm btn-secondary mb-0"><i
-                class="fas fa-pencil-alt"></i> Edit</a>
+                class="fas fa-edit"></i> Edit</a>
           </td>
         </tr>
       @empty

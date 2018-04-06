@@ -66,7 +66,7 @@
 
             <div class="form-group">
               <button type="submit" class="btn btn-primary btn-block">
-                <i class="fas fa-check"></i> Reset Password
+                <i class="fas fa-check"></i> Reset password
               </button>
             </div>
           </form>
@@ -74,7 +74,7 @@
       </div>
       <div class="text-center">
         <a class="btn btn-link" href="{{ route('login') }}">
-          Back to Login
+          Back to login
         </a>
       </div>
     </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Account;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Account\PasswordUpdateRequest;
+use Illuminate\Auth\Events\PasswordReset as PasswordResetEvent;
 
 class PasswordController extends Controller
 {
@@ -33,6 +34,8 @@ class PasswordController extends Controller
             'password' => bcrypt($request->input('password')),
             'remember_token' => null,
         ])->save();
+
+        event(new PasswordResetEvent($request->user()));
 
         alert()->success('Your password was updated successfully.');
 

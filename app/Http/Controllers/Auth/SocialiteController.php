@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Auth\Events\Registered as RegisteredEvent;
 use App\Models\SocialAccount;
 use App\Models\User;
 
@@ -89,6 +90,7 @@ class SocialiteController extends Controller
                 $user->save();
                 $user->assignRole('customer');
                 $user->profile()->create($this->getProfileData($providerUser));
+                event(new RegisteredEvent($user));
             }
 
             $social->user()->associate($user);
@@ -129,7 +131,7 @@ class SocialiteController extends Controller
         return [
             'first_name' => $nameParts[0],
             'last_name' => optional($nameParts)[1],
-            // Get full sized avatar , remove ?sz query parameter
+            // Get full sized avatar by removing `?sz=` query parameter
             'avatar' => preg_replace('/\?sz=[\d]*$/', '', $providerUser->getAvatar()),
         ];
     }

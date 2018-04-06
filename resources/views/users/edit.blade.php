@@ -140,7 +140,7 @@
             </div>
           </div>
           <div class="card-footer text-right">
-            <button type="submit" class="btn btn-primary"><i class="fas fa-pencil-alt"></i> Update roles</button>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-wrench"></i> Update roles</button>
           </div>
         </div>
       </form>
