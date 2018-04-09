@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\User\ProfileUpdateRequest;
 use App\Http\Requests\User\StoreRequest as UserStoreRequest;
 use App\Models\User;
@@ -50,7 +51,7 @@ class UserController extends Controller
             ->paginate($request->filled('per_page') ? (int)$request->input('per_page') : 10);
 
 
-        return view('users.index', compact('users'));
+        return view('admin.users.index', compact('users'));
 
     }
 
@@ -62,7 +63,7 @@ class UserController extends Controller
     public function create()
     {
         $availableRoles = Role::all();
-        return view('users.create', compact('availableRoles'));
+        return view('admin.users.create', compact('availableRoles'));
     }
 
     /**
@@ -111,7 +112,7 @@ class UserController extends Controller
     {
         $user->load(['profile', 'roles']);
         $availableRoles = Role::all();
-        return view('users.edit', compact('user', 'availableRoles'));
+        return view('admin.users.edit', compact('user', 'availableRoles'));
     }
 
     /**

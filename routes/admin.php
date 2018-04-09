@@ -8,7 +8,8 @@
 |
 | Define routes that starts with /admin/ here
 | All routes are already protected with 'role:admin' middleware
-| Don't prefix your routes with /admin/
+| Don't prefix your routes with `/admin/`
+| Don't prefix controllers with `Admin\`
 |
 */
 
@@ -20,6 +21,12 @@ Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
 
 Route::resource(
     'users', 'UserController', ['only' => [
+        'index', 'edit', 'update', 'destroy', 'create', 'store'
+    ]]
+);
+
+Route::resource(
+    'orders', 'OrderController', ['only' => [
         'index', 'edit', 'update', 'destroy', 'create', 'store'
     ]]
 );

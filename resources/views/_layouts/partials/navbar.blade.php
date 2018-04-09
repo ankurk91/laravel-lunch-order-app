@@ -13,11 +13,13 @@
 
         <ul class="navbar-nav mr-auto">
           @hasrole('admin')
-          <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-dolly"></i> Orders</a>
+          <li class="nav-item {{isActiveRoute('admin.orders.index')}}">
+            <a class="nav-link" href="{{route('admin.orders.index')}}">
+              <i class="fas fa-dolly"></i> Orders</a>
           </li>
           <li class="nav-item {{isActiveRoute('admin.users.index')}}">
-            <a class="nav-link" href="{{route('admin.users.index')}}"><i class="fas fa-users"></i> Users</a>
+            <a class="nav-link" href="{{route('admin.users.index')}}">
+              <i class="fas fa-users"></i> Users</a>
           </li>
           @endhasrole
         </ul>

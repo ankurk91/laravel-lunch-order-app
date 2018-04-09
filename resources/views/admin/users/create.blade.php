@@ -3,7 +3,11 @@
 @section('pageTitle','Create user')
 
 @section('content')
-  @component('components.breadcrumb')
+  @component('components.breadcrumb',[
+    'links' => [
+      'users' => route('admin.users.index')
+    ]
+  ])
     Create user
   @endcomponent
 
