@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->decimal('unit_price', 10, 2);
 
             // is available to purchase
-            $table->boolean('available')->default(false)->unsigned();
+            $table->boolean('active')->default(false)->unsigned();
 
             $table->softDeletes();
             $table->timestamps();

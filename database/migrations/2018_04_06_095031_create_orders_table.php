@@ -25,7 +25,7 @@ class CreateOrdersTable extends Migration
             $table->string('customer_notes')->nullable()->default(NULL);
             $table->string('staff_notes')->nullable()->default(NULL);
 
-            $table->enum('status', ['pending', 'completed'])->nullable()->default('pending');
+            $table->enum('status', config('project.order_status'))->default('pending');
             $table->softDeletes();
             $table->timestamps();
         });

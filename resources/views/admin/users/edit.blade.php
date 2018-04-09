@@ -113,7 +113,7 @@
         </div>
       </form>
 
-      <form method="POST" action="{{route('admin.users.update-roles',$user->id)}}">
+      <form method="POST" action="{{route('admin.users.update-roles',$user)}}">
         @csrf
         @method('patch')
         <div class="card mt-4">
@@ -145,7 +145,8 @@
         </div>
       </form>
 
-      <form onsubmit="return confirm('Are you sure?')" action="{{route('admin.users.password-reset-email',$user->id)}}"
+      <form onsubmit="return confirm('Are you sure?')"
+            action="{{route('admin.users.password-reset-email',$user)}}"
             method="POST">
         @csrf
 
@@ -163,7 +164,8 @@
         </div>
       </form>
 
-      <form onsubmit="return confirm('Are you sure?')" action="{{route('admin.users.toggle-block',$user->id)}}"
+      <form onsubmit="return confirm('Are you sure?')"
+            action="{{route('admin.users.toggle-block',$user)}}"
             method="POST">
         @csrf
         @method('patch')
@@ -192,7 +194,7 @@
       </form>
 
       <form onsubmit="return confirm('Are you sure to delete this user?')"
-            action="{{route('admin.users.destroy',$user->id)}}"
+            action="{{route('admin.users.destroy',$user)}}"
             method="POST">
         @csrf
         @method('delete')

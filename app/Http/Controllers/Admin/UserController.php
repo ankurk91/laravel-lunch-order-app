@@ -38,17 +38,17 @@ class UserController extends Controller
 
         if ($request->filled('active_status')) {
             if ($request->input('active_status') === 'active') {
-                $users->OnlyActive();
+                $users->active();
             } elseif ($request->input('active_status') === 'blocked') {
-                $users->OnlyBlocked();
+                $users->blocked();
             }
         } else {
             // Load only active users by default
-            $users->OnlyActive();
+            $users->active();
         }
 
         $users = $users->latest()
-            ->paginate($request->filled('per_page') ? (int)$request->input('per_page') : 10);
+            ->paginate($request->filled('per_page') ? $request->input('per_page') : 10);
 
 
         return view('admin.users.index', compact('users'));
@@ -176,7 +176,7 @@ class UserController extends Controller
      */
     public function toggleBlockedStatus(User $user)
     {
-        $user->blocked_at = $user->blocked_at ? null : now();
+        $user->blocked_at = $user->is_blocked ? null : now();
         $user->save();
 
         alert()->success('User status was changed successfully.');

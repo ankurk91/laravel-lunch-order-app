@@ -71,7 +71,7 @@ class User extends Authenticatable
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeOnlyActive($query)
+    public function scopeActive($query)
     {
         return $query->where('blocked_at', null);
     }
@@ -82,7 +82,7 @@ class User extends Authenticatable
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeOnlyBlocked($query)
+    public function scopeBlocked($query)
     {
         return $query->where('blocked_at', '!=', null);
     }

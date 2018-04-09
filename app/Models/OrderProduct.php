@@ -22,4 +22,9 @@ class OrderProduct extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+    public function getTotalAttribute()
+    {
+        return $this->quantity * $this->unit_price;
+    }
 }

@@ -30,16 +30,16 @@
 
         <select class="form-control mb-2 mb-sm-0 mr-sm-2" name="per_page">
           <option disabled>Per Page</option>
-          <option value="10" @if(request('per_page') === '10') selected @endif>10</option>
-          <option value="30" @if(request('per_page') === '30') selected @endif>30</option>
-          <option value="50" @if(request('per_page') === '50') selected @endif>50</option>
+          @foreach([10,30,50] as $n)
+            <option value="{{$n}}" @if(request('per_page') == $n) selected @endif>{{$n}}</option>
+          @endforeach
         </select>
 
-        <select class="form-control mb-2 mb-sm-0 mx-sm-2" name="active_status">
+        <select class="form-control mb-2 mb-sm-0 mx-sm-2 text-capitalize" name="active_status">
           <option disabled>Status</option>
-          <option value="active" @if(request('active_status') === 'active') selected @endif>Active</option>
-          <option value="blocked" @if(request('active_status') === 'blocked') selected @endif>Blocked</option>
-          <option value="all" @if(request('active_status') === 'all') selected @endif>All</option>
+          @foreach(['active','blocked','all'] as $status)
+            <option value="{{$status}}" @if(request('active_status','active') === $status) selected @endif>{{$status}}</option>
+          @endforeach
         </select>
 
         <input type="text" class="form-control mb-2 mb-sm-0 mr-sm-2" placeholder="Search" name="search"
@@ -74,7 +74,7 @@
           </td>
           <td class="align-middle">{{optional($user->profile)->full_name}}</td>
           @if(request('active_status') === 'all')
-            <td class="align-middle">
+            <td class="align-middle h5">
               @if($user->is_blocked)
                 <span class="badge badge-secondary">Blocked</span>
               @else
@@ -83,7 +83,7 @@
             </td>
           @endif
           <td class="text-center">
-            <a href="{{route('admin.users.edit',$user->id)}}" class="btn btn-sm btn-secondary mb-0"><i
+            <a href="{{route('admin.users.edit',$user)}}" class="btn btn-sm btn-secondary mb-0"><i
                 class="fas fa-edit"></i> Edit</a>
           </td>
         </tr>

@@ -16,8 +16,23 @@ class Order extends Model
      */
     protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
-    public function products()
+    public function orderProducts()
     {
         return $this->hasMany(OrderProduct::class);
+    }
+
+    public function orderForUser()
+    {
+        return $this->belongsTo(User::class, 'created_for');
+    }
+
+    public function orderByUser()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function getTotalAttribute()
+    {
+        return $this->orderProducts->sum('total');
     }
 }
