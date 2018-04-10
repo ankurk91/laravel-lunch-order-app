@@ -14,7 +14,8 @@ class BladeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Blade::component('components.datetime', 'datetime');
+        $this->datetimeDirective();
+        $this->timeagoDirective();
     }
 
     /**
@@ -27,4 +28,24 @@ class BladeServiceProvider extends ServiceProvider
         //
     }
 
+
+    private function datetimeDirective()
+    {
+        Blade::directive('datetime', function ($expression) {
+            return $this->datetimeWrap($expression, "<?php echo ($expression)->format('j M Y, g:ia'); ?>");
+        });
+    }
+
+    private function timeagoDirective()
+    {
+        Blade::directive('timeago', function ($expression) {
+            return "<?php echo ($expression)->diffForHumans(); ?>";
+        });
+    }
+
+    private function datetimeWrap($expression, $content)
+    {
+        return "<time datetime=\"<?php echo ($expression)->toIso8601String() ?>\" 
+title=\"<?php echo ($expression)->format('j M Y, g:i:s a, T')?>\">" . $content . '</time>';
+    }
 }

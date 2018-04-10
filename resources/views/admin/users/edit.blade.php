@@ -29,7 +29,7 @@
           <p class="text-capitalize">{{implode(', ',$user->roles->pluck('name')->toArray())}}</p>
           <p class="small text-muted mb-0">
             Member since -
-            @datetime(['date'=>$user->created_at])@enddatetime
+            @datetime($user->created_at)
           </p>
         </div>
       </div>
@@ -177,7 +177,7 @@
             @if($user->is_blocked)
               <span class="text-muted mr-3">
                 Blocked
-                @datetime(['date'=>$user->blocked_at,'timeAgo'=>true])@enddatetime
+                @timeago($user->blocked_at)
               </span>
               <button type="submit" class="btn btn-success"><i class="fas fa-lock-open"></i> Unblock</button>
             @else

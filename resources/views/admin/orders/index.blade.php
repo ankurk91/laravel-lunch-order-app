@@ -85,7 +85,8 @@
       @forelse($orders as $order)
         <tr>
           <td class="align-middle">
-            @datetime(['date' => $order->created_at])@enddatetime
+            @datetime($order->created_at)
+
           </td>
           <td class="align-middle">
             <a target="_blank"

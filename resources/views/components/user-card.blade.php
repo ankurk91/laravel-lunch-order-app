@@ -16,7 +16,7 @@
         <p class="text-capitalize text-muted">{{implode(', ',$user->roles->pluck('name')->toArray())}}</p>
         <p class="small text-muted mb-0">
           Joined -
-          @datetime(['date'=>$user->created_at])@enddatetime
+          @datetime($user->created_at)
         </p>
       </div>
     </div>
