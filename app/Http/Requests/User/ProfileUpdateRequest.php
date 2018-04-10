@@ -3,7 +3,7 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\PersonName;
+use App\Rules\PersonNameRule;
 
 class ProfileUpdateRequest extends FormRequest
 {
@@ -25,8 +25,8 @@ class ProfileUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => ['required', 'string', 'min:3', 'max:100', new PersonName()],
-            'last_name' => ['nullable', 'string', 'min:1', 'max:100', new PersonName()],
+            'first_name' => ['required', 'string', 'min:3', 'max:100', new PersonNameRule()],
+            'last_name' => ['nullable', 'string', 'min:1', 'max:100', new PersonNameRule()],
             'primary_phone' => 'nullable|string|digits_between:10,20',
         ];
     }

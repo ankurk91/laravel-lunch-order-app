@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Account;
 
-use App\Rules\CurrentPassword;
+use App\Rules\CurrentPasswordRule;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +18,7 @@ class ActionController extends Controller
     public function logoutOtherDevices(Request $request)
     {
         $this->validate($request, [
-            'current_password' => ['required', 'string', new CurrentPassword()],
+            'current_password' => ['required', 'string', new CurrentPasswordRule()],
         ]);
 
         Auth::logoutOtherDevices($request->input('current_password'));

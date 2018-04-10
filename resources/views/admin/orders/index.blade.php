@@ -85,10 +85,7 @@
       @forelse($orders as $order)
         <tr>
           <td class="align-middle">
-            <time data-local="time"
-                  data-format="%B %e, %Y %l:%M%P"
-                  datetime="{{$order->created_at->toIso8601String()}}">
-              {{$order->created_at}}</time>
+            @datetime(['date' => $order->created_at])@enddatetime
           </td>
           <td class="align-middle">
             <a target="_blank"

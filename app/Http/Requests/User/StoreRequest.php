@@ -3,7 +3,7 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\PersonName;
+use App\Rules\PersonNameRule;
 
 class StoreRequest extends FormRequest
 {
@@ -26,8 +26,8 @@ class StoreRequest extends FormRequest
     {
         return [
             'email' => 'bail|required|string|email|max:255|unique:users,email',
-            'first_name' => ['required', 'string', 'min:3', 'max:100', new PersonName()],
-            'last_name' => ['nullable', 'string', 'min:1', 'max:100', new PersonName()],
+            'first_name' => ['required', 'string', 'min:3', 'max:100', new PersonNameRule()],
+            'last_name' => ['nullable', 'string', 'min:1', 'max:100', new PersonNameRule()],
             'primary_phone' => 'nullable|string|digits_between:10,20',
             'roles' => 'bail|required|array|exists:roles,id',
         ];

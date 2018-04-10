@@ -16,10 +16,7 @@
         <p class="text-capitalize text-muted">{{implode(', ',$user->roles->pluck('name')->toArray())}}</p>
         <p class="small text-muted mb-0">
           Joined -
-          <time data-local="time-ago"
-                data-format="%B %e, %Y %l:%M%P"
-                datetime="{{$user->created_at->toIso8601String()}}">
-            {{$user->created_at}}</time>
+          @datetime(['date'=>$user->created_at])@enddatetime
         </p>
       </div>
     </div>
