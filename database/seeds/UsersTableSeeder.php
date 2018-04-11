@@ -12,6 +12,14 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $roles = config('project.available_roles');
+
+        $admin = \App\Models\User::create([
+            'email' => 'admin@example.com',
+            'password' => bcrypt('admin@123')
+        ]);
+
+        $admin->syncRoles($roles);
+
         // Create some dummy accounts
         factory(\App\Models\User::class, rand(50, 100))->create()->each(function ($user) use ($roles) {
             $user->assignRole($roles[array_rand($roles)]);

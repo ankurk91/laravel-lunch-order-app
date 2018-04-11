@@ -16,7 +16,8 @@ use Faker\Generator as Faker;
 $factory->define(App\Models\User::class, function (Faker $faker) {
     return [
         'email' => $faker->unique()->safeEmail,
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
-        'remember_token' => str_random(10),
+        'password' => '$2y$10$5GSm8YpIuQqU7OpGREJWv.EY7OoofkVCnoYcx87Zv8nb9qqDVXGcG', // password@123
+        'remember_token' => null,
+        'blocked_at' => $faker->boolean(90) ? today() : null
     ];
 });

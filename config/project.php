@@ -3,6 +3,7 @@
 return [
     'available_roles' => [
         'admin',
+        'staff',
         'customer'
     ],
 

@@ -17,6 +17,15 @@ class Product extends Model
     protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
     /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'active' => 'boolean',
+    ];
+
+    /**
      * Scope a query to only active records.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query

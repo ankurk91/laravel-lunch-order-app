@@ -13,6 +13,13 @@ class OrderProduct extends Model
      */
     protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
+    /**
+     * All of the relationships to be touched.
+     *
+     * @var array
+     */
+    protected $touches = ['order'];
+
     public function order()
     {
         return $this->belongsTo(Order::class);

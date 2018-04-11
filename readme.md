@@ -55,7 +55,7 @@ npm run prod
 
 ### Credentials
 * Development credentials can be found in `database/seeds`
-* In production you may want to create very first user with admin role through artisan command -
+* In production you may want to create very first user with admin role using artisan command -
 ```
 php artisan create:user
 ```
