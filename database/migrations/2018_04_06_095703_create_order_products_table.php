@@ -22,7 +22,7 @@ class CreateOrderProductsTable extends Migration
             $table->unsignedInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
 
-            $table->integer('quantity');
+            $table->tinyInteger('quantity', false, true);
             $table->decimal('unit_price', 10, 2);
 
             $table->timestamps();

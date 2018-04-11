@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
 
         $admin = \App\Models\User::create([
             'email' => 'admin@example.com',
-            'password' => bcrypt('admin@123')
+            'password' => bcrypt('password@123')
         ]);
 
         $admin->syncRoles($roles);

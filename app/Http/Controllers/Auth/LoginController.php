@@ -51,10 +51,26 @@ class LoginController extends Controller
         if ($user->is_blocked) {
             // Logout user immediately
             $this->guard()->logout();
+            $request->session()->invalidate();
 
             alert()->error('Your account is disabled. Please contact administrator for assistance.');
             return redirect()->route('login')
                 ->withInput($request->only($this->username()));
         }
+    }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return redirect()->route('login');
     }
 }

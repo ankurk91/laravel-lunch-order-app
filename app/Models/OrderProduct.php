@@ -20,14 +20,23 @@ class OrderProduct extends Model
      */
     protected $touches = ['order'];
 
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'quantity' => 'integer',
+    ];
+
     public function order()
     {
         return $this->belongsTo(Order::class);
     }
 
-    public function products()
+    public function product()
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsTo(Product::class);
     }
 
     public function getTotalAttribute()

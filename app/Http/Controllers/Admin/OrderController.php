@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Order\AdminOrderStoreRequest;
 use App\Models\Order;
+use App\Models\OrderProduct;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -59,34 +62,51 @@ class OrderController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(User $user)
     {
         $products = Product::active()->get();
-        return view('admin.orders.create', compact('products'));
+        return view('admin.orders.create', compact('products', 'user'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  AdminOrderStoreRequest $request
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminOrderStoreRequest $request, User $user)
     {
-        //
-    }
+        //todo order create policy for today
+        DB::beginTransaction();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Order $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Order $order)
-    {
-        //
+        $order = new Order();
+        $order->fill($request->only(['staff_notes', 'customer_notes']));
+        $order->orderByUser()->associate($request->user());
+        $order->orderForUser()->associate($user);
+        $order->save();
+
+        $productIds = array_unique(array_filter($request->input('products', [])));
+        $products = Product::active()->whereIn('id', array_keys($productIds))->get();
+
+        $products->each(function ($product) use ($productIds, $order) {
+            $orderProduct = new OrderProduct();
+            $orderProduct->fill([
+                'unit_price' => $product->unit_price,
+                'quantity' => array_get($productIds,$product->id)
+            ]);
+            $orderProduct->product()->associate($product);
+            $order->orderProducts()->save($orderProduct);
+        });
+
+        DB::commit();
+        //todo send email to customer
+        alert()->success('Order was created successfully.');
+        return redirect()->route('admin.orders.edit', $order->id);
+
     }
 
     /**
@@ -97,7 +117,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        $order->load(['orderForUser', 'orderForUser.profile']);
+        $order->load(['orderForUser', 'orderForUser.profile', 'orderProducts', 'orderProducts.product']);
         return view('admin.orders.edit', compact('order'));
     }
 
@@ -110,7 +130,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -122,6 +142,7 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //todo order delete policy
+        //toto email customer
         $order->delete();
         alert()->success('Order was deleted successfully.');
         return redirect()->route('admin.orders.index');

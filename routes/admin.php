@@ -25,8 +25,13 @@ Route::resource(
     ]]
 );
 
+Route::group(['prefix' => 'orders', 'as' => 'orders.'], function () {
+    Route::get('/create/{user}', 'OrderController@create')->name('create')->where('user', '[0-9]+');
+    Route::post('/store/{user}', 'OrderController@store')->name('store')->where('user', '[0-9]+');
+});
+
 Route::resource(
     'orders', 'OrderController', ['only' => [
-        'index', 'edit', 'update', 'destroy', 'create', 'store'
+        'index', 'edit', 'update', 'destroy',
     ]]
 );

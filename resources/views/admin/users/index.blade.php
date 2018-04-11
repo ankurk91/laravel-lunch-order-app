@@ -83,6 +83,8 @@
             </td>
           @endif
           <td class="text-center">
+            <a href="{{route('admin.orders.create',$user)}}" class="btn btn-sm btn-primary mb-0"><i
+                class="fas fa-cart-plus"></i> Order</a>
             <a href="{{route('admin.users.edit',$user)}}" class="btn btn-sm btn-secondary mb-0"><i
                 class="fas fa-edit"></i> Edit</a>
           </td>
