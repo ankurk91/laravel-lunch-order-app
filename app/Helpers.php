@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * Compare given route with current route and return output if they match.
@@ -27,7 +26,11 @@ function money($number, $sign = '₹')
     return $sign . number_format((float)$number, 2, '.', ',');
 }
 
-
+/**
+ * Get months names with numbers
+ *
+ * @return array
+ */
 function monthsWithNames()
 {
     $months = [];

@@ -6,6 +6,7 @@ use App\Http\Requests\Account\ProfileUpdateRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\UserProfile;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -17,10 +18,11 @@ class ProfileController extends Controller
      */
     public function edit()
     {
+        $user = Auth::user();
         return view('account.profile', [
-            'user' => auth()->user(),
-            'profile' => auth()->user()->profile,
-            'roles' => auth()->user()->getRoleNames()->toArray()
+            'user' => $user,
+            'profile' => $user->profile,
+            'roles' => $user->getRoleNames()->toArray()
         ]);
     }
 
@@ -33,7 +35,7 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request)
     {
         UserProfile::updateOrCreate(
-            ['user_id' => $request->user()->id],
+            ['user_id' => Auth::id()],
             $request->only(
                 ['first_name', 'last_name', 'primary_phone']
             )

@@ -16,7 +16,7 @@ class AccountSidebarComposer
     public function compose(View $view)
     {
         $user = Auth::user();
-        $user->load(['profile', 'roles']);
+        $user->loadMissing(['profile', 'roles']);
 
         $view->with('user', $user);
     }

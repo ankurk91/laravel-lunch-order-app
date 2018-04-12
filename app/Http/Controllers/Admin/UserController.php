@@ -100,7 +100,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $user->load(['profile', 'roles']);
+        $user->loadMissing(['profile', 'roles']);
         $availableRoles = Role::all();
         return view('admin.users.edit', compact('user', 'availableRoles'));
     }

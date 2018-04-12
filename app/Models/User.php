@@ -45,7 +45,7 @@ class User extends Authenticatable
     }
 
     /**
-     * User have null password when sign-up via socialite
+     * User may have `null` password when sign-up via socialite
      *
      * @return bool
      */

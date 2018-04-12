@@ -47,9 +47,7 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        // If user account found disabled
         if ($user->is_blocked) {
-            // Logout user immediately
             $this->guard()->logout();
             $request->session()->invalidate();
 

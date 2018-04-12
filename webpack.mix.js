@@ -18,7 +18,7 @@ require('laravel-mix-purgecss');
  */
 
 // Configure default options
-// @see https://github.com/JeffreyWay/laravel-mix/blob/master/docs/options.md
+// https://github.com/JeffreyWay/laravel-mix/blob/master/docs/options.md
 mix.options({
   processCssUrls: true,
   purifyCss: false,

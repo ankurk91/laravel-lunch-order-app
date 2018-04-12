@@ -41,8 +41,8 @@ class ResetPasswordController extends Controller
     /**
      * Reset the given user's password.
      *
-     * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
-     * @param  string  $password
+     * @param  \Illuminate\Contracts\Auth\CanResetPassword $user
+     * @param  string $password
      * @return void
      */
     protected function resetPassword($user, $password)
@@ -55,7 +55,8 @@ class ResetPasswordController extends Controller
 
         event(new \Illuminate\Auth\Events\PasswordReset($user));
 
-        // Don't auto login user
+        // By default Laravel auto login user after password reset,
+        // we need to prevent this
         alert()->success('Please login with your new password.');
     }
 
