@@ -24,7 +24,7 @@ class OrdersTableSeeder extends Seeder
                                 'created_by' => $user->id,
                             ]
                         )->each(function ($order) use ($ordersCountRange) {
-                            // a customer can only order once on a day
+                            // a customer can only order once in a day
                             $order->created_at = today()->subDays($ordersCountRange->pop());
                         }))
                     ->each(function ($order) use ($products) {

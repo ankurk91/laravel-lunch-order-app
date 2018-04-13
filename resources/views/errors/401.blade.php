@@ -3,7 +3,7 @@
 @section('pageTitle','401')
 
 @section('content')
-  @component('components.error-page',[
+  @component('components.errorPage',[
   'errorCode' => '401',
   'errorHeading' => 'Unauthorised',
   'actionUrl' => url()->previous(),

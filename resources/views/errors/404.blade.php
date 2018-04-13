@@ -3,7 +3,7 @@
 @section('pageTitle','404')
 
 @section('content')
-  @component('components.error-page',[
+  @component('components.errorPage',[
   'errorCode' => '404',
   'errorHeading' => 'Page not found'
   ])

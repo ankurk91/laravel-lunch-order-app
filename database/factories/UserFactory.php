@@ -18,6 +18,6 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => '$2y$10$5GSm8YpIuQqU7OpGREJWv.EY7OoofkVCnoYcx87Zv8nb9qqDVXGcG', // password@123
         'remember_token' => null,
-        'blocked_at' => $faker->boolean(90) ? today() : null
+        'blocked_at' => $faker->boolean(10) ? today() : null
     ];
 });

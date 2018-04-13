@@ -3,7 +3,7 @@
 @section('pageTitle','500')
 
 @section('content')
-  @component('components.error-page',[
+  @component('components.errorPage',[
   'errorCode' => '500',
   'errorHeading' => 'Looks like something went wrong!',
   'actionUrl' => request()->url(),

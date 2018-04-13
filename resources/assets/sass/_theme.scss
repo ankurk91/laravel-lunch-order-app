@@ -3,13 +3,13 @@ body {
   padding-top: 3.4rem !important; /* support fixed-top navbar */
 }
 
-#app {
+.app {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
 }
 
-#main {
+.main {
   flex: 1;
 }
 

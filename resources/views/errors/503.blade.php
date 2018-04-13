@@ -3,7 +3,7 @@
 @section('pageTitle','503')
 
 @section('content')
-  @component('components.error-page',[
+  @component('components.errorPage',[
   'errorCode' => '503',
   'errorHeading' => 'Application is down for maintenance.',
   'actionUrl' => request()->url(),

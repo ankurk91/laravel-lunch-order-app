@@ -80,25 +80,23 @@ class SocialiteController extends Controller
 
         if ($social->exists) {
             return $social->user;
-        } else {
-
-            $user = User::firstOrNew([
-                'email' => $providerUser->getEmail()
-            ]);
-
-            if (!$user->exists) {
-                $user->save();
-                $user->assignRole('customer');
-                $user->profile()->create($this->getProfileData($providerUser));
-                event(new RegisteredEvent($user));
-            }
-
-            $social->user()->associate($user);
-            $social->save();
-
-            return $user;
-
         }
+
+        $user = User::firstOrNew([
+            'email' => $providerUser->getEmail()
+        ]);
+
+        if (!$user->exists) {
+            $user->save();
+            $user->assignRole(config('project.default_role'));
+            $user->profile()->create($this->getProfileData($providerUser));
+            event(new RegisteredEvent($user));
+        }
+
+        $social->user()->associate($user);
+        $social->save();
+
+        return $user;
 
     }
 

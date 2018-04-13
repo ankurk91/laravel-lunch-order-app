@@ -15,7 +15,7 @@
 
   <div class="row">
     <aside class="col-md-4 mb-sm-0 mb-lg-0 mb-4">
-      @component('components.user-card', [ 'user' => $user])
+      @component('components.userCard', [ 'user' => $user])
       @endcomponent()
     </aside>
 

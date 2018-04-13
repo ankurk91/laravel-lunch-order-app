@@ -18,11 +18,10 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('password@123')
         ]);
 
-        $admin->syncRoles($roles);
+        $admin->assignRole($roles);
 
-        // Create some dummy accounts
         factory(\App\Models\User::class, rand(50, 100))->create()->each(function ($user) use ($roles) {
-            $user->assignRole($roles[array_rand($roles)]);
+            $user->assignRole(array_random($roles));
             if (rand(0, 1)) {
                 $user->profile()->save(factory(App\Models\UserProfile::class)->make());
             }

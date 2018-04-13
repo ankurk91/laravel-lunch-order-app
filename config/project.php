@@ -7,6 +7,9 @@ return [
         'customer'
     ],
 
+    // Role assigned to new users upon sign-up
+    'default_role' => 'customer',
+
     'order_status' => [
         'pending', 'completed', 'cancelled'
     ]

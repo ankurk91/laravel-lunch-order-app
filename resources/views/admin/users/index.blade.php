@@ -58,12 +58,12 @@
     <table class="table table-striped table-light table-bordered table-hover" id="payees-table">
       <thead>
       <tr>
-        <th>Email</th>
+        <th class="w-25">Email</th>
         <th>Name</th>
         @if(request('active_status') === 'all')
           <th>Status</th>
         @endif
-        <th>Actions</th>
+        <th class="w-25">Actions</th>
       </tr>
       </thead>
       <tbody>
@@ -76,7 +76,7 @@
           @if(request('active_status') === 'all')
             <td class="align-middle h5">
               @if($user->is_blocked)
-                <span class="badge badge-secondary">Blocked</span>
+                <span class="badge badge-danger">Blocked</span>
               @else
                 <span class="badge badge-success">Active</span>
               @endif
@@ -85,6 +85,8 @@
           <td class="text-center">
             <a href="{{route('admin.orders.create',$user)}}" class="btn btn-sm btn-primary mb-0"><i
                 class="fas fa-cart-plus"></i> Order</a>
+            <a href="{{route('admin.orders.index',['search'=>$user->email])}}" class="btn btn-sm btn-info mb-0"><i
+                class="fas fa-history"></i> History</a>
             <a href="{{route('admin.users.edit',$user)}}" class="btn btn-sm btn-secondary mb-0"><i
                 class="fas fa-edit"></i> Edit</a>
           </td>

@@ -3,7 +3,7 @@
 @section('pageTitle','419')
 
 @section('content')
-  @component('components.error-page',[
+  @component('components.errorPage',[
   'errorCode' => '419',
   'errorHeading' => 'Page expired',
   'actionUrl' => url()->previous(),

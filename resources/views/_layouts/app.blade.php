@@ -19,16 +19,14 @@
 
 </head>
 <body class="bg-light {{'env-'.config('app.env', 'production')}} @yield('bodyClass')">
-<div id="app">
+<div id="app" class="app">
 @include('_layouts.partials.navbar')
 <!-- Main content starts -->
-  <main class="container mt-1 mb-4" id="main" role="main">
+  <main class="container main mt-1 mb-4" id="main" role="main">
     @yield('content')
   </main>
   @include('_layouts.partials.footer')
 </div>
-
 @include('_layouts.partials.scripts')
-<noscript><h3 class="text-center text-danger">The application requires a javascript enabled web browser.</h3></noscript>
 </body>
 </html>
