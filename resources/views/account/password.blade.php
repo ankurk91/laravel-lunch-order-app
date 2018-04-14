@@ -14,7 +14,7 @@
 
   <div class="row">
 
-    @include('account.sidebar')
+    @include('account._sidebar')
 
     <div class="col-md-8">
       <form method="POST" action="{{ route('account.password.update') }}">

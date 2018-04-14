@@ -11,7 +11,7 @@
   @include('alert::bootstrap')
 
   <section class="row">
-    @include('account.sidebar')
+    @include('account._sidebar')
 
     <section class="col-md-8">
       <form method="POST" action="{{ route('account.update') }}">

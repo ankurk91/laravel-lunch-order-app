@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Events\OrderCreated;
+use App\Events\OrderStatusChanged;
 use App\Http\Requests\Order\AdminOrderStoreRequest;
 use App\Models\Order;
 use App\Models\OrderProduct;
@@ -56,7 +57,7 @@ class OrderController extends Controller
         $orders = $orders->orderBy('for_date', 'desc')
             ->paginate($request->filled('per_page') ? $request->input('per_page') : 10);
 
-        $years = Order::select(DB::raw('EXTRACT(year from created_at) as year'))->groupBy('year')->get();
+        $years = Order::select(DB::raw('EXTRACT(year from for_date) as year'))->groupBy('year')->get();
 
         return view('admin.orders.index', compact('orders', 'years'));
     }
@@ -146,6 +147,7 @@ class OrderController extends Controller
      */
     public function updateStatus(Request $request, Order $order)
     {
+        $oldOrder = $order->replicate();
         $this->validate($request, [
             'status' => 'bail|required|string|in:' . implode(',', config('project.order_status', [])),
         ]);
@@ -153,7 +155,7 @@ class OrderController extends Controller
         $order->status = $request->input('status');
         $order->save();
 
-        //todo emit event
+        event(new OrderStatusChanged($oldOrder,$order));
         alert()->success('Order status was updated successfully.');
         return back();
     }

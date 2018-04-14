@@ -36,7 +36,7 @@ class PasswordController extends Controller
         $user->setRememberToken(str_random(60));
         $user->save();
 
-        event(new PasswordResetEvent($request->user()));
+        event(new PasswordResetEvent($user));
 
         alert()->success('Your password was updated successfully.');
 
