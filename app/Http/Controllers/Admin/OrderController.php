@@ -41,18 +41,18 @@ class OrderController extends Controller
         }
 
         if ($request->filled('order_year')) {
-            $orders->whereYear('created_at', $request->input('order_year'));
+            $orders->whereYear('for_date', $request->input('order_year'));
         } else {
-            $orders->whereYear('created_at', today()->year);
+            $orders->whereYear('for_date', today()->year);
         }
 
         if ($request->filled('order_month')) {
-            $orders->whereMonth('created_at', $request->input('order_month'));
+            $orders->whereMonth('for_date', $request->input('order_month'));
         } else {
-            $orders->whereMonth('created_at', today()->month);
+            $orders->whereMonth('for_date', today()->month);
         }
 
-        $orders = $orders->latest()
+        $orders = $orders->orderBy('for_date','desc')
             ->paginate($request->filled('per_page') ? $request->input('per_page') : 10);
 
         $years = Order::select(DB::raw('EXTRACT(year from created_at) as year'))->groupBy('year')->get();
@@ -88,16 +88,17 @@ class OrderController extends Controller
         $order->fill($request->only(['staff_notes', 'customer_notes']));
         $order->orderByUser()->associate(Auth::user());
         $order->orderForUser()->associate($user);
+        $order->for_date = today();
         $order->save();
 
-        $productIds = array_unique(array_filter($request->input('products', [])));
-        $products = Product::active()->whereIn('id', array_keys($productIds))->get();
+        $productsWithQuantity = array_filter($request->input('products', []));
+        $products = Product::active()->whereIn('id', array_keys($productsWithQuantity))->get();
 
-        $products->each(function ($product) use ($productIds, $order) {
+        $products->each(function ($product) use ($productsWithQuantity, $order) {
             $orderProduct = new OrderProduct();
             $orderProduct->fill([
                 'unit_price' => $product->unit_price,
-                'quantity' => array_get($productIds,$product->id)
+                'quantity' => array_get($productsWithQuantity,$product->id)
             ]);
             $orderProduct->product()->associate($product);
             $order->orderProducts()->save($orderProduct);

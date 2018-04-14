@@ -29,7 +29,7 @@
             action="{{route('admin.users.index')}}">
 
         <select class="form-control mb-2 mb-sm-0 mr-sm-2" name="per_page">
-          <option disabled>Per Page</option>
+          <option disabled>Per page</option>
           @foreach([10,30,50] as $n)
             <option value="{{$n}}" @if(request('per_page') == $n) selected @endif>{{$n}}</option>
           @endforeach

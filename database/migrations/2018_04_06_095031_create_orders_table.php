@@ -22,10 +22,12 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('created_for');
             $table->foreign('created_for')->references('id')->on('users')->onDelete('cascade');
 
+            $table->date('for_date');
+            $table->enum('status', config('project.order_status'))->default('pending');
+
             $table->string('customer_notes')->nullable()->default(NULL);
             $table->string('staff_notes')->nullable()->default(NULL);
 
-            $table->enum('status', config('project.order_status'))->default('pending');
             $table->softDeletes();
             $table->timestamps();
         });

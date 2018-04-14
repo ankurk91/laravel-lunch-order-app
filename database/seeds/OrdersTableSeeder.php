@@ -25,7 +25,7 @@ class OrdersTableSeeder extends Seeder
                             ]
                         )->each(function ($order) use ($ordersCountRange) {
                             // a customer can only order once in a day
-                            $order->created_at = today()->subDays($ordersCountRange->pop());
+                            $order->for_date = today()->subDays($ordersCountRange->pop());
                         }))
                     ->each(function ($order) use ($products) {
                         // shuffle products for each order
@@ -33,11 +33,9 @@ class OrdersTableSeeder extends Seeder
                         $order->orderProducts()
                             ->saveMany(factory(App\Models\OrderProduct::class, rand(1, 5))
                                 ->make()
-                                ->each(function ($orderProduct) use ($order,$ids) {
+                                ->each(function ($orderProduct) use ($order, $ids) {
                                     // prevent duplicate product id within order
                                     $orderProduct->product_id = $ids->pop();
-                                    // Match created_at dates
-                                    $orderProduct->created_at = $order->created_at;
                                 })
                             );
                     });

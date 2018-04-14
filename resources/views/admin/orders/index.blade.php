@@ -15,7 +15,7 @@
             action="{{route('admin.orders.index')}}">
 
         <select class="form-control mb-2 mb-sm-0 mr-sm-2" name="per_page">
-          <option disabled>Per Page</option>
+          <option disabled>Per page</option>
           @foreach([10,30,50] as $n)
             <option value="{{$n}}" @if(request('per_page') == $n) selected @endif>{{$n}}</option>
           @endforeach
@@ -61,7 +61,7 @@
     <table class="table table-striped table-light table-bordered table-hover" id="payees-table">
       <thead>
       <tr>
-        <th>Order Date</th>
+        <th>For Date</th>
         <th>Customer</th>
         <th>Total</th>
         <th>Status</th>
@@ -72,8 +72,7 @@
       @forelse($orders as $order)
         <tr>
           <td class="align-middle">
-            @datetime($order->created_at)
-
+            @date($order->for_date)
           </td>
           <td class="align-middle">
             <a target="_blank"

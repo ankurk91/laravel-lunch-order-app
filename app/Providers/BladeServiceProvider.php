@@ -15,6 +15,7 @@ class BladeServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->datetimeDirective();
+        $this->dateDirective();
         $this->timeagoDirective();
     }
 
@@ -33,6 +34,13 @@ class BladeServiceProvider extends ServiceProvider
     {
         Blade::directive('datetime', function ($expression) {
             return $this->datetimeWrap($expression, "<?php echo ($expression)->format('j M Y, g:ia'); ?>");
+        });
+    }
+
+    private function dateDirective()
+    {
+        Blade::directive('date', function ($expression) {
+            return $this->datetimeWrap($expression, "<?php echo ($expression)->format('j M Y'); ?>");
         });
     }
 

@@ -16,6 +16,15 @@ class Order extends Model
      */
     protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'for_date' => 'date:Y-m-d',
+    ];
+
     public function orderProducts()
     {
         return $this->hasMany(OrderProduct::class);
