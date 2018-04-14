@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\UserCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\ProfileUpdateRequest;
 use App\Http\Requests\User\StoreRequest as UserStoreRequest;
@@ -86,7 +87,8 @@ class UserController extends Controller
         $user->assignRole($request->input('roles'));
 
         DB::commit();
-        //todo send invite
+        event(new UserCreated($user));
+
         alert()->success('User was created successfully.');
         return redirect()->route('admin.users.edit', $user->id);
     }

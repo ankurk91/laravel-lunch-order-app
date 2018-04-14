@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\OrderCreated;
 use App\Http\Requests\Order\AdminOrderStoreRequest;
 use App\Models\Order;
 use App\Models\OrderProduct;
@@ -105,7 +106,8 @@ class OrderController extends Controller
         });
 
         DB::commit();
-        //todo send email to customer
+        event(new OrderCreated($order));
+
         alert()->success('Order was created successfully.');
         return redirect()->route('admin.orders.edit', $order->id);
 
@@ -165,7 +167,7 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //todo order delete policy
-        //toto email customer
+        //todo email customer
         $order->delete();
         alert()->success('Order was deleted successfully.');
         return redirect()->route('admin.orders.index');
