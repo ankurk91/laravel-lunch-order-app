@@ -1,15 +1,15 @@
 @extends('_layouts.app')
-@section('pageTitle','Forget Password')
+@section('pageTitle','Forget password')
 
 @section('content')
   @component('components.breadcrumb')
-    Forget Password
+    Forget password
   @endcomponent
 
   @include('alert::bootstrap')
 
   @if (session('status'))
-    <div class="alert alert-success">
+    <div class="alert alert-success alert-dismissible show" role="alert">
       {{ session('status') }}
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>

@@ -28,6 +28,7 @@ Route::resource(
 Route::group(['prefix' => 'orders', 'as' => 'orders.'], function () {
     Route::get('/create/{user}', 'OrderController@create')->name('create')->where('user', '[0-9]+');
     Route::post('/store/{user}', 'OrderController@store')->name('store')->where('user', '[0-9]+');
+    Route::patch('/{order}/update-status', 'OrderController@updateStatus')->name('update-status')->where('order', '[0-9]+');
 });
 
 Route::resource(

@@ -1,10 +1,10 @@
 @extends('_layouts.app')
-@section('pageTitle','Reset Password')
+@section('pageTitle','Reset password')
 
 @section('content')
 
   @component('components.breadcrumb')
-    Reset Password
+    Reset password
   @endcomponent
 
   @include('alert::bootstrap')
@@ -25,7 +25,7 @@
               <label for="email"> E-Mail address</label>
 
               <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                     name="email" value="{{ $email or old('email') }}" placeholder="Email" required autofocus>
+                     name="email" value="{{ $email or old('email') }}" placeholder="E-Mail" required autofocus>
 
               @if ($errors->has('email'))
                 <div class="invalid-feedback">

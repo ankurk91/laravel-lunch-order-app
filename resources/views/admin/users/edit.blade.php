@@ -1,6 +1,6 @@
 @extends('_layouts.app')
 
-@section('pageTitle','Edit User')
+@section('pageTitle','Edit user')
 
 @section('content')
   @component('components.breadcrumb',[
@@ -36,7 +36,7 @@
     </aside>
 
     <section class="col-md-8 mt-sm-0 mt-lg-0 mt-4">
-      <form method="POST" action="{{ route('admin.users.update',$user->id) }}">
+      <form method="POST" action="{{ route('admin.users.update',$user) }}">
         @csrf
         @method('PUT')
         <div class="card">
@@ -45,7 +45,7 @@
             <div class="form-group">
               <label for="email">E-Mail address</label>
               <input id="email" type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}"
-                     name="email" placeholder="Email" value="{{ old('email',$user->email) }}" disabled>
+                     name="email" placeholder="E-Mail" value="{{ old('email',$user->email) }}" disabled>
 
               @if ($errors->has('email'))
                 <div class="invalid-feedback">
@@ -121,11 +121,11 @@
               @foreach($availableRoles as $role)
                 <div class="custom-control custom-checkbox">
                   <input type="checkbox" class="custom-control-input" name="roles[]"
-                         id="check-role-{{$role->id}}"
+                         id="input-role-{{$role->id}}"
                          value="{{$role->id}}"
                          @if($user->roles->contains('id',$role->id)) checked @endif>
                   <label class="custom-control-label text-capitalize"
-                         for="check-role-{{$role->id}}">{{$role->name}}</label>
+                         for="input-role-{{$role->id}}">{{$role->name}}</label>
                 </div>
               @endforeach
 

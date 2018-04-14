@@ -52,7 +52,7 @@ class OrderController extends Controller
             $orders->whereMonth('for_date', today()->month);
         }
 
-        $orders = $orders->orderBy('for_date','desc')
+        $orders = $orders->orderBy('for_date', 'desc')
             ->paginate($request->filled('per_page') ? $request->input('per_page') : 10);
 
         $years = Order::select(DB::raw('EXTRACT(year from created_at) as year'))->groupBy('year')->get();
@@ -98,7 +98,7 @@ class OrderController extends Controller
             $orderProduct = new OrderProduct();
             $orderProduct->fill([
                 'unit_price' => $product->unit_price,
-                'quantity' => array_get($productsWithQuantity,$product->id)
+                'quantity' => array_get($productsWithQuantity, $product->id)
             ]);
             $orderProduct->product()->associate($product);
             $order->orderProducts()->save($orderProduct);
@@ -133,6 +133,27 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     {
         dd($request->all());
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Models\Order $order
+     * @return \Illuminate\Http\Response
+     */
+    public function updateStatus(Request $request, Order $order)
+    {
+        $this->validate($request, [
+            'status' => 'bail|required|string|in:' . implode(',', config('project.order_status', [])),
+        ]);
+
+        $order->status = $request->input('status');
+        $order->save();
+
+        //todo emit event
+        alert()->success('Order status was updated successfully.');
+        return back();
     }
 
     /**

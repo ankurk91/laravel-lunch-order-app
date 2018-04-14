@@ -5,7 +5,7 @@
       </a>
     </li>
     @isset($links)
-      @foreach($links as $label=>$url)
+      @foreach($links as $label => $url)
         <li class="breadcrumb-item">
           <a href="{{$url}}" class="text-capitalize">{{$label}}</a>
         </li>

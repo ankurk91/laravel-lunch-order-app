@@ -23,7 +23,7 @@
             <div class="form-group">
               <label for="email">E-Mail address</label>
               <input id="email" type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}"
-                     name="email" placeholder="Email" value="{{ old('email') }}" required autofocus>
+                     name="email" placeholder="E-Mail" value="{{ old('email') }}" required autofocus>
 
               @if ($errors->has('email'))
                 <div class="invalid-feedback">
@@ -87,11 +87,11 @@
               @foreach($availableRoles as $role)
                 <div class="custom-control custom-checkbox">
                   <input type="checkbox" class="custom-control-input" name="roles[]"
-                         id="check-role-{{$role->id}}"
+                         id="input-role-{{$role->id}}"
                          value="{{$role->id}}"
                          @if(in_array($role->id,old('roles',[]))) checked @endif>
                   <label class="custom-control-label text-capitalize"
-                         for="check-role-{{$role->id}}">{{$role->name}}</label>
+                         for="input-role-{{$role->id}}">{{$role->name}}</label>
                 </div>
               @endforeach
 

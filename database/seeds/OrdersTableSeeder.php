@@ -11,7 +11,7 @@ class OrdersTableSeeder extends Seeder
      */
     public function run()
     {
-        $products = \App\Models\Product::active()->get()->pluck('id');
+        $products = \App\Models\Product::active()->get();
 
         \App\Models\User::with('roles')->get()->each(function ($user) use ($products) {
             if ($user->hasRole('customer')) {
@@ -29,13 +29,16 @@ class OrdersTableSeeder extends Seeder
                         }))
                     ->each(function ($order) use ($products) {
                         // shuffle products for each order
-                        $ids = collect($products)->shuffle();
+                        // assuming that we have more than 5 active products
+                        $shuffledProducts = $products->shuffle();
                         $order->orderProducts()
                             ->saveMany(factory(App\Models\OrderProduct::class, rand(1, 5))
                                 ->make()
-                                ->each(function ($orderProduct) use ($order, $ids) {
+                                ->each(function ($orderProduct) use ($order, $shuffledProducts) {
                                     // prevent duplicate product id within order
-                                    $orderProduct->product_id = $ids->pop();
+                                    $popProduct = $shuffledProducts->pop();
+                                    $orderProduct->product_id = $popProduct->id;
+                                    $orderProduct->quantity = rand(1, $popProduct->max_quantity);
                                 })
                             );
                     });

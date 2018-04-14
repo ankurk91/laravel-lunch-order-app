@@ -20,7 +20,7 @@
             <div class="form-group">
               <label for="email">E-Mail address</label>
               <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                     name="email" value="{{ old('email') }}" required autofocus placeholder="Email">
+                     name="email" value="{{ old('email') }}" required autofocus placeholder="E-Mail">
 
               @if ($errors->has('email'))
                 <div class="invalid-feedback">
@@ -45,8 +45,8 @@
             <div class="form-group">
               <div class="custom-control custom-checkbox">
                 <input type="checkbox" name="remember"
-                       {{ old('remember') ? 'checked' : '' }} class="custom-control-input" id="check-remember">
-                <label class="custom-control-label" for="check-remember">Remember me</label>
+                       {{ old('remember') ? 'checked' : '' }} class="custom-control-input" id="input-remember">
+                <label class="custom-control-label" for="input-remember">Remember me</label>
               </div>
             </div>
 
