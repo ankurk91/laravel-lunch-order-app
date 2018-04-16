@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\UserBlockedStatusChanged;
 use App\Events\UserCreated;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\User\ProfileUpdateRequest;
-use App\Http\Requests\User\StoreRequest as UserStoreRequest;
+use App\Http\Requests\User\CreateRequest;
+use App\Http\Requests\User\DeleteRequest;
+use App\Http\Requests\User\UpdateRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Models\UserProfile;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Password;
 use Spatie\Permission\Models\Role;
@@ -70,10 +72,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  UserStoreRequest $request
+     * @param  CreateRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserStoreRequest $request)
+    public function store(CreateRequest $request)
     {
         DB::beginTransaction();
 
@@ -110,11 +112,11 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  ProfileUpdateRequest $request
+     * @param  UpdateRequest $request
      * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(ProfileUpdateRequest $request, User $user)
+    public function update(UpdateRequest $request, User $user)
     {
         UserProfile::updateOrCreate(
             ['user_id' => $user->id],
@@ -137,10 +139,10 @@ class UserController extends Controller
     public function updateRoles(Request $request, User $user)
     {
         $this->validate($request, [
-            'roles' => 'bail|required|array|exists:roles,id',
+            'roles' => 'bail|required|array|exists:' . with(new Role())->getTable() . ',id',
         ]);
 
-        $user->syncRoles($request->input('roles'));
+        $user->syncRoles($request->input('roles', []));
 
         alert()->success('User roles were updated successfully.');
         return back();
@@ -150,11 +152,11 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\User $user
+     * @throws \Exception
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(DeleteRequest $request, User $user)
     {
-        //todo check for purchase history before deleting
         $user->delete();
         alert()->success('User was deleted successfully.');
         return redirect()->route('admin.users.index');
@@ -171,6 +173,8 @@ class UserController extends Controller
         $user->blocked_at = $user->is_blocked ? null : now();
         $user->save();
 
+        event(new UserBlockedStatusChanged($user));
+
         alert()->success('User status was changed successfully.');
         return back();
     }
@@ -183,7 +187,9 @@ class UserController extends Controller
      */
     public function sendPasswordResetEmail(User $user)
     {
-        Password::sendResetLink(['email' => $user->getEmailForPasswordReset()]);
+        Password::sendResetLink([
+            'email' => $user->getEmailForPasswordReset()
+        ]);
 
         alert()->success('Password reset email was sent successfully.');
         return back();

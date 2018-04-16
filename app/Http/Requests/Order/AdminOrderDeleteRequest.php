@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\Order;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\PersonNameRule;
 
-class ProfileUpdateRequest extends FormRequest
+class AdminOrderDeleteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +24,20 @@ class ProfileUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => ['required', 'string', 'min:3', 'max:100', new PersonNameRule()],
-            'last_name' => ['nullable', 'string', 'min:1', 'max:100', new PersonNameRule()],
-            'primary_phone' => 'nullable|string|digits_between:10,20',
+            //
         ];
+    }
+
+    /**
+     * Configure the validator instance.
+     *
+     * @param  \Illuminate\Validation\Validator $validator
+     * @return void
+     */
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+
+        });
     }
 }

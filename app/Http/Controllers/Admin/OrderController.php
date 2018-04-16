@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Events\OrderCreated;
 use App\Events\OrderStatusChanged;
-use App\Http\Requests\Order\AdminOrderStoreRequest;
+use App\Http\Requests\Order\AdminOrderDeleteRequest;
+use App\Http\Requests\Order\AdminOrderCreateRequest;
+use App\Http\Requests\Order\AdminOrderUpdateRequest;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
@@ -77,13 +79,12 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  AdminOrderStoreRequest $request
+     * @param  AdminOrderCreateRequest $request
      * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function store(AdminOrderStoreRequest $request, User $user)
+    public function store(AdminOrderCreateRequest $request, User $user)
     {
-        //todo order create policy for today
         DB::beginTransaction();
 
         $order = new Order();
@@ -122,20 +123,29 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        $order->load(['orderForUser', 'orderForUser.profile', 'orderProducts', 'orderProducts.product']);
+        $order->loadMissing([
+            'orderForUser', 'orderForUser.profile', 'orderProducts', 'orderProducts.product'
+        ]);
         return view('admin.orders.edit', compact('order'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  AdminOrderUpdateRequest $request
      * @param  \App\Models\Order $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(AdminOrderUpdateRequest $request, Order $order)
     {
+        DB::beginTransaction();
+
         dd($request->all());
+
+        DB::commit();
+
+        alert()->success('Order was updated successfully.');
+        return back();
     }
 
     /**
@@ -155,7 +165,7 @@ class OrderController extends Controller
         $order->status = $request->input('status');
         $order->save();
 
-        event(new OrderStatusChanged($oldOrder,$order));
+        event(new OrderStatusChanged($oldOrder, $order));
         alert()->success('Order status was updated successfully.');
         return back();
     }
@@ -163,13 +173,13 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Order $order
-     * @return \Illuminate\Http\Response
+     * @param AdminOrderDeleteRequest $request
+     * @param Order $order
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
-    public function destroy(Order $order)
+    public function destroy(AdminOrderDeleteRequest $request, Order $order)
     {
-        //todo order delete policy
-        //todo email customer
         $order->delete();
         alert()->success('Order was deleted successfully.');
         return redirect()->route('admin.orders.index');
