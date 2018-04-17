@@ -35,4 +35,15 @@ class Product extends Model
     {
         return $query->where('active', 1);
     }
+
+    /**
+     * Scope a query to only not active records.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeNotActive($query)
+    {
+        return $query->where('active', 0);
+    }
 }

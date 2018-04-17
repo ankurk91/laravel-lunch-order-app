@@ -13,6 +13,10 @@
 
         <ul class="navbar-nav mr-auto">
           @hasrole('admin')
+          <li class="nav-item {{isActiveRoute('admin.products.index')}}">
+            <a class="nav-link" href="{{route('admin.products.index')}}">
+              <i class="fas fa-box-open"></i> Products</a>
+          </li>
           <li class="nav-item {{isActiveRoute('admin.orders.index')}}">
             <a class="nav-link" href="{{route('admin.orders.index')}}">
               <i class="fas fa-dolly"></i> Orders</a>

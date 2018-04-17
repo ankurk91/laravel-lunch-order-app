@@ -36,3 +36,9 @@ Route::resource(
         'index', 'edit', 'update', 'destroy',
     ]]
 );
+
+Route::resource(
+    'products', 'ProductController', ['only' => [
+        'index', 'edit', 'update', 'destroy', 'create', 'store'
+    ]]
+);
