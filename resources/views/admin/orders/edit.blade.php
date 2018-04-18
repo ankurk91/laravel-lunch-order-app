@@ -42,14 +42,22 @@
             <h5 class="card-title">Update order</h5>
 
             @foreach($order->orderProducts as $item)
+              <input type="hidden" name="products[{{$item->product_id}}][id]" value="{{$item->product_id}}">
               <div class="form-group row">
-                <label for="input-product-{{$loop->index}}" class="col-sm-8 col-form-label">
-                  {{$item->product->name}} - <span class="text-muted">({{money($item->unit_price)}}/item)</span>
+                <label for="input-product-{{$loop->index}}" class="col-sm-6 col-form-label">
+                  {{$item->product->name}}
                 </label>
-                <div class="col-sm-4">
+                <div class="col-md-2">
+                  <input type="number" step=".01" class="form-control" placeholder="Price"
+                         value="{{old("products.{$item->product_id}.unit_price",$item->unit_price)}}"
+                         name="products[{{$item->product_id}}][unit_price]">
+                </div>
+                <label class="col-md-1 text-center">x</label>
+                <div class="col-sm-3">
                   <select id="input-product-{{$loop->index}}" class="form-control"
-                          name="products[{{$item->product->id}}]">
-                    <option value="">Choose...</option>
+                          name="products[{{$item->product_id}}][quantity]">
+                    <option disabled>Quantity</option>
+                    <option value="">0</option>
                     @foreach(range(1, $item->product->max_quantity) as $n)
                       <option value="{{$n}}" @if($n === $item->quantity) selected @endif>{{$n}}</option>
                     @endforeach

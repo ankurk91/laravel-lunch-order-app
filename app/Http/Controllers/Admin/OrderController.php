@@ -94,16 +94,16 @@ class OrderController extends Controller
         $order->for_date = today();
         $order->save();
 
-        $productsWithQuantity = array_filter($request->input('products', []));
-        $products = Product::active()->whereIn('id', array_keys($productsWithQuantity))->get();
+        $products = collect($request->input('products', []))
+            ->filter(function ($product) {
+                return array_get($product, 'quantity') &&
+                    array_get($product, 'unit_price');
+            })->unique('id');
 
-        $products->each(function ($product) use ($productsWithQuantity, $order) {
+        $products->each(function ($product, $key) use ($order) {
             $orderProduct = new OrderProduct();
-            $orderProduct->fill([
-                'unit_price' => $product->unit_price,
-                'quantity' => array_get($productsWithQuantity, $product->id)
-            ]);
-            $orderProduct->product()->associate($product);
+            $orderProduct->fill($product);
+            $orderProduct->product()->associate($product['id']);
             $order->orderProducts()->save($orderProduct);
         });
 

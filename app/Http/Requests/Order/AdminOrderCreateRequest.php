@@ -25,11 +25,11 @@ class AdminOrderCreateRequest extends FormRequest
      */
     public function rules()
     {
-        //todo more complex validation
-        //todo 1. check if product ids exists in database and is_active
-        //todo 2. max quantity
         return [
             'products' => 'bail|required|array',
+            'products.*.id' => 'required|integer',
+            'products.*.quantity' => 'nullable|numeric|min:1|max:9999',
+            'products.*.unit_price' => 'nullable|required_with:products.*.quantity|numeric|min:1|max:9999',
             'staff_notes' => 'sometimes|nullable|string|max:255',
             'customer_notes' => 'sometimes|nullable|string|max:255',
         ];
@@ -44,16 +44,35 @@ class AdminOrderCreateRequest extends FormRequest
     public function withValidator($validator)
     {
         $validator->after(function ($validator) {
-            $this->validateAtLeastOneProduct($validator);
+            // Don't proceed with additional validation when there is already error messages
+            if ($validator->errors()->isNotEmpty()) {
+                return;
+            }
+            $products = collect($this->input('products', []));
+
+            $selectedProducts = $products->filter(function ($product) {
+                return array_get($product, 'quantity') &&
+                    array_get($product, 'unit_price');
+            })->unique('id');
+
+            if ($selectedProducts->isEmpty()) {
+                $validator->errors()->add('products', 'You need to select at least one product.');
+            }
+
+            $productsExists = Validator::make(
+                [
+                    'products' => $selectedProducts->pluck('id')->toArray()
+                ],
+                [
+                    'products' => [
+                        'required',
+                        Rule::exists('products', 'id')->where('active', 1),
+                    ],
+                ]);
+
+            if ($productsExists->fails()) {
+                $validator->errors()->add('products', 'One or more selected product found inactive.');
+            }
         });
     }
-
-    private function validateAtLeastOneProduct($validator)
-    {
-        $products = array_filter($this->input('products', []));
-        if (!$products) {
-            $validator->errors()->add('products', 'You need to select at least one product.');
-        }
-    }
-
 }

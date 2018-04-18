@@ -38,13 +38,22 @@
             @endif
 
             @foreach($products as $product)
+              <input type="hidden" name="products[{{$product->id}}][id]" value="{{$product->id}}">
               <div class="form-group row">
-                <label for="input-product-{{$loop->index}}" class="col-sm-8 col-form-label">
-                  {{$product->name}} - <span class="text-muted">({{money($product->unit_price)}}/item)</span>
+                <label for="input-product-{{$loop->index}}" class="col-sm-6 col-form-label">
+                  {{$product->name}}
                 </label>
-                <div class="col-sm-4">
-                  <select id="input-product-{{$loop->index}}" class="form-control" name="products[{{$product->id}}]">
-                    <option value="">Choose...</option>
+                <div class="col-md-2">
+                  <input type="number" step=".01" class="form-control" placeholder="Price"
+                         value="{{old("products.{$product->id}.unit_price",$product->unit_price)}}"
+                         name="products[{{$product->id}}][unit_price]">
+                </div>
+                <label class="col-md-1 text-center">x</label>
+                <div class="col-sm-3">
+                  <select id="input-product-{{$loop->index}}" class="form-control"
+                          name="products[{{$product->id}}][quantity]">
+                    <option disabled>Quantity</option>
+                    <option value="">0</option>
                     @foreach(range(1, $product->max_quantity) as $n)
                       <option value="{{$n}}">{{$n}}</option>
                     @endforeach

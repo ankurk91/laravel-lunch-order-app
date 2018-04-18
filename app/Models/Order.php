@@ -23,6 +23,7 @@ class Order extends Model
      */
     protected $casts = [
         'for_date' => 'date:Y-m-d',
+        'quantity' => 'integer'
     ];
 
     public function orderProducts()
