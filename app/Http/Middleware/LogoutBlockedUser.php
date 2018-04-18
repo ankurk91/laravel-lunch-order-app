@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\Facades\Auth;
 
 class LogoutBlockedUser
@@ -12,20 +13,20 @@ class LogoutBlockedUser
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \Closure $next
+     * @param  string|null $guard
+     * @throws \Illuminate\Auth\AuthenticationException
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::check() && Auth::user()->is_blocked) {
-            // Logout this user
-            Auth::logout();
+        if (Auth::guard($guard)->check() &&
+            Auth::guard($guard)->user()->is_blocked) {
 
-            if ($request->wantsJson() || $request->expectsJson()) {
-                return response()->json(['error' => 'Unauthenticated.'], 401);
-            }
+            Auth::guard($guard)->logout();
+            $request->session()->invalidate();
 
             alert()->error('You no longer have access to your account.');
-            return redirect()->route('login');
+            throw new AuthenticationException;
         }
 
         return $next($request);

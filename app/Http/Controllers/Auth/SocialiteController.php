@@ -109,7 +109,9 @@ class SocialiteController extends Controller
     private function authenticated(User $user)
     {
         if ($user->is_blocked) {
+
             Auth::logout();
+            session()->invalidate();
 
             alert()->error('Your account is disabled. Please contact administrator for assistance.');
             return redirect()->route('login');
