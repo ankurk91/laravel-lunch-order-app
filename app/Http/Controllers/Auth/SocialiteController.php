@@ -50,7 +50,7 @@ class SocialiteController extends Controller
 
         DB::beginTransaction();
 
-        $user = $this->createOrGetUser($provider, $providerUser);
+        $user = $this->findOrCreateUser($provider, $providerUser);
         Auth::login($user, true);
         // This session variable can be used to check if user is logged-in via socialite
         session()->put([
@@ -71,7 +71,7 @@ class SocialiteController extends Controller
      * @param $providerUser
      * @return mixed
      */
-    private function createOrGetUser($providerName, $providerUser)
+    private function findOrCreateUser($providerName, $providerUser)
     {
         $social = SocialAccount::firstOrNew([
             'provider_user_id' => $providerUser->getId(),
