@@ -1,11 +1,11 @@
 # Lunch order (Laravel 5 App)
 
 ### Prerequisites 
-* php v7.1.x, [see](https://laravel.com/docs/installation) Laravel specific requirements
+* php v7.1.16, [see](https://laravel.com/docs/installation) Laravel specific requirements
 * Apache v2.4.18 with ```mod_rewrite```
-* MySql v5.7.x
-* [Composer](https://getcomposer.org) v1.6.3
-* [node-js](https://github.com/creationix/nvm) >=8.9.3 and [yarn](https://yarnpkg.com/en/) >=1.5.x
+* MySql v5.7.21
+* [Composer](https://getcomposer.org) v1.6.4
+* [node-js](https://github.com/creationix/nvm) >=8.9.3 and [yarn](https://yarnpkg.com/en/) >=1.6.x
 
 ### Quick setup 
 * Clone this repo, checkout to ```dev``` branch

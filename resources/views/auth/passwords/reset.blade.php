@@ -54,17 +54,11 @@
               <label for="password-confirm">Confirm new password</label>
 
               <input id="password-confirm" type="password"
-                     class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}"
+                     class="form-control"
                      name="password_confirmation" placeholder="Confirm new password" required>
-
-              @if ($errors->has('password_confirmation'))
-                <div class="invalid-feedback">
-                  {{ $errors->first('password_confirmation') }}
-                </div>
-              @endif
             </div>
 
-            <div class="form-group">
+            <div class="form-group mb-0">
               <button type="submit" class="btn btn-primary btn-block">
                 <i class="fas fa-check"></i> Reset password
               </button>

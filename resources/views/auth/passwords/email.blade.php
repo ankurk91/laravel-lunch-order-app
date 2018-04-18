@@ -38,7 +38,7 @@
               @endif
             </div>
 
-            <div class="form-group">
+            <div class="form-group mb-0">
               <button type="submit" class="btn btn-primary btn-block">
                 <i class="fas fa-envelope"></i> Send password reset link
               </button>
@@ -48,7 +48,7 @@
       </div>
       <div class="text-center">
         <a class="btn btn-link" href="{{ route('login') }}">
-          Back to login
+          Back to Login
         </a>
       </div>
     </div>
