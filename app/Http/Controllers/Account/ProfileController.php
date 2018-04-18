@@ -19,10 +19,10 @@ class ProfileController extends Controller
     public function edit()
     {
         $user = Auth::user();
+        $user->loadMissing(['profile']);
+
         return view('account.profile', [
-            'user' => $user,
-            'profile' => $user->profile,
-            'roles' => $user->getRoleNames()->toArray()
+            'user' => $user
         ]);
     }
 

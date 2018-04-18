@@ -17,7 +17,7 @@
     <aside class="col-md-4">
       <div class="card">
         <div class="card-body text-center">
-          @if(optional($user->profile)->avatar)
+          @if($user->profile->avatar)
             <a href="{{$user->profile->avatar}}" target="_blank">
               <img class="rounded-circle border" src="{{$user->profile->avatar}}?sz=200" alt="avatar" height="200">
               <span class="sr-only">View large image</span>
@@ -62,7 +62,7 @@
                          class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}"
                          name="first_name"
                          placeholder="First name"
-                         value="{{old('first_name', optional($user->profile)->first_name)}}"
+                         value="{{old('first_name', $user->profile->first_name)}}"
                          required autofocus>
 
                   @if ($errors->has('first_name'))
@@ -79,7 +79,7 @@
                   <input id="last_name" type="text"
                          class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}"
                          name="last_name" placeholder="Last name"
-                         value="{{old('last_name', optional($user->profile)->last_name)}}">
+                         value="{{old('last_name', $user->profile->last_name)}}">
 
                   @if ($errors->has('last_name'))
                     <div class="invalid-feedback">
@@ -95,7 +95,7 @@
               <input id="primary_phone" type="tel"
                      class="form-control{{ $errors->has('primary_phone') ? ' is-invalid' : '' }}"
                      name="primary_phone" placeholder="Primary phone"
-                     value="{{old('primary_phone', optional($user->profile)->primary_phone)}}">
+                     value="{{old('primary_phone', $user->profile->primary_phone)}}">
 
               @if ($errors->has('primary_phone'))
                 <div class="invalid-feedback">
@@ -142,8 +142,7 @@
         </div>
       </form>
 
-      <form onsubmit="return confirm('Are you sure?')"
-            action="{{route('admin.users.password-reset-email',$user)}}"
+      <form action="{{route('admin.users.password-reset-email',$user)}}"
             method="POST">
         @csrf
 

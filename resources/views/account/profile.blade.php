@@ -33,7 +33,7 @@
                          class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}"
                          name="first_name"
                          placeholder="First name"
-                         value="{{old('first_name', optional($profile)->first_name)}}"
+                         value="{{old('first_name', $user->profile->first_name)}}"
                          required autofocus>
 
                   @if ($errors->has('first_name'))
@@ -50,7 +50,7 @@
                   <input id="last_name" type="text"
                          class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}"
                          name="last_name" placeholder="Last name"
-                         value="{{old('last_name', optional($profile)->last_name)}}">
+                         value="{{old('last_name', $user->profile->last_name)}}">
 
                   @if ($errors->has('last_name'))
                     <div class="invalid-feedback">
@@ -66,7 +66,7 @@
               <input id="primary_phone" type="tel"
                      class="form-control{{ $errors->has('primary_phone') ? ' is-invalid' : '' }}"
                      name="primary_phone" placeholder="Primary phone"
-                     value="{{old('primary_phone', optional($profile)->primary_phone)}}">
+                     value="{{old('primary_phone', $user->profile->primary_phone)}}">
 
               @if ($errors->has('primary_phone'))
                 <div class="invalid-feedback">
