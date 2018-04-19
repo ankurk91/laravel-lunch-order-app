@@ -1,5 +1,5 @@
 <header class="app-header">
-  <nav class="navbar navbar-expand-md fixed-top navbar-light bg-white shadow-sm border-bottom">
+  <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm border-bottom">
     <div class="container">
       <a class="navbar-brand mb-0 h1" href="{{url('/')}}">
         <i class="fas fa-utensils"></i> {{config('app.name')}}
