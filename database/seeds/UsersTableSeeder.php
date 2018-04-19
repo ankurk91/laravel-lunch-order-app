@@ -20,6 +20,13 @@ class UsersTableSeeder extends Seeder
 
         $admin->assignRole($roles);
 
+        $staff = \App\Models\User::create([
+            'email' => 'staff@example.com',
+            'password' => bcrypt('password@123')
+        ]);
+
+        $staff->assignRole(['staff']);
+
         factory(\App\Models\User::class, rand(50, 100))->create()->each(function ($user) use ($roles) {
             $user->assignRole(array_random($roles));
             if (rand(0, 1)) {
