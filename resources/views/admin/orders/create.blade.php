@@ -37,9 +37,9 @@
               </div>
             @endif
 
-            @foreach($products as $product)
-              <input type="hidden" name="products[{{$product->id}}][id]" value="{{$product->id}}">
+            @forelse($products as $product)
               <div class="form-group row">
+                <input type="hidden" name="products[{{$product->id}}][id]" value="{{$product->id}}">
                 <label for="input-product-{{$loop->index}}" class="col-sm-6 col-form-label">
                   {{$product->name}}
                 </label>
@@ -60,7 +60,11 @@
                   </select>
                 </div>
               </div>
-            @endforeach
+            @empty
+              <div class="row text-center">
+                No products found.
+              </div>
+            @endforelse
 
             <div class="form-group">
               <label for="input-staff-notes">Staff notes</label>

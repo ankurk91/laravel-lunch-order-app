@@ -89,7 +89,7 @@ class User extends Authenticatable
 
     public function orders()
     {
-        return $this->hasMany(Order::class, 'created_for');
+        return $this->hasMany(Order::class, 'created_for_user_id');
     }
 
     public function socialAccounts()

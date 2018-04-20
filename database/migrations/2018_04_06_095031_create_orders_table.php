@@ -16,11 +16,11 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->unsignedInteger('created_by');
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedInteger('created_by_user_id');
+            $table->foreign('created_by_user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->unsignedInteger('created_for');
-            $table->foreign('created_for')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedInteger('created_for_user_id');
+            $table->foreign('created_for_user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->date('for_date');
             $table->enum('status', config('project.order_status'))->default('pending');

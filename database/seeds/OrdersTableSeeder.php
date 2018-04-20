@@ -21,7 +21,7 @@ class OrdersTableSeeder extends Seeder
                     ->saveMany(factory(App\Models\Order::class, $ordersCount)
                         ->make(
                             [
-                                'created_by' => $user->id,
+                                'created_by_user_id' => $user->id,
                             ]
                         )->each(function ($order) use ($ordersCountRange) {
                             // a customer can only order once in a day

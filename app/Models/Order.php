@@ -33,12 +33,12 @@ class Order extends Model
 
     public function orderForUser()
     {
-        return $this->belongsTo(User::class, 'created_for');
+        return $this->belongsTo(User::class, 'created_for_user_id');
     }
 
     public function orderByUser()
     {
-        return $this->belongsTo(User::class, 'created_by');
+        return $this->belongsTo(User::class, 'created_by_user_id');
     }
 
     public function getTotalAttribute()

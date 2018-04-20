@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Order;
 
+use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -26,12 +27,12 @@ class AdminOrderCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'products' => 'bail|required|array',
+            'products' => 'required|array',
             'products.*.id' => 'required|integer',
             'products.*.quantity' => 'nullable|numeric|min:1|max:9999',
             'products.*.unit_price' => 'nullable|required_with:products.*.quantity|numeric|min:1|max:9999',
-            'staff_notes' => 'sometimes|nullable|string|max:255',
-            'customer_notes' => 'sometimes|nullable|string|max:255',
+            'staff_notes' => 'nullable|string|max:255',
+            'customer_notes' => 'nullable|string|max:255',
         ];
     }
 
@@ -66,12 +67,12 @@ class AdminOrderCreateRequest extends FormRequest
                 [
                     'products' => [
                         'required',
-                        Rule::exists('products', 'id')->where('active', 1),
+                        Rule::exists(with(new Product())->getTable(), 'id')->where('active', 1),
                     ],
                 ]);
 
             if ($productsExists->fails()) {
-                $validator->errors()->add('products', 'One or more selected product found inactive.');
+                $validator->errors()->add('products', 'One or more selected product no longer available for purchase.');
             }
         });
     }
