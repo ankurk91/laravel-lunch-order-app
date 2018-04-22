@@ -13,7 +13,7 @@
       </div>
       <div class="col-md-8">
         <p class="h5 my-1 text-truncate" title="{{$user->email}}">{{$user->email}}</p>
-        <p class="text-capitalize text-truncate text-muted">{{implode(', ',$user->roles->pluck('name')->toArray())}}</p>
+        <p class="text-capitalize text-truncate text-muted">{{implode(', ',$user->getRoleNames()->toArray())}}</p>
         <p class="small text-muted mb-0">
           Joined -
           @datetime($user->created_at)

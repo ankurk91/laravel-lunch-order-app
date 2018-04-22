@@ -26,7 +26,7 @@
             <i class="fas fa-8x fa-user-circle text-muted"></i>
           @endif
           <p class="h5 my-3 text-nowrap">{{$user->email}}</p>
-          <p class="text-capitalize">{{implode(', ',$user->roles->pluck('name')->toArray())}}</p>
+          <p class="text-capitalize">{{implode(', ',$user->getRoleNames()->toArray())}}</p>
           <p class="small text-muted mb-0">
             Member since -
             @datetime($user->created_at)
