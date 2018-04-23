@@ -38,7 +38,17 @@
         <select class="form-control mb-2 mb-sm-0 mx-sm-2 text-capitalize" name="active_status">
           <option disabled>Status</option>
           @foreach(['active','blocked','all'] as $status)
-            <option value="{{$status}}" @if(request('active_status','active') === $status) selected @endif>{{$status}}</option>
+            <option value="{{$status}}"
+                    @if(request('active_status','active') === $status) selected @endif>{{$status}}</option>
+          @endforeach
+        </select>
+
+        <select class="form-control mb-2 mb-sm-0 mx-sm-2 text-capitalize" name="role_name">
+          <option disabled>Role</option>
+          <option value="">Any</option>
+          @foreach($roles as $role)
+            <option value="{{$role->name}}"
+                    @if(request('role_name') === $role->name) selected @endif>{{$role->name}}</option>
           @endforeach
         </select>
 

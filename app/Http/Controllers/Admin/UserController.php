@@ -50,11 +50,16 @@ class UserController extends Controller
             $users->active();
         }
 
+        if ($request->filled('role_name')) {
+            $users->role($request->input('role_name'));
+        }
+
         $users = $users->latest()
             ->paginate($request->filled('per_page') ? $request->input('per_page') : 10);
 
 
-        return view('admin.users.index', compact('users'));
+        $roles = Role::all();
+        return view('admin.users.index', compact('users', 'roles'));
 
     }
 
