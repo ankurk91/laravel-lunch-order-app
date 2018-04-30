@@ -55,7 +55,7 @@ class UserController extends Controller
         }
 
         $users = $users->latest()
-            ->paginate($request->filled('per_page') ? $request->input('per_page') : 10);
+            ->paginate($request->input('per_page', 10));
 
 
         $roles = Role::all();

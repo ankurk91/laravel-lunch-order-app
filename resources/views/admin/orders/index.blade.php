@@ -33,7 +33,7 @@
 
         <select class="form-control mb-2 mb-sm-0 mx-sm-2" name="order_month">
           <option disabled>Month</option>
-          @foreach(monthsWithNames() as $month=>$name)
+          @foreach(monthsWithNames($months->min('month'),$months->max('month')) as $month=>$name)
             <option value="{{$month}}" @if(request('order_month',today()->month) == $month) selected @endif>{{$name}}</option>
           @endforeach
         </select>

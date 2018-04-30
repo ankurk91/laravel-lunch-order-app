@@ -39,7 +39,7 @@ class ProductController extends Controller
         }
 
         $products = $products->latest()
-            ->paginate($request->filled('per_page') ? $request->input('per_page') : 10);
+            ->paginate($request->input('per_page', 10));
 
         return view('admin.products.index', compact('products'));
     }

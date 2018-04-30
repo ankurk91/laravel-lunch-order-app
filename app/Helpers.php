@@ -29,13 +29,15 @@ function money($number, $sign = '₹')
 /**
  * Get months names with numbers
  *
+ * @param int $from
+ * @param int $to
  * @return array
  */
-function monthsWithNames()
+function monthsWithNames($from = 1, $to = 12)
 {
     $months = [];
 
-    for ($m = 1; $m <= 12; ++$m) {
+    for ($m = $from; $m <= $to; ++$m) {
         $months[$m] = date('F', mktime(0, 0, 0, $m, 1));
     }
 

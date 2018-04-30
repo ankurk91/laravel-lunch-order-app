@@ -40,28 +40,23 @@ class OrderController extends Controller
             });
         }
 
+        $orders->whereYear('for_date', $request->input('order_year', today()->year))
+            ->whereMonth('for_date', $request->input('order_month', today()->month));
+
         if ($request->filled('order_status')) {
             $orders->where('status', $request->input('order_status'));
         }
 
-        if ($request->filled('order_year')) {
-            $orders->whereYear('for_date', $request->input('order_year'));
-        } else {
-            $orders->whereYear('for_date', today()->year);
-        }
-
-        if ($request->filled('order_month')) {
-            $orders->whereMonth('for_date', $request->input('order_month'));
-        } else {
-            $orders->whereMonth('for_date', today()->month);
-        }
-
         $orders = $orders->orderBy('for_date', 'desc')
-            ->paginate($request->filled('per_page') ? $request->input('per_page') : 10);
+            ->paginate($request->input('per_page', 10));
 
-        $years = Order::select(DB::raw('EXTRACT(year from for_date) as year'))->groupBy('year')->get();
+        $years = Order::select(DB::raw('EXTRACT(year from for_date) as year'))
+            ->groupBy('year')->get();
+        $months = Order::select(DB::raw('EXTRACT(month from for_date) as month'))
+            ->whereYear('for_date', $request->input('order_year', today()->year))
+            ->groupBy('month')->get();
 
-        return view('admin.orders.index', compact('orders', 'years'));
+        return view('admin.orders.index', compact('orders', 'years', 'months'));
     }
 
     /**
