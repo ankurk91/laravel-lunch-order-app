@@ -40,6 +40,9 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Update order</h5>
+            <h6 class="card-subtitle mb-2 text-muted">You need to choose at least one product.</h6>
+
+            @include('admin.orders._validationAlert')
 
             @foreach($order->orderProducts as $item)
               <input type="hidden" name="products[{{$item->product_id}}][id]" value="{{$item->product_id}}">
@@ -59,7 +62,34 @@
                     <option disabled>Quantity</option>
                     <option value="">0</option>
                     @foreach(range(1, $item->product->max_quantity) as $n)
-                      <option value="{{$n}}" @if($n === $item->quantity) selected @endif>{{$n}}</option>
+                      <option value="{{$n}}"
+                              @if(old("products.{$item->product_id}.quantity",$item->quantity) == $n) selected @endif>{{$n}}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+            @endforeach
+            <hr>
+            @foreach($newProducts as $product)
+              <div class="form-group row">
+                <input type="hidden" name="products[{{$product->id}}][id]" value="{{$product->id}}">
+                <label for="input-product-{{$loop->index}}" class="col-sm-6 col-form-label">
+                  {{$product->name}}
+                </label>
+                <div class="col-md-2">
+                  <input type="number" step=".01" class="form-control" placeholder="Price"
+                         value="{{old("products.{$product->id}.unit_price",$product->unit_price)}}"
+                         name="products[{{$product->id}}][unit_price]">
+                </div>
+                <label class="col-md-1 text-center">x</label>
+                <div class="col-sm-3">
+                  <select id="input-product-{{$loop->index}}" class="form-control"
+                          name="products[{{$product->id}}][quantity]">
+                    <option disabled>Quantity</option>
+                    <option value="">0</option>
+                    @foreach(range(1, $product->max_quantity) as $n)
+                      <option
+                        value="{{$n}}" {{old("products.{$product->id}.quantity") == $n ? 'selected' : ''}}>{{$n}}</option>
                     @endforeach
                   </select>
                 </div>

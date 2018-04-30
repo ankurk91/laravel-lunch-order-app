@@ -126,7 +126,10 @@ class OrderController extends Controller
         $order->loadMissing([
             'orderForUser', 'orderForUser.profile', 'orderProducts', 'orderProducts.product'
         ]);
-        return view('admin.orders.edit', compact('order'));
+
+        $newProducts = Product::active()->whereNotIn('id', $order->orderProducts->pluck('product_id'))->get();
+
+        return view('admin.orders.edit', compact('order', 'newProducts'));
     }
 
     /**
@@ -140,7 +143,24 @@ class OrderController extends Controller
     {
         DB::beginTransaction();
 
-        dd($request->all());
+        $order->fill($request->only(['staff_notes', 'customer_notes']));
+        $order->orderByUser()->associate(Auth::user());
+        $order->save();
+
+        $products = collect($request->input('products', []))
+            ->filter(function ($product) {
+                return array_get($product, 'quantity') &&
+                    array_get($product, 'unit_price');
+            })->unique('id');
+
+        $order->orderProducts()->delete();
+
+        $products->each(function ($product, $key) use ($order) {
+            $orderProduct = new OrderProduct();
+            $orderProduct->fill($product);
+            $orderProduct->product()->associate($product['id']);
+            $order->orderProducts()->save($orderProduct);
+        });
 
         DB::commit();
 

@@ -26,16 +26,9 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Place order for today</h5>
-            <h6 class="card-subtitle mb-2 text-muted">You need to choose at least on product.</h6>
+            <h6 class="card-subtitle mb-2 text-muted">You need to choose at least one product.</h6>
 
-            @if ($errors->has('products'))
-              <div class="alert alert-danger alert-dismissible show" role="alert">
-                {{ $errors->first('products') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-            @endif
+            @include('admin.orders._validationAlert')
 
             @forelse($products as $product)
               <div class="form-group row">
@@ -55,7 +48,7 @@
                     <option disabled>Quantity</option>
                     <option value="">0</option>
                     @foreach(range(1, $product->max_quantity) as $n)
-                      <option value="{{$n}}">{{$n}}</option>
+                      <option value="{{$n}}" {{old("products.{$product->id}.quantity") == $n ? 'selected' : ''}}>{{$n}}</option>
                     @endforeach
                   </select>
                 </div>
