@@ -45,4 +45,9 @@ class Order extends Model
     {
         return $this->orderProducts->sum('total');
     }
+
+    public function scopeOrderFor($query, $id)
+    {
+        return $query->where('created_for_user_id', $id);
+    }
 }

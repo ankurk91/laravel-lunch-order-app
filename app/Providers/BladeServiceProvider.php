@@ -47,7 +47,7 @@ class BladeServiceProvider extends ServiceProvider
     private function timeagoDirective()
     {
         Blade::directive('timeago', function ($expression) {
-            return "<?php echo ($expression)->diffForHumans(); ?>";
+            return $this->datetimeWrap($expression, "<?php echo ($expression)->diffForHumans(); ?>");
         });
     }
 
