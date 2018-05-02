@@ -16,10 +16,10 @@
     "expose-loader": "^0.7.5",
     "laravel-mix": "^2.0",
     "laravel-mix-auto-extract": "^0.0.4",
-    "laravel-mix-purgecss": "^2.0.0"
+    "laravel-mix-purgecss": "^2.1.0"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free-webfonts": "^1.0.6",
+    "@fortawesome/fontawesome-free-webfonts": "^1.0.7",
     "bootstrap": "^4.1.1",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.3"
