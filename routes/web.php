@@ -59,3 +59,10 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'shop', 'as' => 'shop.'], fu
     Route::post('/cancel', 'ShopController@cancel')->name('cancel');
     Route::post('/restore', 'ShopController@restore')->name('restore');
 });
+
+// My orders routes ...
+Route::resource(
+    'orders', 'OrderController', ['only' => [
+        'index', 'show',
+    ]]
+)->middleware('auth');

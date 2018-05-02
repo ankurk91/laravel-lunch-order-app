@@ -31,6 +31,10 @@
               <a class="nav-link" href="{{route('shop.index')}}">
                 <i class="fas fa-cart-plus"></i> Shop</a>
             </li>
+            <li class="nav-item {{isActiveRoute('orders.index')}}">
+              <a class="nav-link" href="{{route('orders.index')}}">
+                <i class="fas fa-history"></i> My Orders</a>
+            </li>
           @endauth
         </ul>
 
