@@ -3,7 +3,7 @@
 ### Prerequisites 
 * php v7.1.16, [see](https://laravel.com/docs/installation) Laravel specific requirements
 * Apache v2.4.18 with ```mod_rewrite```
-* MySql v5.7.21
+* [PostgreSQL](https://www.postgresql.org/) v10.3
 * [Composer](https://getcomposer.org) v1.6.4
 * [node-js](https://github.com/creationix/nvm) >=8.9.3 and [yarn](https://yarnpkg.com/en/) >=1.6.x
 
