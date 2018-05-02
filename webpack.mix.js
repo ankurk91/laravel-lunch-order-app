@@ -43,7 +43,9 @@ mix.js('./resources/assets/js/app.js', './public/js')
   .sass('./resources/assets/sass/app.scss', './public/css')
   .sass('./resources/assets/sass/vendor.scss', './public/css/')
   .copyDirectory('./resources/assets/images', 'public/img')
-  .purgeCss()
+  .purgeCss({
+    whitelistPatterns: [/^pagination/, /^page-*/]
+  })
   .autoExtract()
   .sourceMaps(false)
   .disableNotifications();
