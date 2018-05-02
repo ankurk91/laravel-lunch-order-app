@@ -12,6 +12,8 @@
   },
   "devDependencies": {
     "cross-env": "^5.1",
+    "exports-loader": "^0.7.0",
+    "expose-loader": "^0.7.5",
     "laravel-mix": "^2.0",
     "laravel-mix-auto-extract": "^0.0.4",
     "laravel-mix-purgecss": "^2.0.0"
