@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Cache;
 
 /**
  * Compare given route with current route and return output if they match.
@@ -43,3 +44,4 @@ function monthsWithNames($from = 1, $to = 12)
 
     return $months;
 }
+

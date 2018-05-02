@@ -68,7 +68,7 @@
       </div>
       <div class="text-center">
         <a class="btn btn-link" href="{{ route('login') }}">
-          Back to login
+          Back to Log in
         </a>
       </div>
     </div>

@@ -80,6 +80,7 @@ _ide_helper.*
 /public/css
 /public/fonts
 /public/images
+/public/img
 /public/mix-manifest.json
 /public/*.js
 /public/*.css

@@ -71,4 +71,14 @@ class LoginController extends Controller
 
         return redirect()->route('login');
     }
+
+    /**
+     * Where to redirect users after login.
+     *
+     * @return string
+     */
+    private function redirectTo()
+    {
+        return route('shop.index');
+    }
 }

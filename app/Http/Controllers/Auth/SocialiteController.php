@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Foundation\Auth\RedirectsUsers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,8 @@ use App\Models\User;
 
 class SocialiteController extends Controller
 {
+
+    use RedirectsUsers;
 
     /**
      * Redirect the user to the Provider authentication page.
@@ -60,7 +63,7 @@ class SocialiteController extends Controller
         DB::commit();
 
         return $this->authenticated($user)
-            ?: redirect()->intended('/');
+            ?: redirect()->intended($this->redirectPath());
 
     }
 
@@ -116,6 +119,16 @@ class SocialiteController extends Controller
             alert()->error('Your account is disabled. Please contact administrator for assistance.');
             return redirect()->route('login');
         }
+    }
+
+    /**
+     * Where to redirect users after login.
+     *
+     * @return string
+     */
+    private function redirectTo()
+    {
+        return route('shop.index');
     }
 
     /**

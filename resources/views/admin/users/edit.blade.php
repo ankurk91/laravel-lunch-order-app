@@ -169,7 +169,7 @@
           <div class="card-body">
             <h5 class="card-title">Block/unblock user</h5>
             <p class="card-text font-weight-light">
-              When blocked; User will be logged out of all active devices and will not be allowed to login back.
+              When blocked; User will be logged out of all active devices and will not be allowed to log in back.
             </p>
           </div>
           <div class="card-footer text-right">

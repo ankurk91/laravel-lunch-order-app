@@ -1,10 +1,10 @@
 @extends('_layouts.app')
-@section('pageTitle','Login')
+@section('pageTitle','Log in')
 
 @section('content')
 
   @component('components.breadcrumb')
-    Login
+    Log in
   @endcomponent
 
   @include('alert::bootstrap')
@@ -13,7 +13,7 @@
     <section class="col-sm-5 order-sm-first order-lg-last">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Login to your account</h5>
+          <h5 class="card-title">Log in to your account</h5>
           <form method="POST" action="{{ route('login') }}">
             @csrf
 
@@ -52,12 +52,13 @@
 
             <div class="form-group">
               <button type="submit" class="btn btn-primary btn-block">
-                <i class="fas fa-sign-in-alt"></i> Login
+                <i class="fas fa-sign-in-alt"></i> Log in
               </button>
             </div>
             <div class="form-group mb-0">
-              <a href="{{route('oauth.login','google')}}" class="btn btn-danger btn-block">
-                <i class="fab fa-google"></i> Login with Google
+              <a href="{{route('oauth.login','google')}}" class="btn btn-light btn-block border-dark">
+                <img class="d-inline-block" src="{{asset('img/google-logo.svg')}}" height="20" width="20" alt="g">
+                <span class="label">&ensp;Log in with Google</span>
               </a>
             </div>
           </form>

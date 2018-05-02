@@ -85,7 +85,7 @@
         @csrf
         <div class="card mt-4">
           <div class="card-body">
-            <h5 class="card-title">Logout from other devices</h5>
+            <h5 class="card-title">Log out from other devices</h5>
             <p class="card-text font-weight-light">
               <i class="fas fa-exclamation-triangle"></i> You will be logged-out from all of
               your active devices except current.
@@ -105,7 +105,7 @@
             </div>
           </div>
           <div class="card-footer text-right">
-            <button type="submit" class="btn btn-outline-danger"><i class="fas fa-sign-out-alt"></i> Sign-out</button>
+            <button type="submit" class="btn btn-outline-danger"><i class="fas fa-sign-out-alt"></i> Log out</button>
           </div>
         </div>
       </form>

@@ -1,7 +1,7 @@
 <header class="app-header">
-  <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm border-bottom">
+  <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm border-bottom" role="navigation">
     <div class="container">
-      <a class="navbar-brand mb-0 h1" href="{{url('/')}}">
+      <a class="navbar-brand" href="{{url('/')}}">
         <i class="fas fa-utensils"></i> {{config('app.name')}}
       </a>
       <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#mobile-nav"
@@ -33,7 +33,7 @@
           @guest
             <li class="nav-item {{isActiveRoute('login')}}">
               <a href="{{route('login')}}" class="nav-link">
-                <i class="fas fa-sign-in-alt"></i>&ensp;Login</a>
+                <i class="fas fa-sign-in-alt"></i>&ensp;Log in</a>
             </li>
           @endguest
           @auth
@@ -43,11 +43,13 @@
                 <i class="fas fa-user-circle"></i> {{auth()->user()->email}}
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-dropdown">
-                <a class="dropdown-item" href="{{route('account.edit')}}">Account</a>
+                <a class="dropdown-item" href="{{route('account.edit')}}">
+                  <i class="fas fa-cog"></i> Account
+                </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();document.querySelector('#logout-form').submit();">
-                  Logout
+                  <i class="fas fa-sign-out-alt"></i> Log out
                 </a>
 
                 <form hidden id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
