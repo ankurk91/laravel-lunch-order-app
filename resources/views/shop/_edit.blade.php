@@ -58,7 +58,7 @@
         <label for="input-notes">Add notes</label>
         <textarea rows="1" class="form-control {{ $errors->has('customer_notes') ? ' is-invalid' : '' }}"
                   id="input-notes" name="customer_notes"
-                  placeholder="Optional notes">{{old('customer_notes')}}</textarea>
+                  placeholder="Optional notes">{{old('customer_notes',$order->customer_notes)}}</textarea>
         @if ($errors->has('customer_notes'))
           <div class="invalid-feedback">
             {{ $errors->first('customer_notes') }}

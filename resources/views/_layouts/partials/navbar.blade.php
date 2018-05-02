@@ -26,6 +26,12 @@
               <i class="fas fa-users"></i> Users</a>
           </li>
           @endhasrole
+          @auth
+            <li class="nav-item {{isActiveRoute('shop.index')}}">
+              <a class="nav-link" href="{{route('shop.index')}}">
+                <i class="fas fa-cart-plus"></i> Shop</a>
+            </li>
+          @endauth
         </ul>
 
 

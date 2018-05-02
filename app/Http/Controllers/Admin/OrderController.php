@@ -27,14 +27,14 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        $orders = Order::with(['orderForUser', 'orderProducts']);
+        $orders = Order::with(['createdForUser', 'orderProducts']);
 
         if ($request->filled('search')) {
-            $orders->orWhereHas('orderForUser', function ($query) use ($request) {
+            $orders->orWhereHas('createdForUser', function ($query) use ($request) {
                 $query->where('email', 'like', '%' . $request->input('search') . '%');
             });
 
-            $orders->orWhereHas('orderForUser.profile', function ($query) use ($request) {
+            $orders->orWhereHas('createdForUser.profile', function ($query) use ($request) {
                 $query->where('first_name', 'like', '%' . $request->input('search') . '%')
                     ->orWhere('last_name', 'like', '%' . $request->input('search') . '%');
             });
@@ -84,8 +84,8 @@ class OrderController extends Controller
 
         $order = new Order();
         $order->fill($request->only(['staff_notes', 'customer_notes']));
-        $order->orderByUser()->associate(Auth::user());
-        $order->orderForUser()->associate($user);
+        $order->createdByUser()->associate(Auth::user());
+        $order->createdForUser()->associate($user);
         $order->for_date = today();
         $order->save();
 
@@ -119,7 +119,7 @@ class OrderController extends Controller
     public function edit(Order $order)
     {
         $order->loadMissing([
-            'orderForUser', 'orderForUser.profile', 'orderProducts', 'orderProducts.product'
+            'createdForUser', 'createdForUser.profile', 'orderProducts', 'orderProducts.product'
         ]);
 
         $newProducts = Product::active()->whereNotIn('id', $order->orderProducts->pluck('product_id'))->get();
@@ -139,7 +139,7 @@ class OrderController extends Controller
         DB::beginTransaction();
 
         $order->fill($request->only(['staff_notes', 'customer_notes']));
-        $order->orderByUser()->associate(Auth::user());
+        $order->createdByUser()->associate(Auth::user());
         $order->save();
 
         $products = collect($request->input('products', []))

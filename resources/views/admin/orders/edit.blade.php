@@ -16,7 +16,7 @@
     <div class="col pt-1 text-right">
       <ul class="nav justify-content-end">
         <li class="nav-item">
-          <a class="nav-link" href="{{route('admin.orders.create',$order->orderForUser)}}">
+          <a class="nav-link" href="{{route('admin.orders.create',$order->createdForUser)}}">
             <i class="fas fa-cart-plus"></i> Add new order
           </a>
         </li>
@@ -29,7 +29,7 @@
 
   <div class="row">
     <aside class="col-md-4 mb-sm-0 mb-lg-0 mb-4">
-      @component('components.userCard', [ 'user' => $order->orderForUser])
+      @component('components.userCard', [ 'user' => $order->createdForUser])
       @endcomponent()
     </aside>
 

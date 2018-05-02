@@ -31,12 +31,12 @@ class Order extends Model
         return $this->hasMany(OrderProduct::class);
     }
 
-    public function orderForUser()
+    public function createdForUser()
     {
         return $this->belongsTo(User::class, 'created_for_user_id');
     }
 
-    public function orderByUser()
+    public function createdByUser()
     {
         return $this->belongsTo(User::class, 'created_by_user_id');
     }
@@ -46,8 +46,13 @@ class Order extends Model
         return $this->orderProducts->sum('total');
     }
 
-    public function scopeOrderFor($query, $id)
+    public function scopeCreatedFor($query, $id)
     {
         return $query->where('created_for_user_id', $id);
+    }
+
+    public function scopeCreatedBy($query, $id)
+    {
+        return $query->where('created_by_user_id', $id);
     }
 }

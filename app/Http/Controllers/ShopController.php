@@ -14,7 +14,7 @@ class ShopController extends Controller
 {
     public function index()
     {
-        $order = Order::orderFor(Auth::id())
+        $order = Order::createdFor(Auth::id())
             ->whereDate('for_date', today())
             ->first();
 
@@ -39,14 +39,14 @@ class ShopController extends Controller
     {
         DB::beginTransaction();
 
-        $order = Order::orderFor(Auth::id())
+        $order = Order::createdFor(Auth::id())
             ->whereDate('for_date', today())
             ->first();
 
         if (!$order) {
             $order = new Order();
-            $order->orderByUser()->associate(Auth::user());
-            $order->orderForUser()->associate(Auth::user());
+            $order->createdByUser()->associate(Auth::user());
+            $order->createdForUser()->associate(Auth::user());
             $order->for_date = today();
         }
 
@@ -83,7 +83,7 @@ class ShopController extends Controller
 
     public function cancel()
     {
-        $order = Order::orderFor(Auth::id())
+        $order = Order::createdFor(Auth::id())
             ->whereDate('for_date', today())
             ->firstOrFail();
 
@@ -96,7 +96,7 @@ class ShopController extends Controller
 
     public function restore()
     {
-        $order = Order::orderFor(Auth::id())
+        $order = Order::createdFor(Auth::id())
             ->whereDate('for_date', today())
             ->firstOrFail();
 

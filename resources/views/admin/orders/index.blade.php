@@ -76,7 +76,7 @@
           </td>
           <td class="align-middle">
             <a target="_blank"
-               href="{{route('admin.users.edit',$order->orderForUser)}}"> {{$order->orderForUser->email}}</a>
+               href="{{route('admin.users.edit',$order->createdForUser)}}"> {{$order->createdForUser->email}}</a>
           </td>
           <td>
             {{money($order->total)}}
