@@ -57,7 +57,7 @@
             </div>
             <div class="form-group mb-0">
               <a href="{{route('oauth.login','google')}}" class="btn btn-light btn-block border-dark">
-                <img class="d-inline-block" src="{{asset('img/google-logo.svg')}}" height="20" width="20" alt="g">
+                <img class="d-inline-block align-text-bottom" src="{{asset('img/google-logo.svg')}}" height="18" width="18" alt="g">
                 <span class="label">&ensp;Log in with Google</span>
               </a>
             </div>

@@ -26,16 +26,6 @@
               <i class="fas fa-users"></i> Users</a>
           </li>
           @endhasrole
-          @auth
-            <li class="nav-item {{isActiveRoute('shop.index')}}">
-              <a class="nav-link" href="{{route('shop.index')}}">
-                <i class="fas fa-cart-plus"></i> Shop</a>
-            </li>
-            <li class="nav-item {{isActiveRoute('orders.index')}}">
-              <a class="nav-link" href="{{route('orders.index')}}">
-                <i class="fas fa-history"></i> My Orders</a>
-            </li>
-          @endauth
         </ul>
 
 
@@ -47,14 +37,22 @@
             </li>
           @endguest
           @auth
+            <li class="nav-item {{isActiveRoute('orders.index')}}">
+              <a class="nav-link" href="{{route('orders.index')}}">
+                <i class="fas fa-history"></i> My Orders</a>
+            </li>
+            <li class="nav-item {{isActiveRoute('shop.index')}}">
+              <a class="nav-link" href="{{route('shop.index')}}">
+                <i class="fas fa-cart-plus"></i> Shop</a>
+            </li>
             <li class="nav-item dropdown {{isActiveRoute('account.edit')}}">
               <a class="nav-link dropdown-toggle" href="{{route('account.edit')}}" id="user-dropdown" role="button"
                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-user-circle"></i> {{auth()->user()->email}}
+                <i class="fas fa-user"></i> {{auth()->user()->email}}
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-dropdown">
                 <a class="dropdown-item" href="{{route('account.edit')}}">
-                  <i class="fas fa-cog"></i> Account
+                  <i class="fas fa-user-cog"></i> Account
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('logout') }}"
