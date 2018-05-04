@@ -123,11 +123,12 @@ class UserController extends Controller
      */
     public function update(UpdateRequest $request, User $user)
     {
-        UserProfile::updateOrCreate(
-            ['user_id' => $user->id],
-            $request->only(
-                ['first_name', 'last_name', 'primary_phone']
-            )
+        UserProfile::updateOrCreate([
+            'user_id' => $user->id
+        ],
+            $request->only([
+                'first_name', 'last_name', 'primary_phone'
+            ])
         );
 
         alert()->success('User profile was updated successfully.');
@@ -156,9 +157,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User $user
+     * @param DeleteRequest $request
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
-     * @return \Illuminate\Http\Response
      */
     public function destroy(DeleteRequest $request, User $user)
     {

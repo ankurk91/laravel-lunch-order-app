@@ -3,9 +3,13 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Order;
 
 class DeleteRequest extends FormRequest
 {
+
+    protected $errorBag = 'delete';
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -37,7 +41,20 @@ class DeleteRequest extends FormRequest
     public function withValidator($validator)
     {
         $validator->after(function ($validator) {
+            $user = $this->route('user');
 
+            $orderCount = Order::withTrashed()
+                ->whereHas('createdByUser', function ($query) use ($user) {
+                    $query->where('id', $user->id);
+                })
+                ->orWhereHas('createdForUser', function ($query) use ($user) {
+                    $query->where('id', $user->id);
+                })
+                ->count();
+
+            if ($orderCount) {
+                $validator->errors()->add('user', 'Could not delete the user. This user has purchase history associated with ' . $orderCount . ' order(s).');
+            }
         });
     }
 }
