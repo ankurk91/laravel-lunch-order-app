@@ -34,7 +34,7 @@
 
         <div class="form-group">
           <label for="input-description">Description</label>
-          <textarea rows="2" class="form-control {{ $errors->has('description') ? ' is-invalid' : '' }}"
+          <textarea rows="2" class="form-control max-height-10 {{ $errors->has('description') ? ' is-invalid' : '' }}"
                     id="input-description" name="description"
                     placeholder="Description">{{old('description')}}</textarea>
           @if ($errors->has('description'))

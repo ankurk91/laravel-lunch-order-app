@@ -61,7 +61,7 @@
 
             <div class="form-group">
               <label for="input-staff-notes">Staff notes</label>
-              <textarea rows="1" class="form-control {{ $errors->has('staff_notes') ? ' is-invalid' : '' }}"
+              <textarea rows="1" class="form-control max-height-10 {{ $errors->has('staff_notes') ? ' is-invalid' : '' }}"
                         id="input-staff-notes" name="staff_notes"
                         placeholder="Optional notes form staff">{{old('staff_notes')}}</textarea>
               @if ($errors->has('staff_notes'))
@@ -73,7 +73,7 @@
 
             <div class="form-group">
               <label for="input-notes">Customer notes</label>
-              <textarea rows="1" class="form-control {{ $errors->has('customer_notes') ? ' is-invalid' : '' }}"
+              <textarea rows="1" class="form-control max-height-10 {{ $errors->has('customer_notes') ? ' is-invalid' : '' }}"
                         id="input-notes" name="customer_notes"
                         placeholder="Optional notes by customer">{{old('customer_notes')}}</textarea>
               @if ($errors->has('customer_notes'))

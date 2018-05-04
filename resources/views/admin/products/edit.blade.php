@@ -36,7 +36,7 @@
 
         <div class="form-group required">
           <label for="input-name">Name</label>
-          <input type="text" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+          <input type="text" class="form-control max-height-10 {{ $errors->has('name') ? ' is-invalid' : '' }}"
                  id="input-name" name="name"
                  placeholder="Name" value="{{old('name',$product->name)}}" required autofocus>
           @if ($errors->has('name'))
@@ -48,7 +48,7 @@
 
         <div class="form-group">
           <label for="input-description">Description</label>
-          <textarea rows="2" class="form-control {{ $errors->has('description') ? ' is-invalid' : '' }}"
+          <textarea rows="2" class="form-control max-height-10 {{ $errors->has('description') ? ' is-invalid' : '' }}"
                     id="input-description" name="description"
                     placeholder="Description">{{old('description',$product->description)}}</textarea>
           @if ($errors->has('description'))
