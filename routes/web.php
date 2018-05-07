@@ -27,7 +27,7 @@ Route::group(
     Route::post('/reset', 'Auth\ResetPasswordController@reset');
 });
 
-// Social login Routes ...
+// Social login routes ...
 Route::group(
     ['prefix' => 'oauth', 'as' => 'oauth.', 'middleware' => ['guest', 'throttle']], function () {
     Route::get('/{provider}', 'Auth\SocialiteController@redirectToProvider')->name('login')->where('provider', 'google');

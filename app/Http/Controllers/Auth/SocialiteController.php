@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Foundation\Auth\RedirectsUsers;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use Laravel\Socialite\Facades\Socialite;
-use Illuminate\Auth\Events\Registered as RegisteredEvent;
 use App\Models\SocialAccount;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered as RegisteredEvent;
+use Illuminate\Foundation\Auth\RedirectsUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Laravel\Socialite\Facades\Socialite;
 
 class SocialiteController extends Controller
 {
@@ -46,7 +44,6 @@ class SocialiteController extends Controller
                 throw $e;
             }
             // Lets Suppress this error
-            // We are not logging this error to error reporting service
             alert()->error('Unable to authenticate. Please try again.');
             return redirect()->route('login');
         }
@@ -55,7 +52,8 @@ class SocialiteController extends Controller
 
         $user = $this->findOrCreateUser($provider, $providerUser);
         Auth::login($user, true);
-        // This session variable can be used to check if user is logged-in via socialite
+
+        // This session variable can help to determine if user is logged-in via socialite
         session()->put([
             'auth.social_id' => $providerUser->getId()
         ]);
@@ -74,7 +72,7 @@ class SocialiteController extends Controller
      * @param $providerUser
      * @return mixed
      */
-    private function findOrCreateUser($providerName, $providerUser)
+    protected function findOrCreateUser($providerName, $providerUser)
     {
         $social = SocialAccount::firstOrNew([
             'provider_user_id' => $providerUser->getId(),
@@ -90,6 +88,7 @@ class SocialiteController extends Controller
         ]);
 
         if (!$user->exists) {
+            $user->password = bcrypt(str_random(30));
             $user->save();
             $user->assignRole(config('project.default_role'));
             $user->profile()->create($this->getProfileData($providerUser));
@@ -109,7 +108,7 @@ class SocialiteController extends Controller
      * @param  User $user
      * @return mixed
      */
-    private function authenticated(User $user)
+    protected function authenticated(User $user)
     {
         if ($user->is_blocked) {
 
@@ -126,7 +125,7 @@ class SocialiteController extends Controller
      *
      * @return string
      */
-    private function redirectTo()
+    protected function redirectTo()
     {
         return route('shop.index');
     }
@@ -137,7 +136,7 @@ class SocialiteController extends Controller
      * @param $providerUser
      * @return array
      */
-    private function getProfileData($providerUser)
+    protected function getProfileData($providerUser)
     {
         $nameParts = explode(' ', $providerUser->getName());
         return [

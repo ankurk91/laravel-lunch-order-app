@@ -16,8 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('email')->unique();
-            // null when login via oauth
-            $table->string('password')->nullable()->default(null);
+            $table->string('password');
 
             // User account is considered blocked if this field has a date string
             $table->timestamp('blocked_at')->nullable()->default(NULL);

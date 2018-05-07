@@ -45,16 +45,6 @@ class User extends Authenticatable
     }
 
     /**
-     * User may have `null` password when sign-up via socialite
-     *
-     * @return bool
-     */
-    public function getHasNullPasswordAttribute()
-    {
-        return is_null($this->password);
-    }
-
-    /**
      * Get the user's account blocked status
      *
      * @param  string $value
