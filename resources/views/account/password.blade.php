@@ -21,27 +21,25 @@
         @csrf
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">{{auth()->user()->has_null_password ? 'Set new' : 'Change your'}} password</h5>
+            <h5 class="card-title">Change your password</h5>
 
-            @if(!auth()->user()->has_null_password)
-              <div class="form-group">
-                <label for="current_password">Current password</label>
+            <div class="form-group">
+              <label for="current_password">Current password</label>
 
-                <input id="current_password" type="password"
-                       class="form-control{{ $errors->has('current_password') ? ' is-invalid' : '' }}"
-                       name="current_password"
-                       placeholder="Current password" required autofocus>
+              <input id="current_password" type="password"
+                     class="form-control{{ $errors->has('current_password') ? ' is-invalid' : '' }}"
+                     name="current_password"
+                     placeholder="Current password" required autofocus>
 
-                @if ($errors->has('current_password'))
-                  <div class="invalid-feedback">
-                    {{ $errors->first('current_password') }}
-                  </div>
-                @else
-                  <small class="form-text text-muted">You must provide your current password in order to change it.
-                  </small>
-                @endif
-              </div>
-            @endif
+              @if ($errors->has('current_password'))
+                <div class="invalid-feedback">
+                  {{ $errors->first('current_password') }}
+                </div>
+              @else
+                <small class="form-text text-muted">You must provide your current password in order to change it.
+                </small>
+              @endif
+            </div>
 
             <div class="form-group">
               <label for="password">New password</label>
@@ -61,20 +59,32 @@
               <label for="password-confirm">Confirm new password</label>
 
               <input id="password-confirm" type="password"
-                     class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}"
+                     class="form-control"
                      name="password_confirmation" placeholder="Confirm new password" required>
-
-              @if ($errors->has('password_confirmation'))
-                <div class="invalid-feedback">
-                  {{ $errors->first('password_confirmation') }}
-                </div>
-              @endif
             </div>
 
           </div>
           <div class="card-footer text-right">
             <button type="submit" class="btn btn-primary">
-              <i class="fas fa-key"></i> {{auth()->user()->has_null_password ? 'Set new' : 'Change'}} password
+              <i class="fas fa-key"></i> Change password
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <form onsubmit="return confirm('Are you sure?')" action="{{route('account.actions.password-reset-email')}}"
+            method="POST">
+        @csrf
+        <div class="card mt-4">
+          <div class="card-body">
+            <h5 class="card-title">Send password reset e-mail</h5>
+            <p class="card-text font-weight-light">
+              An email with password reset instructions will be send to your e-mail address.
+            </p>
+          </div>
+          <div class="card-footer text-right">
+            <button type="submit" class="btn btn-outline-primary"><i class="fas fa-envelope"></i> Send password reset
+              e-mail
             </button>
           </div>
         </div>

@@ -10,22 +10,23 @@
   @include('alert::bootstrap')
 
   <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-md-5">
       <div class="card">
 
         <div class="card-body">
           <h5 class="card-title">Reset your password</h5>
+          <h6 class="card-subtitle text-muted">You need to provide your registered e-mail address.</h6>
 
-          <form method="POST" action="{{ route('password.request') }}">
+          <form class="mt-2" method="POST" action="{{ route('password.request') }}">
             @csrf
 
             <input type="hidden" name="token" value="{{ $token }}">
 
             <div class="form-group">
-              <label for="email"> E-Mail address</label>
+              <label for="email"> E-mail address</label>
 
               <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                     name="email" value="{{ $email or old('email') }}" placeholder="E-Mail" required autofocus>
+                     name="email" value="{{ $email or old('email') }}" placeholder="E-mail" required autofocus>
 
               @if ($errors->has('email'))
                 <div class="invalid-feedback">

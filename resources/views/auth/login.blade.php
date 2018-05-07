@@ -18,9 +18,9 @@
             @csrf
 
             <div class="form-group">
-              <label for="email">E-Mail address</label>
+              <label for="email">E-mail address</label>
               <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                     name="email" value="{{ old('email') }}" required autofocus placeholder="E-Mail">
+                     name="email" value="{{ old('email') }}" required autofocus placeholder="E-mail">
 
               @if ($errors->has('email'))
                 <div class="invalid-feedback">

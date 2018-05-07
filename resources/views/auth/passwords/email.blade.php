@@ -18,18 +18,19 @@
   @endif
 
   <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-md-5">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Recover your lost password</h5>
+          <h6 class="card-subtitle text-muted">You will receive an e-mail with password reset instructions.</h6>
 
-          <form method="POST" action="{{ route('password.email') }}">
+          <form class="mt-2" method="POST" action="{{ route('password.email') }}">
             @csrf
 
             <div class="form-group">
-              <label for="email"> E-Mail address</label>
+              <label for="email"> E-mail address</label>
               <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                     name="email" value="{{ old('email') }}" placeholder="Email" required>
+                     name="email" value="{{ old('email') }}" placeholder="E-mail" required>
 
               @if ($errors->has('email'))
                 <div class="invalid-feedback">
@@ -40,7 +41,7 @@
 
             <div class="form-group mb-0">
               <button type="submit" class="btn btn-primary btn-block">
-                <i class="fas fa-envelope"></i> Send password reset link
+                <i class="fas fa-envelope"></i> Send password reset email
               </button>
             </div>
           </form>
