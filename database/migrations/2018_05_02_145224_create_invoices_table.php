@@ -27,6 +27,7 @@ class CreateInvoicesTable extends Migration
             $table->decimal('amount', 10, 2);
             $table->enum('status', config('project.invoice_status'))->default('unpaid');
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }

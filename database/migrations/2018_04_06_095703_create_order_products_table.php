@@ -25,6 +25,7 @@ class CreateOrderProductsTable extends Migration
             $table->tinyInteger('quantity', false, true);
             $table->decimal('unit_price', 10, 2);
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }
