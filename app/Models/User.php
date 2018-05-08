@@ -39,6 +39,9 @@ class User extends Authenticatable
         'created_at', 'updated_at', 'deleted_at'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function profile()
     {
         return $this->hasOne(UserProfile::class)->withDefault();
@@ -65,11 +68,17 @@ class User extends Authenticatable
         return $query->where('blocked_at', '!=', null);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function orders()
     {
         return $this->hasMany(Order::class, 'created_for_user_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function socialAccounts()
     {
         return $this->hasMany(SocialAccount::class);

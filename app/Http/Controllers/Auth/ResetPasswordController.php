@@ -55,8 +55,8 @@ class ResetPasswordController extends Controller
 
         event(new \Illuminate\Auth\Events\PasswordReset($user));
 
-        // By default Laravel auto login user after password reset,
-        // we need to prevent this
+        // By default Laravel auto login the user after password reset,
+        // Lets prevent this behaviour.
         alert()->success('Please login with your new password.');
     }
 

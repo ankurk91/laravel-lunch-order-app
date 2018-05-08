@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\CreateRequest;
 use App\Http\Requests\User\DeleteRequest;
 use App\Http\Requests\User\UpdateRequest;
+use App\Http\Requests\User\UserRolesUpdateRequest;
 use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
@@ -29,11 +30,11 @@ class UserController extends Controller
             ->where('id', '!=', auth()->user()->id);
 
         if ($request->filled('search')) {
-            $users->where('email', 'like', '%' . $request->input('search') . '%');
+            $users->where('email', 'ilike', '%' . $request->input('search') . '%');
 
             $users->orWhereHas('profile', function ($query) use ($request) {
-                $query->where('first_name', 'like', '%' . $request->input('search') . '%')
-                    ->orWhere('last_name', 'like', '%' . $request->input('search') . '%')
+                $query->where('first_name', 'ilike', '%' . $request->input('search') . '%')
+                    ->orWhere('last_name', 'ilike', '%' . $request->input('search') . '%')
                     ->orWhere('primary_phone', 'like', '%' . $request->input('search') . '%');
 
             });
@@ -141,16 +142,12 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  UserRolesUpdateRequest $request
      * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function updateRoles(Request $request, User $user)
+    public function updateRoles(UserRolesUpdateRequest $request, User $user)
     {
-        $this->validate($request, [
-            'roles' => 'bail|required|array|exists:' . with(new Role())->getTable() . ',id',
-        ]);
-
         $user->syncRoles($request->input('roles', []));
 
         alert()->success('User roles were updated successfully.');
