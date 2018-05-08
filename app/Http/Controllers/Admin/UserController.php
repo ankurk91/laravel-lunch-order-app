@@ -100,7 +100,7 @@ class UserController extends Controller
         event(new UserCreated($user));
 
         alert()->success('User was created successfully.');
-        return redirect()->route('admin.users.edit', $user->id);
+        return redirect()->route('admin.users.edit', $user);
     }
 
 

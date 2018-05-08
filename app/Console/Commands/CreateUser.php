@@ -44,13 +44,12 @@ class CreateUser extends Command
      */
     public function handle()
     {
-        $email = $this->ask('Enter email address');
-        $password = $this->secret('Enter password (min:6)');
+        $inputs = [
+            'email' => $this->ask('Enter email address'),
+            'password' => $this->secret('Enter password (min:6)')
+        ];
 
-        $validator = Validator::make([
-            'email' => $email,
-            'password' => $password,
-        ],
+        $validator = Validator::make($inputs,
             [
                 'email' => 'bail|required|string|email|unique:users',
                 'password' => 'required|string|min:6',
@@ -68,11 +67,13 @@ class CreateUser extends Command
 
         $roleName = $this->choice('Choose a role', $roles);
 
+        DB::beginTransaction();
+
         try {
             $this->line('Creating new user ...');
             $user = User::create([
-                'email' => $email,
-                'password' => bcrypt($password),
+                'email' => $inputs['email'],
+                'password' => bcrypt($inputs['password']),
             ]);
 
             $this->line('Assigning role ...');
