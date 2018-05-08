@@ -31,7 +31,7 @@ class Handler extends ExceptionHandler
      * Report or log an exception.
      *
      *
-     * @param  \Exception  $exception
+     * @param  \Exception $exception
      * @return void
      */
     public function report(Exception $exception)
@@ -42,12 +42,39 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Exception $exception
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
     {
+        $this->handleValidationException($exception);
+        $this->handleMethodNotAllowedException($exception);
+
         return parent::render($request, $exception);
     }
+
+    /**
+     * Display a generic message on all forms.
+     *
+     * @param Exception $exception
+     */
+    private function handleValidationException(Exception $exception)
+    {
+        if ($exception instanceof \Illuminate\Validation\ValidationException) {
+            alert()->error('Please correct the validation errors in the form and then retry.');
+        }
+    }
+
+    /**
+     * Laravel still display Symfony error page on such exceptions.
+     *
+     * @param Exception $exception
+     */
+    private function handleMethodNotAllowedException(Exception $exception)
+    {
+        abort_if(!config('app.debug', false) &&
+            $exception instanceof \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException, 404);
+    }
+
 }
