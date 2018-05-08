@@ -85,9 +85,12 @@ class UserController extends Controller
         DB::beginTransaction();
 
         $user = new User();
-        $user = $user->create($request->only([
+        $user->password = bcrypt(str_random(30));
+        $user = $user->fill($request->only([
             'email',
         ]));
+        $user->save();
+
         $user->profile()->create($request->only([
             'first_name', 'last_name', 'primary_phone'
         ]));
