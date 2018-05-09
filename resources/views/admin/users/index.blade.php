@@ -83,8 +83,8 @@
           <td class="align-middle">
             {{$user->email}}
           </td>
-          <td class="align-middle">{{optional($user->profile)->full_name}}</td>
-          <td class="align-middle">{{optional($user->profile)->primary_phone}}</td>
+          <td class="align-middle">{{$user->profile->full_name}}</td>
+          <td class="align-middle">{{$user->profile->primary_phone}}</td>
           @if(request('active_status') === 'all')
             <td class="align-middle h5">
               @if($user->is_blocked)
