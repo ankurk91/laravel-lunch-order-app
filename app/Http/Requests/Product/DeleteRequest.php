@@ -49,7 +49,7 @@ class DeleteRequest extends FormRequest
                 })->count();
 
             if ($productUsageCount) {
-                $validator->errors()->add('product', 'Could not delete the product because it is already being used in ' . $productUsageCount . ' order(s).');
+                $validator->errors()->add('product', 'Could not delete the product because it is already being used in ' . $productUsageCount . ' ' . str_plural('order', $productUsageCount) . '.');
             }
         });
     }

@@ -53,7 +53,7 @@ class DeleteRequest extends FormRequest
                 ->count();
 
             if ($orderCount) {
-                $validator->errors()->add('user', 'Could not delete the user. This user has purchase history associated with ' . $orderCount . ' order(s).');
+                $validator->errors()->add('user', 'Could not delete the user. This user has purchase history associated with ' . $orderCount . ' ' . str_plural('order', $orderCount) . '.');
             }
         });
     }
