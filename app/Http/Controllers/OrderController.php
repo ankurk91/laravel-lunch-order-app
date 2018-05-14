@@ -30,11 +30,8 @@ class OrderController extends Controller
         $orders = $orders->orderBy('for_date', 'desc')
             ->paginate($request->input('per_page', 10));
 
-        $years = Order::createdFor(Auth::id())->select(DB::raw('EXTRACT(year from for_date) as year'))
+        $years = Order::createdFor(Auth::id())->select(DB::raw('EXTRACT (year from for_date) as year'))
             ->groupBy('year')->get();
-        $months = Order::createdFor(Auth::id())->select(DB::raw('EXTRACT(month from for_date) as month'))
-            ->whereYear('for_date', $request->input('order_year', today()->year))
-            ->groupBy('month')->get();
 
         return view('orders.index', compact('orders', 'years', 'months'));
     }

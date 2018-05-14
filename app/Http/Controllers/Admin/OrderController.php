@@ -52,9 +52,6 @@ class OrderController extends Controller
 
         $years = Order::select(DB::raw('EXTRACT(year from for_date) as year'))
             ->groupBy('year')->get();
-        $months = Order::select(DB::raw('EXTRACT(month from for_date) as month'))
-            ->whereYear('for_date', $request->input('order_year', today()->year))
-            ->groupBy('month')->get();
 
         return view('admin.orders.index', compact('orders', 'years', 'months'));
     }
