@@ -19,6 +19,10 @@
 *.jpeg binary
 *.png binary
 *.ico binary
+*.gif binary
+*.tiff binary
+*.tif binary
+
 
 # Other binary
 *.zip binary
@@ -28,8 +32,11 @@
 *.tar binary
 *.ttf binary
 *.eot binary
+*.otf binary
 *.woff binary
 *.woff2 binary
+*.pdf binary
+
 
 # Export ignores
 tests export-ignore
