@@ -65,9 +65,8 @@
                 </form>
               </div>
             </li>
-        </ul>
         @endauth
-
+        </ul>
       </div>
     </div>
   </nav>
