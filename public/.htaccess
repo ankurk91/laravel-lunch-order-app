@@ -92,5 +92,5 @@ ServerSignature Off
     # Hide web server info
     Header unset X-Powered-By
     Header always set Strict-Transport-Security "max-age=15552000; includeSubdomains; preload"
-    Header always set Referrer-Policy "same-origin"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>
