@@ -119,7 +119,7 @@
       </div>
       <div class="col-md-8 d-flex">
         <div class="mx-auto ml-sm-auto mr-sm-0 table-responsive-sm">
-          {{$users->appends(request()->all())->links()}}
+          {{$users->appends(request()->query())->links()}}
         </div>
       </div>
     </div>
