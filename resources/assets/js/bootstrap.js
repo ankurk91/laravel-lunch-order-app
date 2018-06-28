@@ -1,5 +1,9 @@
-import 'jquery/dist/jquery.slim';
-import 'expose-loader?Popper!popper.js';
+import jQuery from 'jquery/dist/jquery.slim';
+
+window.jQuery = jQuery;
+import Popper from 'expose-loader?Popper!popper.js';
+
+window.Popper = Popper;
 
 // Selective bootstrap.js build
 // https://github.com/twbs/bootstrap/issues/20709
