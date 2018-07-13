@@ -35,6 +35,10 @@ class ShopController extends Controller
         return view('shop.index', compact('order', 'newProducts'));
     }
 
+    /**
+     * @param StoreRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(StoreRequest $request)
     {
         DB::beginTransaction();

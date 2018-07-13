@@ -26,7 +26,7 @@ class LogoutBlockedUser
             $request->session()->invalidate();
 
             alert()->error('You no longer have access to your account.');
-            throw new AuthenticationException;
+            throw new AuthenticationException();
         }
 
         return $next($request);

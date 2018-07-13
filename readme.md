@@ -1,11 +1,11 @@
 # Lunch order (Laravel 5 App)
 
 ### Prerequisites 
-* php v7.1.16, [see](https://laravel.com/docs/installation) Laravel specific requirements
-* Apache v2.4.18 with ```mod_rewrite```
+* php v7.1.19, [see](https://laravel.com/docs/installation) Laravel specific requirements
+* Apache v2.4.33 with ```mod_rewrite```
 * [PostgreSQL](https://www.postgresql.org/) v10.3
-* [Composer](https://getcomposer.org) v1.6.4
-* [node-js](https://github.com/creationix/nvm) >=8.9.3 and [yarn](https://yarnpkg.com/en/) >=1.6.x
+* [Composer](https://getcomposer.org) v1.6.5
+* [node-js](https://github.com/creationix/nvm) >=10.6 and [yarn](https://yarnpkg.com/en/) >=1.7.x
 
 ### Quick setup 
 * Clone this repo, checkout to ```dev``` branch
@@ -34,6 +34,7 @@ php artisan storage:link
 ```
 php artisan route:cache
 php artisan config:cache
+php artisan view:cache
 ```
 * You should rebuild these cache on each new deployment
 

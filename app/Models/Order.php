@@ -31,6 +31,10 @@ class Order extends Model
         return $this->hasMany(OrderProduct::class);
     }
 
+    /**
+     * Note: the relation should loaded before accessing to multiple queries
+     * @return mixed
+     */
     public function getTotalAttribute()
     {
         return $this->orderProducts->sum('total');
