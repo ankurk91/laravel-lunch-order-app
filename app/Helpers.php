@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Cache;
 
 /**
  * Compare given route with current route and return output if they match.
@@ -10,7 +9,7 @@ use Illuminate\Support\Facades\Cache;
  * @param string $output
  * @return null|string
  */
-function isActiveRoute($route, $output = "active")
+function active_route($route, $output = "active")
 {
     return (Route::currentRouteName() === $route) ? $output : null;
 }
@@ -34,7 +33,7 @@ function money($number, $sign = '₹')
  * @param int $to
  * @return array
  */
-function monthsWithNames($from = 1, $to = 12)
+function months_with_names($from = 1, $to = 12)
 {
     $months = [];
 

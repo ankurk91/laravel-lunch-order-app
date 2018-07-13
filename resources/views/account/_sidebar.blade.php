@@ -5,11 +5,11 @@
 
   <section class="list-group mt-4">
     <a href="{{route('account.edit')}}"
-       class="list-group-item list-group-item-action {{isActiveRoute('account.edit')}}">
+       class="list-group-item list-group-item-action {{active_route('account.edit')}}">
       <i class="fas fa-user"></i> Profile
     </a>
     <a href="{{route('account.password.edit')}}"
-       class="list-group-item list-group-item-action {{isActiveRoute('account.password.edit')}}">
+       class="list-group-item list-group-item-action {{active_route('account.password.edit')}}">
       <i class="fas fa-key"></i> Security
     </a>
     <a href="#" class="list-group-item list-group-item-action disabled">
