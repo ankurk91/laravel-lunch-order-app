@@ -14,9 +14,9 @@
 */
 
 Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
-    Route::patch('/{user}/update-roles', 'UserController@updateRoles')->name('update-roles')->where('user', '[0-9]+');
-    Route::patch('/{user}/toggle-block', 'UserController@toggleBlockedStatus')->name('toggle-block')->where('user', '[0-9]+');
-    Route::post('/{user}/password-reset-email', 'UserController@sendPasswordResetEmail')->name('password-reset-email')->where('user', '[0-9]+');
+    Route::patch('/{user}/update-roles', 'UserActionController@updateRoles')->name('update-roles')->where('user', '[0-9]+');
+    Route::patch('/{user}/toggle-block', 'UserActionController@toggleBlockedStatus')->name('toggle-block')->where('user', '[0-9]+');
+    Route::post('/{user}/password-reset-email', 'UserActionController@sendPasswordResetEmail')->name('password-reset-email')->where('user', '[0-9]+');
 });
 
 Route::resource(

@@ -51,7 +51,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create', []);
+        return view('admin.products.create');
     }
 
     /**
@@ -69,17 +69,6 @@ class ProductController extends Controller
         alert()->success('Product was created successfully.');
         return redirect()->route('admin.products.edit', $product);
 
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
-    {
-        //
     }
 
     /**

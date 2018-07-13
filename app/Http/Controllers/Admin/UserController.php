@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Events\UserBlockedStatusChanged;
+
 use App\Events\UserCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\CreateRequest;
 use App\Http\Requests\User\DeleteRequest;
 use App\Http\Requests\User\UpdateRequest;
-use App\Http\Requests\User\UserRolesUpdateRequest;
 use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Password;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -139,20 +137,6 @@ class UserController extends Controller
         return back();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  UserRolesUpdateRequest $request
-     * @param  \App\Models\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function updateRoles(UserRolesUpdateRequest $request, User $user)
-    {
-        $user->syncRoles($request->input('roles', []));
-
-        alert()->success('User roles were updated successfully.');
-        return back();
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -168,39 +152,5 @@ class UserController extends Controller
         alert()->success('User was deleted successfully.');
         return redirect()->route('admin.users.index');
     }
-
-    /**
-     * Toggle user's account locked status.
-     *
-     * @param User $user
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function toggleBlockedStatus(User $user)
-    {
-        $user->blocked_at = $user->is_blocked ? null : now();
-        $user->save();
-
-        event(new UserBlockedStatusChanged($user));
-
-        alert()->success('User status was changed successfully.');
-        return back();
-    }
-
-    /**
-     * Send password reset email to user.
-     *
-     * @param User $user
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function sendPasswordResetEmail(User $user)
-    {
-        Password::sendResetLink([
-            'email' => $user->getEmailForPasswordReset()
-        ]);
-
-        alert()->success('Password reset email was sent successfully.');
-        return back();
-    }
-
 
 }

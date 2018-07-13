@@ -54,7 +54,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'account', 'as' => 'account.
 });
 
 // Shop routes ..., works only on today's order
-Route::group(['middleware' => ['auth'], 'prefix' => 'shop', 'as' => 'shop.'], function () {
+Route::group(['middleware' => ['auth', 'role:customer'], 'prefix' => 'shop', 'as' => 'shop.'], function () {
     Route::get('/', 'ShopController@index')->name('index');
     Route::post('/store', 'ShopController@store')->name('store');
     Route::post('/cancel', 'ShopController@cancel')->name('cancel');
@@ -66,4 +66,4 @@ Route::resource(
     'orders', 'OrderController', ['only' => [
         'index', 'show',
     ]]
-)->middleware('auth');
+)->middleware(['auth', 'role:customer']);
