@@ -5,7 +5,14 @@
       <h5 class="card-title">Place order for today</h5>
       <h6 class="card-subtitle mb-2 text-muted">You need to choose at least one product.</h6>
 
-      @include('admin.orders._validationAlert')
+      @if ($errors->has('products'))
+        <div class="alert alert-danger alert-dismissible show" role="alert">
+          <i class="fas fa-exclamation-circle"></i> {{ $errors->first('products') }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      @endif
 
       @forelse($products as $product)
         <div class="form-group row">

@@ -42,7 +42,14 @@
             <h5 class="card-title">Update order</h5>
             <h6 class="card-subtitle mb-2 text-muted">You need to choose at least one product.</h6>
 
-            @include('admin.orders._validationAlert')
+            @if ($errors->has('products'))
+              <div class="alert alert-danger alert-dismissible show" role="alert">
+                <i class="fas fa-exclamation-circle"></i> {{ $errors->first('products') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            @endif
 
             @foreach($order->orderProducts as $item)
               <input type="hidden" name="products[{{$item->product_id}}][id]" value="{{$item->product_id}}">
@@ -128,62 +135,8 @@
         </div>
       </form>
 
-      <form onsubmit="return confirm('Are you sure to update status?')"
-            action="{{route('admin.orders.update-status',$order)}}"
-            method="POST">
-        @csrf
-        @method('patch')
-        <div class="card mt-4">
-          <div class="card-body">
-            <h5 class="card-title">Change order status</h5>
-            <div class="form-group required">
-              <label>Select status</label>
-              @foreach(config('project.order_status') as $status)
-                <div class="custom-control custom-radio">
-                  <input type="radio" class="custom-control-input" name="status"
-                         id="input-order-status-{{$status}}"
-                         value="{{$status}}"
-                         @if($order->status === $status) checked @endif>
-                  <label class="custom-control-label text-capitalize"
-                         for="input-order-status-{{$status}}">{{$status}}</label>
-                </div>
-              @endforeach
-
-              @if ($errors->has('status'))
-                <div class="invalid-feedback d-block">
-                  {{ $errors->first('status') }}
-                </div>
-              @endif
-            </div>
-          </div>
-          <div class="card-footer text-right">
-            <button type="submit" class="btn btn-outline-primary">
-              <i class="fas fa-check-circle"></i> Update status
-            </button>
-          </div>
-        </div>
-      </form>
-
-      <form onsubmit="return confirm('Are you sure to delete this order?')"
-            action="{{route('admin.orders.destroy',$order)}}"
-            method="POST">
-        @csrf
-        @method('delete')
-        <div class="card mt-4">
-          <div class="card-body">
-            <h5 class="card-title text-danger">Delete order</h5>
-            <p class="card-text font-weight-light">
-              You can not delete orders that are marked as completed.<br>
-              This operation can't be undone.
-            </p>
-          </div>
-          <div class="card-footer text-right">
-            <button type="submit" class="btn btn-danger">
-              <i class="fas fa-trash"></i> Delete order
-            </button>
-          </div>
-        </div>
-      </form>
+      @include('admin.orders._updateStatus')
+      @include('admin.orders._delete')
 
     </section>
   </div>
