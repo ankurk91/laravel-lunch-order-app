@@ -5,6 +5,7 @@ namespace App\Http\Requests\User;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\PersonNameRule;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 class CreateRequest extends FormRequest
 {
@@ -30,7 +31,7 @@ class CreateRequest extends FormRequest
             'first_name' => ['required', 'string', 'min:3', 'max:100', new PersonNameRule()],
             'last_name' => ['nullable', 'string', 'min:1', 'max:100', new PersonNameRule()],
             'primary_phone' => 'nullable|string|digits_between:10,20',
-            'roles' => 'bail|required|array|exists:roles,id',
+            'roles' => 'bail|required|array|exists:' . with(new Role())->getTable() . ',id',
         ];
     }
 }

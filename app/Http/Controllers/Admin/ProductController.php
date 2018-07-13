@@ -20,7 +20,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::query();
+        $products = Product::with(['createdByUser']);
 
         if ($request->filled('search')) {
             $products->where('name', 'ilike', '%' . $request->input('search') . '%')

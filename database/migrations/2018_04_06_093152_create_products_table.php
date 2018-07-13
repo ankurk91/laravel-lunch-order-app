@@ -24,6 +24,9 @@ class CreateProductsTable extends Migration
             // is available to purchase
             $table->boolean('active')->default(false)->unsigned();
 
+            $table->unsignedInteger('created_by_user_id');
+            $table->foreign('created_by_user_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->softDeletes();
             $table->timestamps();
         });

@@ -9,5 +9,6 @@ $factory->define(App\Models\Product::class, function (Faker $faker) {
         'unit_price' => rand(15, 50),
         'active' => $faker->boolean(70),
         'max_quantity' => $faker->numberBetween(1, 5),
+        'created_by_user_id' => 1
     ];
 });

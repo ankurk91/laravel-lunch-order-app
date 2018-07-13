@@ -103,7 +103,7 @@ class OrderController extends Controller
         event(new OrderCreated($order));
 
         alert()->success('Order was created successfully.');
-        return redirect()->route('admin.orders.edit', $order->id);
+        return redirect()->route('admin.orders.edit', $order);
 
     }
 
@@ -136,7 +136,6 @@ class OrderController extends Controller
         DB::beginTransaction();
 
         $order->fill($request->only(['staff_notes', 'customer_notes']));
-        $order->createdByUser()->associate(Auth::user());
         $order->save();
 
         $products = collect($request->input('products', []))

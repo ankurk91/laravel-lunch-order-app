@@ -63,6 +63,7 @@
         @if(request('active_status') === 'all')
           <th>Status</th>
         @endif
+        <th>Created by</th>
         <th class="w-25">Actions</th>
       </tr>
       </thead>
@@ -80,6 +81,7 @@
               @endif
             </td>
           @endif
+          <td>{{$product->createdByUser->email}}</td>
           <td class="text-center">
             <a href="{{route('admin.products.edit',$product)}}" class="btn btn-sm btn-secondary mb-0"><i
                 class="fas fa-edit"></i> Edit</a>
