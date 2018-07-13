@@ -24,4 +24,12 @@ class Invoice extends Model
     protected $casts = [
         'for_month' => 'date:Y-m',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
 }
