@@ -10,18 +10,17 @@
       </button>
 
       <div class="collapse navbar-collapse" id="mobile-nav">
-
         <ul class="navbar-nav mr-auto">
           @hasrole('admin')
-          <li class="nav-item {{active_route('admin.products.index')}}">
+          <li class="nav-item {{active_route('admin.products.*')}}">
             <a class="nav-link" href="{{route('admin.products.index')}}">
               <i class="fas fa-box-open"></i> Products</a>
           </li>
-          <li class="nav-item {{active_route('admin.orders.index')}}">
+          <li class="nav-item {{active_route('admin.orders.*')}}">
             <a class="nav-link" href="{{route('admin.orders.index')}}">
               <i class="fas fa-dolly"></i> Orders</a>
           </li>
-          <li class="nav-item {{active_route('admin.users.index')}}">
+          <li class="nav-item {{active_route('admin.users.*')}}">
             <a class="nav-link" href="{{route('admin.users.index')}}">
               <i class="fas fa-users"></i> Users</a>
           </li>
@@ -37,15 +36,15 @@
             </li>
           @endguest
           @auth
-            <li class="nav-item {{active_route('orders.index')}}">
+            <li class="nav-item {{active_route('orders.*')}}">
               <a class="nav-link" href="{{route('orders.index')}}">
                 <i class="fas fa-history"></i> My Orders</a>
             </li>
-            <li class="nav-item {{active_route('shop.index')}}">
+            <li class="nav-item {{active_route('shop.*')}}">
               <a class="nav-link" href="{{route('shop.index')}}">
                 <i class="fas fa-cart-plus"></i> Shop</a>
             </li>
-            <li class="nav-item dropdown {{active_route('account.edit')}}">
+            <li class="nav-item dropdown {{active_route('account.*')}}">
               <a class="nav-link dropdown-toggle" href="{{route('account.edit')}}" id="user-dropdown" role="button"
                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-user"></i> {{auth()->user()->email}}

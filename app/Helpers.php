@@ -5,13 +5,13 @@ use Illuminate\Support\Facades\Route;
 /**
  * Compare given route with current route and return output if they match.
  *
- * @param $route String
+ * @param $pattern String
  * @param string $output
  * @return null|string
  */
-function active_route($route, $output = "active")
+function active_route($pattern, $output = "active")
 {
-    return (Route::currentRouteName() === $route) ? $output : null;
+    return (Route::is($pattern)) ? $output : null;
 }
 
 /**
