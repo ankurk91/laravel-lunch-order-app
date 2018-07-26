@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'password', 'blocked_at'
+        'email', 'password',
     ];
 
     /**
@@ -47,6 +47,11 @@ class User extends Authenticatable
         return $this->hasOne(UserProfile::class)->withDefault();
     }
 
+    public function setBlockedStatusTo($value)
+    {
+        $this->forceFill(['blocked_at' => $value]);
+    }
+
     /**
      * Get the user's account blocked status
      *
@@ -60,12 +65,12 @@ class User extends Authenticatable
 
     public function scopeActive($query)
     {
-        return $query->where('blocked_at', null);
+        return $query->whereNull('blocked_at');
     }
 
     public function scopeBlocked($query)
     {
-        return $query->where('blocked_at', '!=', null);
+        return $query->whereNotNull('blocked_at');
     }
 
     /**

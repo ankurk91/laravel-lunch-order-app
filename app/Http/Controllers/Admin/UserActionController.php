@@ -34,7 +34,7 @@ class UserActionController extends Controller
      */
     public function toggleBlockedStatus(User $user)
     {
-        $user->blocked_at = $user->is_blocked ? null : now();
+        $user->setBlockedStatusTo($user->is_blocked ? null : now());
         $user->save();
 
         event(new UserBlockedStatusChanged($user));
