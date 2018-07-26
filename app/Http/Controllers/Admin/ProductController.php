@@ -64,6 +64,7 @@ class ProductController extends Controller
     {
         $product = new Product();
         $product->fill($request->validated());
+        $product->createdByUser()->associate(auth()->id());
         $product->save();
 
         alert()->success('Product was created successfully.');
