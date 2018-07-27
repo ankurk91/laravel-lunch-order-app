@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /**
  * Compare given route with current route and return output if they match.
  *
@@ -11,7 +9,7 @@ use Illuminate\Support\Facades\Route;
  */
 function active_route($pattern, $output = "active")
 {
-    return (Route::is($pattern)) ? $output : null;
+    return (\Illuminate\Support\Facades\Route::is($pattern)) ? $output : null;
 }
 
 /**
@@ -44,3 +42,15 @@ function months_with_names($from = 1, $to = 12)
     return $months;
 }
 
+/**
+ * Return contents of svg file
+ *
+ * @param $filename
+ * @return \Illuminate\Support\HtmlString
+ */
+function svg($filename)
+{
+    return new \Illuminate\Support\HtmlString(
+        file_get_contents(resource_path("assets/images/{$filename}.svg"))
+    );
+}

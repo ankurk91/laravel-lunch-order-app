@@ -42,7 +42,6 @@ mix.js('./resources/assets/js/app.js', './public/js')
   })
   .sass('./resources/assets/sass/app.scss', './public/css')
   .sass('./resources/assets/sass/vendor.scss', './public/css/')
-  .copyDirectory('./resources/assets/images', 'public/img')
   .purgeCss({
     whitelistPatterns: [
       // bootstrap pagination templates resides in `vendor/laravel/framework`
