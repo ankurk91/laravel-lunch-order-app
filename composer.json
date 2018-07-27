@@ -9,6 +9,7 @@
     "laravel/framework": "5.6.*",
     "laravel/socialite": "^3.0",
     "laravel/tinker": "^1.0",
+    "n7olkachev/laravel-computed-properties": "^1.1",
     "spatie/laravel-permission": "^2.9",
     "vinkla/alert": "^3.0"
   },

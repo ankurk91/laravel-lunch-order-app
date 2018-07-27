@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Query\Expression;
+use N7olkachev\ComputedProperties\ComputedProperties;
 
 class Order extends Model
 {
-    use SoftDeletes, Traits\CreatedForUser, Traits\CreatedByUser;
+    use SoftDeletes, ComputedProperties, Traits\CreatedForUser, Traits\CreatedByUser;
 
     /**
      * The attributes that are not mass assignable.
@@ -31,13 +33,10 @@ class Order extends Model
         return $this->hasMany(OrderProduct::class);
     }
 
-    /**
-     * Note: the relation should loaded before accessing to multiple queries
-     * @return mixed
-     */
-    public function getTotalAttribute()
+    public function computedTotal($order)
     {
-        return $this->orderProducts->sum('total');
+        return OrderProduct::select(new Expression('sum(unit_price * quantity)'))
+            ->where('order_id', $order->id);
     }
 
 }
