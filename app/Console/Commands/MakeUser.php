@@ -10,21 +10,21 @@ use Spatie\Permission\Models\Role;
 use App\Models\User;
 
 
-class CreateUser extends Command
+class MakeUser extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'create:user';
+    protected $signature = 'make:user';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new user';
+    protected $description = 'Create a new user in database';
 
 
     /**
