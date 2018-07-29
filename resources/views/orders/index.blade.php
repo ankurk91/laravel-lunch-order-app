@@ -59,6 +59,7 @@
     <table class="table table-striped table-light table-bordered table-hover" id="list-table">
       <thead>
       <tr>
+        <th>ID</th>
         <th>For Date</th>
         <th>Created by</th>
         <th>Total</th>
@@ -69,6 +70,9 @@
       <tbody>
       @forelse($orders as $order)
         <tr>
+          <td class="align-middle">
+            {{$order->id}}
+          </td>
           <td class="align-middle">
             @date($order->for_date)
           </td>
@@ -97,13 +101,13 @@
             @endswitch
           </td>
           <td class="text-center">
-            <a href="{{route('orders.show',$order->id)}}" class="btn btn-sm btn-info mb-0"><i
+            <a href="{{route('orders.show',$order)}}" class="btn btn-sm btn-info mb-0"><i
                 class="fas fa-folder-open"></i> View</a>
           </td>
         </tr>
       @empty
         <tr>
-          <td colspan="5" class="text-center">No records found</td>
+          <td colspan="6" class="text-center">No records found</td>
         </tr>
       @endforelse
       </tbody>

@@ -70,7 +70,7 @@
       <tbody>
       @forelse($products as $product)
         <tr>
-          <td class="align-middle">{{$product->name}}</td>
+          <td>{{$product->name}}</td>
           <td class="align-middle">{{money($product->unit_price)}}</td>
           @if(request('active_status') === 'all')
             <td class="align-middle h5">
