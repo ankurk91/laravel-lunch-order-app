@@ -42,7 +42,7 @@
     <section class="col-md-8">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Order details</h5>
+          <h5 class="card-title">Order <span class="font-weight-bold">#{{$order->id}}</span> summery</h5>
 
           <div class="table-responsive">
             <table class="table">

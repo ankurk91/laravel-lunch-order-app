@@ -23,7 +23,7 @@
 
         <select class="form-control mb-2 mb-sm-0 mx-sm-2 text-capitalize" name="order_status">
           <option disabled>Status</option>
-          <option value="" @if(request('order_status') === '') selected @endif>Any</option>
+          <option value="">Any</option>
           @foreach(config('project.order_status') as $status)
             <option value="{{$status}}"
                     @if(request('order_status') === $status) selected @endif>{{$status}}

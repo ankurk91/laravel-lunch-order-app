@@ -18,7 +18,18 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $orders = Order::with(['createdByUser', 'orderProducts'])
-            ->createdFor(Auth::id());
+            ->createdFor(Auth::id())->withComputed('total');
+
+        if ($request->filled('search')) {
+            $orders->orWhereHas('createdByUser', function ($query) use ($request) {
+                $query->where('email', 'ilike', '%' . $request->input('search') . '%');
+            });
+
+            $orders->orWhereHas('createdByUser.profile', function ($query) use ($request) {
+                $query->where('first_name', 'ilike', '%' . $request->input('search') . '%')
+                    ->orWhere('last_name', 'ilike', '%' . $request->input('search') . '%');
+            });
+        }
 
         $orders->whereYear('for_date', $request->input('order_year', today()->year))
             ->whereMonth('for_date', $request->input('order_month', today()->month));

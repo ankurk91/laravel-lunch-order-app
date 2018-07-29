@@ -46,7 +46,7 @@
         <input type="text" class="form-control mb-2 mb-sm-0 mr-sm-2" placeholder="Search" name="search"
                value="{{request('search')}}" autofocus>
 
-        <button type="submit" value="1" class="btn btn-primary mb-0 mb-sm-0 mr-sm-2">
+        <button type="submit" class="btn btn-primary mb-0 mb-sm-0 mr-sm-2">
           <i class="fa fa-search fa-fw"></i>Search
         </button>
 

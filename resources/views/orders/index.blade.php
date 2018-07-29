@@ -23,7 +23,7 @@
 
         <select class="form-control mb-2 mb-sm-0 mx-sm-2 text-capitalize" name="order_status">
           <option disabled>Status</option>
-          <option value="" @if(request('order_status') === '') selected @endif>Any</option>
+          <option value="">Any</option>
           @foreach(config('project.order_status') as $status)
             <option value="{{$status}}"
                     @if(request('order_status') === $status) selected @endif>{{$status}}
@@ -47,7 +47,10 @@
           @endforeach
         </select>
 
-        <button type="submit" value="1" class="btn btn-primary mb-0 mb-sm-0 mr-sm-2">
+        <input type="text" class="form-control mb-2 mb-sm-0 mx-sm-2" placeholder="Search" name="search"
+               value="{{request('search')}}" autofocus>
+
+        <button type="submit" class="btn btn-primary mb-0 mb-sm-0 mr-sm-2">
           <i class="fa fa-search fa-fw"></i>Search
         </button>
 
