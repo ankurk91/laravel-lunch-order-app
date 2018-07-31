@@ -34,7 +34,8 @@
         <select class="form-control mb-2 mb-sm-0 mx-sm-2" name="order_month">
           <option disabled>Month</option>
           @foreach(months_with_names() as $month=>$name)
-            <option value="{{$month}}" @if(request('order_month',today()->month) == $month) selected @endif>{{$name}}</option>
+            <option value="{{$month}}"
+                    @if(request('order_month',today()->month) == $month) selected @endif>{{$name}}</option>
           @endforeach
         </select>
 
@@ -77,8 +78,12 @@
             @date($order->for_date)
           </td>
           <td class="align-middle">
-            <a target="_blank"
-               href="{{route('admin.users.edit',$order->createdForUser)}}"> {{$order->createdForUser->email}}</a>
+            @can('manageUsers',$order->createdForUser)
+              <a target="_blank"
+                 href="{{route('admin.users.edit',$order->createdForUser)}}"> {{$order->createdForUser->email}}</a>
+            @else
+              {{$order->createdForUser->email}}
+            @endcan
           </td>
           <td>
             {{money($order->total)}}
