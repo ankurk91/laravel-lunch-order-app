@@ -17,7 +17,7 @@ class CreatePaymentsTable extends Migration
             $table->increments('id');
 
             $table->unsignedInteger('created_by_user_id');
-            $table->foreign('created_by_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('created_by_user_id')->references('id')->on('users')->onDelete('restrict');
 
             $table->unsignedInteger('invoice_id');
             $table->foreign('invoice_id')->references('id')->on('invoices')->onDelete('cascade');

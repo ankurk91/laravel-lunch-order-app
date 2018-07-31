@@ -17,10 +17,10 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
 
             $table->unsignedInteger('created_by_user_id');
-            $table->foreign('created_by_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('created_by_user_id')->references('id')->on('users')->onDelete('restrict');
 
             $table->unsignedInteger('created_for_user_id');
-            $table->foreign('created_for_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('created_for_user_id')->references('id')->on('users')->onDelete('restrict');
 
             $table->date('for_date');
             $table->enum('status', config('project.order_status'))->default('pending');
