@@ -27,6 +27,9 @@ class CreateProductsTable extends Migration
             $table->unsignedInteger('created_by_user_id');
             $table->foreign('created_by_user_id')->references('id')->on('users')->onDelete('restrict');
 
+            $table->unsignedInteger('supplier_id');
+            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('restrict');
+
             $table->softDeletes();
             $table->timestamps();
         });

@@ -3,11 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Product extends Model
+class Supplier extends Model
 {
-    use SoftDeletes, Traits\CreatedByUser;
+    use Traits\CreatedByUser;
 
     /**
      * The attributes that are not mass assignable.
@@ -26,20 +25,16 @@ class Product extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function supplier()
+    public function products()
     {
-        return $this->belongsTo(Supplier::class);
+        return $this->hasMany(Product::class);
     }
 
-    public function scopeActive($query)
+    public function getFullNameAttribute($value)
     {
-        return $query->where('active', 1);
+        return trim($this->first_name . ' ' . $this->last_name);
     }
 
-    public function scopeNotActive($query)
-    {
-        return $query->where('active', 0);
-    }
 }
