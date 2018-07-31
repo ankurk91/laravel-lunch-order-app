@@ -64,6 +64,7 @@
           <th>Status</th>
         @endif
         <th>Created by</th>
+        <th>Supplier</th>
         <th class="w-25">Actions</th>
       </tr>
       </thead>
@@ -82,6 +83,7 @@
             </td>
           @endif
           <td>{{$product->createdByUser->email}}</td>
+          <td>{{$product->supplier->full_name}}</td>
           <td class="text-center">
             <a href="{{route('admin.products.edit',$product)}}" class="btn btn-sm btn-secondary mb-0"><i
                 class="fas fa-edit"></i> Edit</a>

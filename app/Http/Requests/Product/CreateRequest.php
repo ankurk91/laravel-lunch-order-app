@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Product;
 
+use App\Models\Supplier;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateRequest extends FormRequest
@@ -32,6 +33,7 @@ class CreateRequest extends FormRequest
      */
     public function rules()
     {
+        $this->rules['supplier_id'] = 'bail|required|exists:' . with(new Supplier())->getTable() . ',id';
         return $this->rules;
     }
 }

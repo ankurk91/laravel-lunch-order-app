@@ -7,6 +7,7 @@ use App\Http\Requests\Product\CreateRequest;
 use App\Http\Requests\Product\DeleteRequest;
 use App\Http\Requests\Product\UpdateRequest;
 use App\Models\Product;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 
@@ -20,7 +21,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::with(['createdByUser']);
+        $products = Product::with(['createdByUser', 'supplier']);
 
         if ($request->filled('search')) {
             $products->where('name', 'ilike', '%' . $request->input('search') . '%')
@@ -51,7 +52,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create');
+        $suppliers = Supplier::where('active', 1)->get();
+        return view('admin.products.create', compact('suppliers'));
     }
 
     /**
@@ -80,7 +82,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin.products.edit', compact('product'));
+        $product->loadMissing(['supplier']);
+        $suppliers = Supplier::all();
+        return view('admin.products.edit', compact('product', 'suppliers'));
     }
 
     /**

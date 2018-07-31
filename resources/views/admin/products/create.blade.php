@@ -74,6 +74,25 @@
           </div>
         </div>
 
+        <div class="form-group required">
+          <label for="input-supplier">Supplier</label>
+          <select id="input-supplier" name="supplier_id" required
+                  class="form-control {{ $errors->has('supplier_id') ? ' is-invalid' : '' }}">
+            <option value="" disabled>Supplier</option>
+            @foreach($suppliers as $supplier)
+              <option
+                value="{{$supplier->id}}" {{old("supplier_id") == $supplier->id ? 'selected' : ''}}>
+                {{$supplier->full_name}} - {{$supplier->email}}
+              </option>
+            @endforeach
+          </select>
+          @if ($errors->has('supplier_id'))
+            <div class="invalid-feedback">
+              {{ $errors->first('supplier_id') }}
+            </div>
+          @endif
+        </div>
+
         <div class="custom-control custom-checkbox">
           <input type="checkbox" class="custom-control-input" id="input-active" name="active"
                  @if(old('active',true)) checked @endif value="1"
