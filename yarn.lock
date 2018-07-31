@@ -4256,8 +4256,8 @@ laravel-mix-auto-extract@^0.0.4:
   resolved "https://registry.yarnpkg.com/laravel-mix-auto-extract/-/laravel-mix-auto-extract-0.0.4.tgz#5164c335f6cd8e77dbf21bee0d5c751a05996c28"
 
 laravel-mix-purgecss@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/laravel-mix-purgecss/-/laravel-mix-purgecss-2.2.0.tgz#3e37b579fc1e5aa5eaebd85d01cac3e0598146b6"
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/laravel-mix-purgecss/-/laravel-mix-purgecss-2.2.2.tgz#2a72fa9c68b978b83576498a3c7a0ca91dc60755"
   dependencies:
     glob-all "^3.1.0"
     purgecss-webpack-plugin "^0.23.0"
