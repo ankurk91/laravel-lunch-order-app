@@ -21,17 +21,17 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 // Password Reset Routes...
 Route::group(
     ['prefix' => 'password', 'as' => 'password.'], function () {
-    Route::get('/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('request');
-    Route::post('/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('email');
-    Route::get('/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('reset');
-    Route::post('/reset', 'Auth\ResetPasswordController@reset');
+    Route::get('reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('request');
+    Route::post('email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('email');
+    Route::get('reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('reset');
+    Route::post('reset', 'Auth\ResetPasswordController@reset');
 });
 
 // Social login routes ...
 Route::group(
     ['prefix' => 'oauth', 'as' => 'oauth.', 'middleware' => ['guest', 'throttle']], function () {
-    Route::get('/{provider}', 'Auth\SocialiteController@redirectToProvider')->name('login')->where('provider', 'google');
-    Route::get('/{provider}/callback', 'Auth\SocialiteController@handleProviderCallback')->where('provider', 'google');;
+    Route::get('{provider}', 'Auth\SocialiteController@redirectToProvider')->name('login')->where('provider', 'google');
+    Route::get('{provider}/callback', 'Auth\SocialiteController@handleProviderCallback')->where('provider', 'google');;
 });
 
 
@@ -39,16 +39,16 @@ Route::group(
 Route::group(['middleware' => ['auth'], 'prefix' => 'account', 'as' => 'account.'], function () {
 
     Route::get('/', 'Account\ProfileController@edit')->name('edit');
-    Route::post('/edit', 'Account\ProfileController@update')->name('update');
+    Route::post('edit', 'Account\ProfileController@update')->name('update');
 
     Route::group(['prefix' => 'password', 'as' => 'password.'], function () {
         Route::get('/', 'Account\PasswordController@edit')->name('edit');
-        Route::post('/edit', 'Account\PasswordController@update')->name('update');
+        Route::post('edit', 'Account\PasswordController@update')->name('update');
     });
 
     Route::group(['prefix' => 'actions', 'as' => 'actions.'], function () {
-        Route::post('/logout-other-devices', 'Account\ActionController@logoutOtherDevices')->name('logout-other-devices');
-        Route::post('/password-reset-email', 'Account\ActionController@sendPasswordResetEmail')->name('password-reset-email');
+        Route::post('logout-other-devices', 'Account\ActionController@logoutOtherDevices')->name('logout-other-devices');
+        Route::post('password-reset-email', 'Account\ActionController@sendPasswordResetEmail')->name('password-reset-email');
     });
 
 });
@@ -56,9 +56,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'account', 'as' => 'account.
 // Shop routes ..., works only on today's order
 Route::group(['middleware' => ['auth', 'role:customer'], 'prefix' => 'shop', 'as' => 'shop.'], function () {
     Route::get('/', 'ShopController@index')->name('index');
-    Route::post('/store', 'ShopController@store')->name('store');
-    Route::post('/cancel', 'ShopController@cancel')->name('cancel');
-    Route::post('/restore', 'ShopController@restore')->name('restore');
+    Route::post('store', 'ShopController@store')->name('store');
+    Route::post('cancel', 'ShopController@cancel')->name('cancel');
+    Route::post('restore', 'ShopController@restore')->name('restore');
 });
 
 // My orders routes ...
