@@ -142,7 +142,7 @@ class SocialiteController extends Controller
         return [
             'first_name' => $nameParts[0],
             'last_name' => optional($nameParts)[1],
-            // Get full sized avatar by removing `?sz=` query parameter
+            // Get full size avatar url by removing `?sz=` query parameter
             'avatar' => preg_replace('/\?sz=[\d]*$/', '', $providerUser->getAvatar()),
         ];
     }

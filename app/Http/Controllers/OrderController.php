@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
@@ -18,7 +17,7 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $orders = Order::with(['createdByUser', 'orderProducts'])
-            ->createdFor(Auth::id())->withComputed('total');
+            ->createdFor($request->user()->id)->withComputed('total');
 
         if ($request->filled('search')) {
             $orders->orWhereHas('createdByUser', function ($query) use ($request) {
@@ -41,7 +40,7 @@ class OrderController extends Controller
         $orders = $orders->orderBy('for_date', 'desc')
             ->paginate($request->input('per_page', 10));
 
-        $years = Order::createdFor(Auth::id())->select(DB::raw('EXTRACT (year from for_date) as year'))
+        $years = Order::createdFor($request->user()->id)->select(DB::raw('EXTRACT (year from for_date) as year'))
             ->groupBy('year')->get();
 
         return view('orders.index', compact('orders', 'years', 'months'));

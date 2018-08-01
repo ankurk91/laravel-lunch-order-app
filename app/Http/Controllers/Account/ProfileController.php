@@ -35,7 +35,7 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request)
     {
         UserProfile::updateOrCreate(
-            ['user_id' => Auth::id()],
+            ['user_id' => $request->user()->id],
             $request->only(
                 ['first_name', 'last_name', 'primary_phone']
             )

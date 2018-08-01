@@ -66,7 +66,7 @@ composer.phar
 
 # Project related
 .env
-.env.testing
+.env.*
 /public/hot
 /public/storage
 Homestead.json
@@ -81,7 +81,6 @@ _ide_helper.*
 /public/css
 /public/fonts
 /public/images
-/public/img
 /public/mix-manifest.json
 /public/*.js
 /public/*.css

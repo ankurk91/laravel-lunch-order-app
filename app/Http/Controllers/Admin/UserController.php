@@ -25,7 +25,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = User::with('profile')
-            ->where('id', '!=', auth()->user()->id);
+            ->where('id', '!=', $request->user()->id);
 
         if ($request->filled('search')) {
             $users->where('email', 'ilike', '%' . $request->input('search') . '%');
@@ -76,8 +76,9 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  CreateRequest $request
-     * @return \Illuminate\Http\Response
+     * @param CreateRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function store(CreateRequest $request)
     {

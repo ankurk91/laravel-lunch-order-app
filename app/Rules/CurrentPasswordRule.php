@@ -8,14 +8,20 @@ use Illuminate\Support\Facades\Auth;
 
 class CurrentPasswordRule implements Rule
 {
+
+    /**
+     * @var string
+     */
+    private $guard;
+
     /**
      * Create a new rule instance.
      *
-     * @return void
+     * @param string $guard
      */
-    public function __construct()
+    public function __construct($guard = 'web')
     {
-        //
+        $this->guard = $guard;
     }
 
     /**
@@ -27,7 +33,7 @@ class CurrentPasswordRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        return Hash::check($value, Auth::user()->getAuthPassword());
+        return Hash::check($value, Auth::user($this->guard)->getAuthPassword());
     }
 
     /**

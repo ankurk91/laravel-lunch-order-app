@@ -14,7 +14,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -82,7 +81,7 @@ class OrderController extends Controller
 
         $order = new Order();
         $order->fill($request->only(['staff_notes', 'customer_notes']));
-        $order->createdByUser()->associate(Auth::user());
+        $order->createdByUser()->associate($request->user());
         $order->createdForUser()->associate($user);
         $order->for_date = today();
         $order->save();

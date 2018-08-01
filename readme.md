@@ -1,4 +1,4 @@
-# Lunch order (Laravel 5 App)
+# Lunch Order (Laravel 5 App)
 
 ### Prerequisites 
 * php v7.1.19, [see](https://laravel.com/docs/installation) Laravel specific requirements

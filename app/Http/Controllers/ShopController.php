@@ -43,14 +43,14 @@ class ShopController extends Controller
     {
         DB::beginTransaction();
 
-        $order = Order::createdFor(Auth::id())
+        $order = Order::createdFor($request->user()->id)
             ->whereDate('for_date', today())
             ->first();
 
         if (!$order) {
             $order = new Order();
-            $order->createdByUser()->associate(Auth::user());
-            $order->createdForUser()->associate(Auth::user());
+            $order->createdByUser()->associate($request->user());
+            $order->createdForUser()->associate($request->user());
             $order->for_date = today();
         }
 
