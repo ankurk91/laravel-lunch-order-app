@@ -43,3 +43,9 @@ Route::resource(
         'index', 'edit', 'update', 'destroy', 'create', 'store'
     ]]
 );
+
+Route::resource(
+    'suppliers', 'SupplierController', ['only' => [
+        'index', 'edit', 'update', 'destroy', 'create', 'store'
+    ]]
+);

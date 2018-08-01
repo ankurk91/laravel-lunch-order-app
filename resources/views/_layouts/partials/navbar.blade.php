@@ -12,6 +12,10 @@
       <div class="collapse navbar-collapse" id="mobile-nav">
         <ul class="navbar-nav mr-auto">
           @hasrole('admin')
+          <li class="nav-item {{active_route('admin.suppliers.*')}}">
+            <a class="nav-link" href="{{route('admin.suppliers.index')}}">
+              <i class="fas fa-truck"></i> Suppliers</a>
+          </li>
           <li class="nav-item {{active_route('admin.products.*')}}">
             <a class="nav-link" href="{{route('admin.products.index')}}">
               <i class="fas fa-box-open"></i> Products</a>

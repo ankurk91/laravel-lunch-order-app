@@ -37,4 +37,14 @@ class Supplier extends Model
         return trim($this->first_name . ' ' . $this->last_name);
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('active', 1);
+    }
+
+    public function scopeNotActive($query)
+    {
+        return $query->where('active', 0);
+    }
+
 }
