@@ -10,14 +10,14 @@ use Spatie\Permission\Models\Role;
 use App\Models\User;
 
 
-class MakeUser extends Command
+class CreateUser extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'make:user';
+    protected $signature = 'create:user';
 
     /**
      * The console command description.
@@ -89,7 +89,7 @@ class MakeUser extends Command
         }
 
         DB::commit();
-        $this->info("User `{$user->email}` with role `{$roleName}` was created.");
+        $this->info("User `{$user->email}` with role `{$roleName}` created.");
         return 0;
 
     }
