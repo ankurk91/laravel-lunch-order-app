@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Supplier\CreateRequest;
+use App\Http\Requests\Supplier\DeleteRequest;
+use App\Http\Requests\Supplier\UpdateRequest;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -77,29 +79,39 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        //
+        return view('admin.suppliers.edit', compact('supplier'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  UpdateRequest $request
      * @param  \App\Models\Supplier $supplier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Supplier $supplier)
+    public function update(UpdateRequest $request, Supplier $supplier)
     {
-        //
+        $supplier->fill($request->validated());
+        $supplier->active = $request->filled('active');
+        $supplier->save();
+
+        alert()->success('Supplier was created successfully.');
+        return redirect()->route('admin.suppliers.edit', $supplier);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Supplier $supplier
-     * @return \Illuminate\Http\Response
+     * @param DeleteRequest $request
+     * @param Supplier $supplier
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
-    public function destroy(Supplier $supplier)
+    public function destroy(DeleteRequest $request, Supplier $supplier)
     {
-        //
+        $supplier->delete();
+
+        alert()->success('Supplier was deleted successfully.');
+        return redirect()->route('admin.suppliers.index');
     }
 }

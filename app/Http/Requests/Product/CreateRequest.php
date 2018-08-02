@@ -7,15 +7,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CreateRequest extends FormRequest
 {
-
-    public $rules = [
-        'name' => 'required|min:3|max:255',
-        'description' => 'nullable|min:3|max:255',
-        'max_quantity' => 'required|numeric|min:1|max:9999',
-        'unit_price' => 'required|numeric|min:1|max:9999',
-        'active' => 'nullable'
-    ];
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -33,7 +24,13 @@ class CreateRequest extends FormRequest
      */
     public function rules()
     {
-        $this->rules['supplier_id'] = 'bail|required|exists:' . with(new Supplier())->getTable() . ',id';
-        return $this->rules;
+        return [
+            'name' => 'required|min:3|max:255',
+            'description' => 'nullable|min:3|max:255',
+            'max_quantity' => 'required|numeric|min:1|max:9999',
+            'unit_price' => 'required|numeric|min:1|max:9999',
+            'active' => 'nullable',
+            'supplier_id' => 'bail|required|exists:' . with(new Supplier())->getTable() . ',id'
+        ];
     }
 }

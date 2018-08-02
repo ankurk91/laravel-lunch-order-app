@@ -2,10 +2,14 @@
 
 namespace App\Http\Requests\Supplier;
 
+use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
 
 class DeleteRequest extends FormRequest
 {
+
+    protected $errorBag = 'delete';
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -26,5 +30,27 @@ class DeleteRequest extends FormRequest
         return [
             //
         ];
+    }
+
+    /**
+     * Configure the validator instance.
+     *
+     * @param  \Illuminate\Validation\Validator $validator
+     * @return void
+     */
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            $supplier = $this->route('supplier');
+
+            $productUsageCount = Product::withTrashed()
+                ->whereHas('supplier', function ($query) use ($supplier) {
+                    $query->where('supplier_id', $supplier->id);
+                })->count();
+
+            if ($productUsageCount) {
+                $validator->errors()->add('supplier', 'Could not delete the supplier because it is already associated with ' . $productUsageCount . ' ' . str_plural('product', $productUsageCount) . '.');
+            }
+        });
     }
 }
