@@ -3,9 +3,9 @@
 ### Prerequisites 
 * php v7.1.19, [see](https://laravel.com/docs/installation) Laravel specific requirements
 * Apache v2.4.33 with ```mod_rewrite```
-* [PostgreSQL](https://www.postgresql.org/) v10.3
+* [PostgreSQL](https://www.postgresql.org/) v10.6
 * [Composer](https://getcomposer.org) v1.6.5
-* [node-js](https://github.com/creationix/nvm) >=10.6 and [yarn](https://yarnpkg.com/en/) >=1.7.x
+* [node-js](https://github.com/creationix/nvm) >=10.6 and [yarn](https://yarnpkg.com/en/) >=1.9.x
 
 ### Quick setup 
 * Clone this repo, checkout to ```dev``` branch
