@@ -51,6 +51,6 @@ function months_with_names($from = 1, $to = 12)
 function svg($filename)
 {
     return new \Illuminate\Support\HtmlString(
-        file_get_contents(resource_path("assets/images/{$filename}.svg"))
+        file_get_contents(resource_path("images/{$filename}.svg"))
     );
 }
