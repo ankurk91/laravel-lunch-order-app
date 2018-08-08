@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -13,19 +14,14 @@ class UsersTableSeeder extends Seeder
     {
         $roles = config('project.available_roles');
 
-        $admin = \App\Models\User::create([
-            'email' => 'admin@example.com',
-            'password' => bcrypt('password@123')
-        ]);
-
-        $admin->assignRole($roles);
-
-        $staff = \App\Models\User::create([
-            'email' => 'staff@example.com',
-            'password' => bcrypt('password@123')
-        ]);
-
-        $staff->assignRole(['staff']);
+        // Create user for each of the roles
+        foreach ($roles as $role) {
+            $user = User::create([
+                'email' => $role . '@example.com',
+                'password' => bcrypt('password@123')
+            ]);
+            $user->assignRole($role);
+        }
 
         factory(\App\Models\User::class, rand(50, 100))->create()->each(function ($user) use ($roles) {
             $user->assignRole(array_random($roles));

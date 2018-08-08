@@ -39,7 +39,7 @@
                 <i class="fas fa-sign-in-alt"></i>&ensp;Log in</a>
             </li>
           @endguest
-          @auth
+            @hasrole('customer')
             <li class="nav-item {{active_route('orders.*')}}">
               <a class="nav-link" href="{{route('orders.index')}}">
                 <i class="fas fa-history"></i> My Orders</a>
@@ -48,6 +48,8 @@
               <a class="nav-link" href="{{route('shop.index')}}">
                 <i class="fas fa-cart-plus"></i> Shop</a>
             </li>
+            @endhasrole
+            @auth
             <li class="nav-item dropdown {{active_route('account.*')}}">
               <a class="nav-link dropdown-toggle" href="{{route('account.edit')}}" id="user-dropdown" role="button"
                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

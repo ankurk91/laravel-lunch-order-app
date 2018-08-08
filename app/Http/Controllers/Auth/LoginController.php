@@ -79,6 +79,6 @@ class LoginController extends Controller
      */
     private function redirectTo()
     {
-        return route('shop.index');
+        return auth()->user()->hasRole('customer') ? route('shop.index') : route('admin.orders.index');
     }
 }

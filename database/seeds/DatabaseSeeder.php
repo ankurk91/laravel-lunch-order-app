@@ -12,7 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
         $this->command->info('Seeding: Environment - ' . config('app.env'));
 
         // Reset cached roles and permissions
@@ -22,12 +21,13 @@ class DatabaseSeeder extends Seeder
 
         // Don't seed these tables when in production
         if (!app()->environment('production')) {
-            $this->call(UsersTableSeeder::class);
-            $this->call(SuppliersTableSeeder::class);
-            $this->call(ProductsTableSeeder::class);
-            $this->call(OrdersTableSeeder::class);
+            $this->call([
+                UsersTableSeeder::class,
+                SuppliersTableSeeder::class,
+                ProductsTableSeeder::class,
+                OrdersTableSeeder::class
+            ]);
         }
 
-        Model::reguard();
     }
 }
