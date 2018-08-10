@@ -20,11 +20,12 @@
     RewriteRule ^ index.php [L]
 </IfModule>
 
-# https://github.com/h5bp/server-configs-apache
+# Character encoding
+AddDefaultCharset utf-8
 
 # Cache these type of files for 7 days
 <IfModule mod_headers.c>
-<FilesMatch "\.(jpg|jpeg|png|ico|gif|css|js|eot|otf|tt[cf]|woff|woff2|svg|webp|webm)$">
+<FilesMatch "\.(jpg|jpeg|png|ico|gif|css|js|eot|otf|tt[cf]|woff|woff2|svg|webp|webm|mp4)$">
     Header set Cache-Control "max-age=604800, must-revalidate"
     Header unset ETag
     FileETag None
@@ -38,8 +39,10 @@
 </FilesMatch>
 </IfModule>
 
-# Character encodings
-AddDefaultCharset utf-8
+# Block access to directories without a default document
+<IfModule mod_autoindex.c>
+    Options -Indexes
+</IfModule>
 
 # Mime type for web fonts
 <IfModule mod_mime.c>
@@ -57,31 +60,9 @@ AddDefaultCharset utf-8
     AddOutputFilterByType DEFLATE application/javascript application/x-javascript text/javascript
     AddOutputFilterByType DEFLATE text/xml application/xml text/x-component
     AddOutputFilterByType DEFLATE application/xhtml+xml application/rss+xml application/atom+xml
-    AddOutputFilterByType DEFLATE image/svg+xml application/vnd.ms-fontobject application/x-font-ttf font/opentype
+    AddOutputFilterByType DEFLATE image/svg+xml application/vnd.ms-fontobject application/x-font-ttf font/opentype application/x-font-woff
 </IfModule>
 
-# Keep alive for persistent connections
-<IfModule mod_headers.c>
-    Header set Connection Keep-Alive
-</IfModule>
-
-# Set default files if not set
-<IfModule dir_module>
-    DirectoryIndex index.php index.html
-</IfModule>
-
-# Block access to directories without a default document
-<IfModule mod_autoindex.c>
-    Options -Indexes
-</IfModule>
-
-# Hide php version
-php_value expose_php off
-
-# Hide Server software information
-ServerSignature Off
-
-# Enhance Security
 <IfModule mod_headers.c>
     # Protect against XSS attacks
     Header set X-XSS-Protection "1; mode=block"
@@ -89,8 +70,10 @@ ServerSignature Off
     Header set X-Content-Type-Options "nosniff"
     # Prevent clickjacking, don't allow this domain inside iframe
     Header always append X-Frame-Options SAMEORIGIN
-    # Hide web server info
-    Header unset X-Powered-By
-    Header always set Strict-Transport-Security "max-age=15552000; includeSubdomains; preload"
+    # Dont send referrer url to external domains
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    <IfModule mod_ssl.c>
+        Header always set Strict-Transport-Security "max-age=15552000; includeSubdomains; preload"
+    </IfModule>
 </IfModule>
