@@ -39,11 +39,11 @@ Route::group(
 Route::group(['middleware' => ['auth'], 'prefix' => 'account', 'as' => 'account.'], function () {
 
     Route::get('/', 'Account\ProfileController@edit')->name('edit');
-    Route::post('edit', 'Account\ProfileController@update')->name('update');
+    Route::post('update', 'Account\ProfileController@update')->name('update');
 
     Route::group(['prefix' => 'password', 'as' => 'password.'], function () {
         Route::get('/', 'Account\PasswordController@edit')->name('edit');
-        Route::post('edit', 'Account\PasswordController@update')->name('update');
+        Route::post('update', 'Account\PasswordController@update')->name('update');
     });
 
     Route::group(['prefix' => 'actions', 'as' => 'actions.'], function () {

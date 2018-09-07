@@ -21,9 +21,7 @@ class ProfileController extends Controller
         $user = Auth::user();
         $user->loadMissing(['profile']);
 
-        return view('account.profile', [
-            'user' => $user
-        ]);
+        return view('account.profile', compact('user'));
     }
 
     /**

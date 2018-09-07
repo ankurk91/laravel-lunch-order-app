@@ -16,7 +16,7 @@ class UpdateRequest extends CreateRequest
     public function rules()
     {
         $rules = parent::rules();
-        $rules['email'] = 'bail|required|string|email|max:255|unique:' . with(new Supplier())->getTable() . ',email,' . $this->route('supplier')->id;
+        $rules['email'] = $rules['email'] . ',' . $this->route('supplier')->id;
 
         return $rules;
     }
