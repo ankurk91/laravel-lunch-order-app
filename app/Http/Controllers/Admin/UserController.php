@@ -28,11 +28,11 @@ class UserController extends Controller
             ->where('id', '!=', $request->user()->id);
 
         if ($request->filled('search')) {
-            $users->where('email', 'ilike', '%' . $request->input('search') . '%');
+            $users->where('email', 'like', '%' . $request->input('search') . '%');
 
             $users->orWhereHas('profile', function ($query) use ($request) {
-                $query->where('first_name', 'ilike', '%' . $request->input('search') . '%')
-                    ->orWhere('last_name', 'ilike', '%' . $request->input('search') . '%')
+                $query->where('first_name', 'like', '%' . $request->input('search') . '%')
+                    ->orWhere('last_name', 'like', '%' . $request->input('search') . '%')
                     ->orWhere('primary_phone', 'like', '%' . $request->input('search') . '%');
 
             });

@@ -24,8 +24,8 @@ class ProductController extends Controller
         $products = Product::with(['createdByUser', 'supplier']);
 
         if ($request->filled('search')) {
-            $products->where('name', 'ilike', '%' . $request->input('search') . '%')
-                ->orWhere('description', 'ilike', '%' . $request->input('search') . '%');
+            $products->where('name', 'like', '%' . $request->input('search') . '%')
+                ->orWhere('description', 'like', '%' . $request->input('search') . '%');
         }
 
         if ($request->filled('active_status')) {

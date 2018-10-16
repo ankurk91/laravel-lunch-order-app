@@ -22,9 +22,9 @@ class SupplierController extends Controller
         $suppliers = Supplier::query();
 
         if ($request->filled('search')) {
-            $suppliers->where('first_name', 'ilike', '%' . $request->input('search') . '%')
-                ->orWhere('last_name', 'ilike', '%' . $request->input('search') . '%')
-                ->orWhere('email', 'ilike', '%' . $request->input('search') . '%');
+            $suppliers->where('first_name', 'like', '%' . $request->input('search') . '%')
+                ->orWhere('last_name', 'like', '%' . $request->input('search') . '%')
+                ->orWhere('email', 'like', '%' . $request->input('search') . '%');
         }
 
         if ($request->filled('active_status')) {

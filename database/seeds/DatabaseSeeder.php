@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesTableSeeder::class);
 
         // Don't seed these tables when in production
-        if (!app()->environment('production')) {
+        if (!app()->environment(['production', 'testing'])) {
             $this->call([
                 UsersTableSeeder::class,
                 SuppliersTableSeeder::class,

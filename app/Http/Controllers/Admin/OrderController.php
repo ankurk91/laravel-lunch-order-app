@@ -31,12 +31,12 @@ class OrderController extends Controller
 
         if ($request->filled('search')) {
             $orders->orWhereHas('createdForUser', function ($query) use ($request) {
-                $query->where('email', 'ilike', '%' . $request->input('search') . '%');
+                $query->where('email', 'like', '%' . $request->input('search') . '%');
             });
 
             $orders->orWhereHas('createdForUser.profile', function ($query) use ($request) {
-                $query->where('first_name', 'ilike', '%' . $request->input('search') . '%')
-                    ->orWhere('last_name', 'ilike', '%' . $request->input('search') . '%');
+                $query->where('first_name', 'like', '%' . $request->input('search') . '%')
+                    ->orWhere('last_name', 'like', '%' . $request->input('search') . '%');
             });
         }
 

@@ -1,6 +1,6 @@
 'use strict';
 
-let mix = require('laravel-mix');
+const mix = require('laravel-mix');
 const webpack = require('webpack');
 const path = require('path');
 require('laravel-mix-auto-extract');
