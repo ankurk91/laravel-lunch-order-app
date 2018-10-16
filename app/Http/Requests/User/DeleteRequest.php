@@ -7,7 +7,9 @@ use App\Models\Order;
 
 class DeleteRequest extends FormRequest
 {
-
+    /**
+     * @var string
+     */
     protected $errorBag = 'delete';
 
     /**

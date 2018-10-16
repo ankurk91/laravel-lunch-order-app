@@ -15,9 +15,9 @@
 
 // Admin manages other users
 Route::group(['prefix' => 'users', 'as' => 'users.',], function () {
-    Route::patch('{user}/update-roles', 'UserActionController@updateRoles')->name('update-roles')->middleware('can:updateRoles,user');
-    Route::patch('{user}/toggle-block', 'UserActionController@toggleBlockedStatus')->name('toggle-block')->middleware('can:toggleBlock,user');
-    Route::post('{user}/password-reset-email', 'UserActionController@sendPasswordResetEmail')->name('password-reset-email')->middleware('can:passwordResetEmail,user');
+    Route::patch('{user}/update-roles', 'UserActionController@updateRoles')->name('updateRoles')->middleware('can:updateRoles,user');
+    Route::patch('{user}/toggle-block', 'UserActionController@toggleBlockedStatus')->name('toggleBlock')->middleware('can:toggleBlock,user');
+    Route::post('{user}/password-reset-email', 'UserActionController@sendPasswordResetEmail')->name('passwordResetEmail')->middleware('can:passwordResetEmail,user');
 
     Route::get('/', 'UserController@index')->name('index');
     Route::get('create', 'UserController@create')->name('create');
@@ -31,7 +31,7 @@ Route::group(['prefix' => 'users', 'as' => 'users.',], function () {
 Route::group(['prefix' => 'orders', 'as' => 'orders.'], function () {
     Route::get('create/{user}', 'OrderController@create')->name('create');
     Route::post('store/{user}', 'OrderController@store')->name('store');
-    Route::patch('{order}/update-status', 'OrderController@updateStatus')->name('update-status');
+    Route::patch('{order}/update-status', 'OrderController@updateStatus')->name('updateStatus');
 });
 
 Route::resource('orders', 'OrderController')

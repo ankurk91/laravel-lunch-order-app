@@ -3,6 +3,7 @@
 namespace App\Models\Traits;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 
 trait CreatedByUser
 {
@@ -16,9 +17,21 @@ trait CreatedByUser
         return $this->belongsTo(User::class, 'created_by_user_id');
     }
 
-    public function scopeCreatedBy($query, $id)
+    /**
+     * Scope a query to ensure given user is the owner.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param $model Model|int
+     * @param $operator string
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeCreatedBy($query, $model, $operator = '=')
     {
-        return $query->where('created_by_user_id', $id);
+        if ($model instanceof Model) {
+            $model = $model->getKey();
+        }
+        return $query->where('created_by_user_id', $operator, $model);
     }
+
 
 }

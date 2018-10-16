@@ -1,4 +1,4 @@
-<form action="{{route('admin.users.password-reset-email',$user)}}"
+<form action="{{route('admin.users.passwordResetEmail',$user)}}"
       method="POST">
   @csrf
 

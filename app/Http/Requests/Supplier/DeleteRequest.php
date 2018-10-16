@@ -8,6 +8,9 @@ use Illuminate\Foundation\Http\FormRequest;
 class DeleteRequest extends FormRequest
 {
 
+    /**
+     * @var string
+     */
     protected $errorBag = 'delete';
 
     /**

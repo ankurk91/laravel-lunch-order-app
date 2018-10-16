@@ -9,6 +9,12 @@
   'actionUrl' => request()->url(),
   'actionLabel' => 'Retry'
   ])
-    We are performing a scheduled maintenance. We should be back online shortly.
+
+    @empty(optional($exception)->getMessage())
+      We are performing a scheduled maintenance. <br>We should be back online shortly.
+    @else
+      {{optional($exception)->getMessage()}}
+    @endempty
+
   @endComponent
 @endsection

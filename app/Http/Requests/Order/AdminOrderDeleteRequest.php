@@ -6,6 +6,9 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class AdminOrderDeleteRequest extends FormRequest
 {
+    /**
+     * @var string
+     */
     protected $errorBag = 'delete';
 
     /**

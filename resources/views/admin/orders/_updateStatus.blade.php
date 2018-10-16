@@ -1,5 +1,5 @@
 <form onsubmit="return confirm('Are you sure to update status?')"
-      action="{{route('admin.orders.update-status',$order)}}"
+      action="{{route('admin.orders.updateStatus',$order)}}"
       method="POST">
   @csrf
   @method('patch')

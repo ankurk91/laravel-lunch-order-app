@@ -47,6 +47,9 @@ class User extends Authenticatable
         return $this->hasOne(UserProfile::class)->withDefault();
     }
 
+    /**
+     * @param $value
+     */
     public function setBlockedStatusTo($value)
     {
         $this->forceFill(['blocked_at' => $value]);

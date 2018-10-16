@@ -72,7 +72,7 @@
         </div>
       </form>
 
-      <form onsubmit="return confirm('Are you sure?')" action="{{route('account.actions.password-reset-email')}}"
+      <form onsubmit="return confirm('Are you sure?')" action="{{route('account.actions.passwordResetEmail')}}"
             method="POST">
         @csrf
         <div class="card mt-4">
@@ -90,7 +90,7 @@
         </div>
       </form>
 
-      <form onsubmit="return confirm('Are you sure?')" action="{{route('account.actions.logout-other-devices')}}"
+      <form onsubmit="return confirm('Are you sure?')" action="{{route('account.actions.logoutOtherDevices')}}"
             method="POST">
         @csrf
         <div class="card mt-4">

@@ -1,5 +1,5 @@
 <form onsubmit="return confirm('Are you sure?')"
-      action="{{route('admin.users.toggle-block',$user)}}"
+      action="{{route('admin.users.toggleBlock',$user)}}"
       method="POST">
   @csrf
   @method('patch')
