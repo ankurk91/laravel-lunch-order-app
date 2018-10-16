@@ -1,7 +1,7 @@
 import jQuery from 'jquery/dist/jquery.slim';
 
 window.jQuery = jQuery;
-import Popper from 'expose-loader?Popper!popper.js';
+import Popper from 'popper.js';
 
 window.Popper = Popper;
 

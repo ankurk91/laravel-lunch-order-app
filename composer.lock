@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "86a0728409a2fb30664e525acac491d8",
+    "content-hash": "5482e304a2de191512079b4b5dc14830",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1122,60 +1122,6 @@
                 "psr-3"
             ],
             "time": "2017-06-19T01:22:40+00:00"
-        },
-        {
-            "name": "n7olkachev/laravel-computed-properties",
-            "version": "v1.1.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/n7olkachev/laravel-computed-properties.git",
-                "reference": "62d5aeb561520dee747db0a0ad63b1bccd3134d6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/n7olkachev/laravel-computed-properties/zipball/62d5aeb561520dee747db0a0ad63b1bccd3134d6",
-                "reference": "62d5aeb561520dee747db0a0ad63b1bccd3134d6",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/config": "~5.4.0|~5.5.0|~5.6.0",
-                "illuminate/database": "~5.4.0|~5.5.0|~5.6.0",
-                "illuminate/support": "~5.4.0|~5.5.0|~5.6.0",
-                "php": "^7.0"
-            },
-            "require-dev": {
-                "orchestra/database": "~3.3.0|~3.4.0",
-                "orchestra/testbench": "~3.3.0|~3.4.0",
-                "phpunit/phpunit": "^5.7"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "N7olkachev\\ComputedProperties\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nikita Tolkachev",
-                    "email": "n7olkachev@gmail.com",
-                    "homepage": "https://n7olkachev.github.io",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Computed properties for Eloquent",
-            "homepage": "https://github.com/n7olkachev/laravel-computed-properties",
-            "keywords": [
-                "computed",
-                "eloquent",
-                "laravel",
-                "properties",
-                "websecret"
-            ],
-            "time": "2018-05-10T10:18:50+00:00"
         },
         {
             "name": "nesbot/carbon",

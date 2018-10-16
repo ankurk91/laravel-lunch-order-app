@@ -33,6 +33,11 @@ mix.options({
         drop_debugger: true
       }
     }
+  },
+  // Make vue-loader future ready
+  // https://github.com/vuejs/vue-loader/blob/v14.0.0/docs/en/options.md#esmodule
+  vue: {
+    esModule: true
   }
 });
 
@@ -53,6 +58,15 @@ mix.js('./resources/js/app.js', './public/js')
   .autoExtract()
   .sourceMaps(false)
   .disableNotifications();
+
+mix.webpackConfig({
+  resolve: {
+    alias: {
+      'jquery$': 'jquery/dist/jquery.slim.js',
+      '@vendor': path.resolve(__dirname, 'vendor'),
+    }
+  }
+});
 
 // Version does not work in HMR mode
 if (process.env.npm_lifecycle_event !== 'hot') {

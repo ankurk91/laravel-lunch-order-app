@@ -26,8 +26,7 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        $orders = Order::with(['createdForUser', 'orderProducts'])
-            ->withComputed('total');
+        $orders = Order::with(['createdForUser', 'orderProducts']);
 
         if ($request->filled('search')) {
             $orders->orWhereHas('createdForUser', function ($query) use ($request) {
