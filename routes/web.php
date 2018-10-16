@@ -62,8 +62,6 @@ Route::group(['middleware' => ['auth', 'role:customer'], 'prefix' => 'shop', 'as
 });
 
 // My orders routes ...
-Route::resource(
-    'orders', 'OrderController', ['only' => [
-        'index', 'show',
-    ]]
-)->middleware(['auth', 'role:customer']);
+Route::resource('orders', 'OrderController')
+    ->only(['index', 'show'])
+    ->middleware(['auth', 'role:customer']);

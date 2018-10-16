@@ -78,7 +78,7 @@
             @date($order->for_date)
           </td>
           <td class="align-middle">
-            @can('manageUsers',$order->createdForUser)
+            @can('update',$order->createdForUser)
               <a target="_blank"
                  href="{{route('admin.users.edit',$order->createdForUser)}}"> {{$order->createdForUser->email}}</a>
             @else
