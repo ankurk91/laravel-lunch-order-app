@@ -33,7 +33,7 @@ class CurrentPasswordRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        return Hash::check($value, Auth::user($this->guard)->getAuthPassword());
+        return Hash::check($value, Auth::guard($this->guard)->user()->getAuthPassword());
     }
 
     /**
@@ -43,6 +43,6 @@ class CurrentPasswordRule implements Rule
      */
     public function message()
     {
-        return 'The :attribute field does not match with your current password.';
+        return 'The :attribute field does not match with your stored password.';
     }
 }

@@ -26,9 +26,10 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         // Prevent admin user to perform user management related actions on himself
+        // todo move this to policy
         Gate::define('manageUsers', function ($authUser, $user) {
             if ($user instanceof \App\Models\User) {
-                return $authUser->id !== $user->id;
+                return !$authUser->is($user);
             }
             return true;
         });
