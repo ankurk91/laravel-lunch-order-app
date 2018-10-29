@@ -17,6 +17,10 @@ class UserProfile extends Model
         'first_name', 'last_name', 'primary_phone', 'avatar', 'user_id',
     ];
 
+    /**
+     * @param $value
+     * @return null|string
+     */
     public function getFullNameAttribute($value)
     {
         if (is_null($this->first_name)) {

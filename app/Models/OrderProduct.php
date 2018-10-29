@@ -48,6 +48,9 @@ class OrderProduct extends Model
         return $this->belongsTo(Product::class);
     }
 
+    /**
+     * @return float|int
+     */
     public function getTotalAttribute()
     {
         return $this->quantity * $this->unit_price;

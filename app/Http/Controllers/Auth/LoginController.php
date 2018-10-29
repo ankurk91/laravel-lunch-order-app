@@ -52,23 +52,19 @@ class LoginController extends Controller
             $request->session()->invalidate();
 
             alert()->error('Your account is disabled. Please contact administrator for assistance.');
-            return redirect()->route('login')
+            return $this->loggedOut($request)
                 ->withInput($request->only($this->username()));
         }
     }
 
     /**
-     * Log the user out of the application.
+     * The user has logged out of the application.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return mixed
      */
-    public function logout(Request $request)
+    protected function loggedOut(Request $request)
     {
-        $this->guard()->logout();
-
-        $request->session()->invalidate();
-
         return redirect()->route('login');
     }
 

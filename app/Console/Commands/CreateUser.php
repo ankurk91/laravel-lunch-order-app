@@ -40,6 +40,7 @@ class CreateUser extends Command
     /**
      * Execute the console command.
      *
+     * @throws \Throwable
      * @return mixed
      */
     public function handle()
@@ -79,7 +80,7 @@ class CreateUser extends Command
             $this->line('Assigning role ...');
             $user->assignRole($roleName);
 
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             DB::rollBack();
             Log::error($e);
 

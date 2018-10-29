@@ -28,7 +28,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-
     /**
      * The attributes that should be mutated to dates.
      *
@@ -36,7 +35,6 @@ class User extends Authenticatable
      */
     protected $dates = [
         'blocked_at',
-        'created_at', 'updated_at', 'deleted_at'
     ];
 
     /**
@@ -66,11 +64,21 @@ class User extends Authenticatable
         return !is_null($this->blocked_at);
     }
 
+    /**
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeActive($query)
     {
         return $query->whereNull('blocked_at');
     }
 
+    /**
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeBlocked($query)
     {
         return $query->whereNotNull('blocked_at');
