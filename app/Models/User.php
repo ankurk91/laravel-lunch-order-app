@@ -57,6 +57,7 @@ class User extends Authenticatable
      * Get the user's account blocked status
      *
      * @param  string $value
+     *
      * @return bool
      */
     public function getIsBlockedAttribute($value)
@@ -67,6 +68,7 @@ class User extends Authenticatable
     /**
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeActive($query)
@@ -77,6 +79,7 @@ class User extends Authenticatable
     /**
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeBlocked($query)

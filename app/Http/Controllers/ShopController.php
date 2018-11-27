@@ -28,7 +28,7 @@ class ShopController extends Controller
         }
 
         $order->loadMissing([
-            'orderProducts', 'orderProducts.product'
+            'orderProducts', 'orderProducts.product',
         ]);
 
         $newProducts = Product::active()->whereNotIn('id', $order->orderProducts->pluck('product_id'))->get();
@@ -37,6 +37,7 @@ class ShopController extends Controller
 
     /**
      * @param StoreRequest $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreRequest $request)
@@ -72,7 +73,7 @@ class ShopController extends Controller
             $orderProduct = new OrderProduct();
             $orderProduct->fill([
                 'quantity' => array_get($productsWithQuantity->where('id', $product->id)->first(), 'quantity'),
-                'unit_price' => $product->unit_price
+                'unit_price' => $product->unit_price,
             ]);
             $orderProduct->product()->associate($product);
             $order->orderProducts()->save($orderProduct);

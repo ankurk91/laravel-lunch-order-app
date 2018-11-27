@@ -14,6 +14,7 @@ class UserPolicy
      *
      * @param  \App\Models\User $authUser
      * @param  \App\Models\User $user
+     *
      * @return mixed
      */
     protected function hasPermission(User $authUser, User $user)
@@ -26,6 +27,7 @@ class UserPolicy
      *
      * @param  \App\Models\User $authUser
      * @param  \App\Models\User $user
+     *
      * @return mixed
      */
     public function update(User $authUser, User $user)
@@ -38,6 +40,7 @@ class UserPolicy
      *
      * @param  \App\Models\User $authUser
      * @param  \App\Models\User $user
+     *
      * @return mixed
      */
     public function delete(User $authUser, User $user)
@@ -50,6 +53,7 @@ class UserPolicy
      *
      * @param  \App\Models\User $authUser
      * @param  \App\Models\User $user
+     *
      * @return mixed
      */
     public function updateRoles(User $authUser, User $user)
@@ -62,6 +66,7 @@ class UserPolicy
      *
      * @param  \App\Models\User $authUser
      * @param  \App\Models\User $user
+     *
      * @return mixed
      */
     public function toggleBlock(User $authUser, User $user)
@@ -74,6 +79,7 @@ class UserPolicy
      *
      * @param  \App\Models\User $authUser
      * @param  \App\Models\User $user
+     *
      * @return mixed
      */
     public function passwordResetEmail(User $authUser, User $user)

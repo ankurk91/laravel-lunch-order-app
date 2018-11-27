@@ -103,7 +103,7 @@
       </div>
       <div class="col-md-8 d-flex">
         <div class="mx-auto ml-sm-auto mr-sm-0 table-responsive-sm">
-          {{$suppliers->appends(request()->query())->links()}}
+          {{$suppliers->appends(request()->query())->onEachSide(2)->links()}}
         </div>
       </div>
     </div>

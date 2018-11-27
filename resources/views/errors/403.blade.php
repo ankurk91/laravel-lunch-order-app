@@ -9,6 +9,10 @@
   'actionUrl' => url()->previous(),
   'actionLabel' => 'Back to previous page'
   ])
-    You are not authorised to perform this action.
+    @empty($exception->getMessage())
+      Sorry, you are forbidden from performing this action.
+    @else
+      {{$exception->getMessage()}}
+    @endempty
   @endComponent
 @endsection

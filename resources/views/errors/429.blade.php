@@ -9,7 +9,7 @@
   'actionUrl' => request()->url(),
   'actionLabel' => 'Retry'
   ])
-    You have made too many requests.<br>
+    Sorry, you have made too many requests.<br>
     Please wait for sometime and try again.
   @endComponent
 @endsection

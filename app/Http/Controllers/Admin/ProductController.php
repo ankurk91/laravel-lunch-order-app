@@ -17,6 +17,7 @@ class ProductController extends Controller
      * Display a listing of the resource.
      *
      * @param  Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -60,6 +61,7 @@ class ProductController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  CreateRequest $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(CreateRequest $request)
@@ -78,6 +80,7 @@ class ProductController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Product $product
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Product $product)
@@ -92,6 +95,7 @@ class ProductController extends Controller
      *
      * @param  UpdateRequest $request
      * @param  \App\Models\Product $product
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateRequest $request, Product $product)
@@ -109,6 +113,7 @@ class ProductController extends Controller
      *
      * @param DeleteRequest $request
      * @param Product $product
+     *
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */

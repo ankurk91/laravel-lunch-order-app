@@ -7,6 +7,6 @@
   'errorCode' => '404',
   'errorHeading' => 'Page not found'
   ])
-    The page you are looking for can't be found.
+    Sorry, the page you are looking for could not be found.
   @endComponent
 @endsection

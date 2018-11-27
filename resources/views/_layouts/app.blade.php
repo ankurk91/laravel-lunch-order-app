@@ -9,12 +9,15 @@
   <title> @yield('pageTitle', 'Home') | {{config('app.name')}}</title>
 
 @include('_layouts.partials.styles')
-<!-- Header scripts -->
-  <script>
-    window.appConfig = @json([
+  @php
+    $appConfig = [
       'csrfToken' => csrf_token(),
-      'env' => config('app.env', 'production')
-    ]);
+      'env' => config('app.env', 'production'),
+      'user'=> ['id' => auth()->id()],
+    ];
+  @endphp
+  <script>
+    window.appConfig = @json($appConfig)
   </script>
 
 </head>

@@ -34,6 +34,7 @@ class Supplier extends Model
 
     /**
      * @param $value
+     *
      * @return string
      */
     public function getFullNameAttribute($value)
@@ -44,6 +45,7 @@ class Supplier extends Model
     /**
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeActive($query)
@@ -54,6 +56,7 @@ class Supplier extends Model
     /**
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeNotActive($query)

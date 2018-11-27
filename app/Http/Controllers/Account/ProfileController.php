@@ -28,6 +28,7 @@ class ProfileController extends Controller
      * Update the specified resource in storage.
      *
      * @param  ProfileUpdateRequest $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(ProfileUpdateRequest $request)

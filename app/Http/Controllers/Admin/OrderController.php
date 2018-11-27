@@ -22,6 +22,7 @@ class OrderController extends Controller
      * Display a listing of the resource.
      *
      * @param  Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -59,6 +60,7 @@ class OrderController extends Controller
      * Show the form for creating a new resource.
      *
      * @param  User $user
+     *
      * @return \Illuminate\Http\Response
      */
     public function create(User $user)
@@ -72,6 +74,7 @@ class OrderController extends Controller
      *
      * @param  AdminOrderCreateRequest $request
      * @param  User $user
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(AdminOrderCreateRequest $request, User $user)
@@ -110,12 +113,13 @@ class OrderController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Order $order
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Order $order)
     {
         $order->loadMissing([
-            'createdForUser', 'createdForUser.profile', 'orderProducts', 'orderProducts.product'
+            'createdForUser', 'createdForUser.profile', 'orderProducts', 'orderProducts.product',
         ]);
 
         $newProducts = Product::active()->whereNotIn('id', $order->orderProducts->pluck('product_id'))->get();
@@ -128,6 +132,7 @@ class OrderController extends Controller
      *
      * @param  AdminOrderUpdateRequest $request
      * @param  \App\Models\Order $order
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(AdminOrderUpdateRequest $request, Order $order)
@@ -163,6 +168,7 @@ class OrderController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \App\Models\Order $order
+     *
      * @return \Illuminate\Http\Response
      */
     public function updateStatus(Request $request, Order $order)
@@ -185,6 +191,7 @@ class OrderController extends Controller
      *
      * @param AdminOrderDeleteRequest $request
      * @param Order $order
+     *
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */

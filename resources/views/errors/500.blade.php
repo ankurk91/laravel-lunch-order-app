@@ -9,7 +9,7 @@
   'actionUrl' => request()->url(),
   'actionLabel' => 'Retry'
   ])
-    We track these errors automatically, but if the problem persists feel free to contact us. In the meantime, try
-    refreshing.
+    We track these errors automatically, but if the problem persists feel free to contact us.
+    <br>In the meantime, try refreshing.
   @endComponent
 @endsection

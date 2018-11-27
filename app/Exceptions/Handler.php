@@ -48,7 +48,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         $this->handleValidationException($exception);
-        $this->handleMethodNotAllowedException($exception);
+        $this->renderMethodNotAllowedException($exception);
 
         return parent::render($request, $exception);
     }
@@ -70,9 +70,9 @@ class Handler extends ExceptionHandler
      *
      * @param Exception $exception
      */
-    private function handleMethodNotAllowedException(Exception $exception)
+    private function renderMethodNotAllowedException(Exception $exception)
     {
-        abort_if(!config('app.debug', false) &&
+        abort_if(!config('app.debug') &&
             $exception instanceof \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException, 404);
     }
 

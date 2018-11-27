@@ -20,6 +20,7 @@ class SocialiteController extends Controller
      * Redirect the user to the Provider authentication page.
      *
      * @param $provider String
+     *
      * @return mixed
      */
     public function redirectToProvider($provider)
@@ -31,6 +32,7 @@ class SocialiteController extends Controller
      * Obtain the user information from Provider.
      *
      * @param $provider string
+     *
      * @throws \Throwable
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -55,7 +57,7 @@ class SocialiteController extends Controller
 
         // This session variable can help to determine if user is logged-in via socialite
         session()->put([
-            'auth.social_id' => $providerUser->getId()
+            'auth.social_id' => $providerUser->getId(),
         ]);
 
         DB::commit();
@@ -70,13 +72,14 @@ class SocialiteController extends Controller
      *
      * @param $providerName string
      * @param $providerUser
+     *
      * @return mixed
      */
     protected function findOrCreateUser($providerName, $providerUser)
     {
         $social = SocialAccount::firstOrNew([
             'provider_user_id' => $providerUser->getId(),
-            'provider' => $providerName
+            'provider' => $providerName,
         ]);
 
         if ($social->exists) {
@@ -84,7 +87,7 @@ class SocialiteController extends Controller
         }
 
         $user = User::firstOrNew([
-            'email' => $providerUser->getEmail()
+            'email' => $providerUser->getEmail(),
         ]);
 
         if (!$user->exists) {
@@ -106,6 +109,7 @@ class SocialiteController extends Controller
      * The user has been authenticated.
      *
      * @param  User $user
+     *
      * @return mixed
      */
     protected function authenticated(User $user)
@@ -134,6 +138,7 @@ class SocialiteController extends Controller
      * Extract user profile data
      *
      * @param $providerUser
+     *
      * @return array
      */
     protected function getProfileData($providerUser)

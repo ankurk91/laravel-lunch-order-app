@@ -9,7 +9,7 @@
   'actionUrl' => url()->previous(),
   'actionLabel' => 'Back to previous page'
   ])
-    The page has expired due to inactivity.<br>
+    Sorry, the page has expired due to inactivity.<br>
     Please refresh and try again.
   @endComponent
 @endsection

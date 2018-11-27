@@ -21,8 +21,9 @@ trait CreatedByUser
      * Scope a query to ensure given user is the owner.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param $model Model|int
+     * @param $model    Model|int
      * @param $operator string
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeCreatedBy($query, $model, $operator = '=')

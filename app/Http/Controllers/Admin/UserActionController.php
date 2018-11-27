@@ -15,6 +15,7 @@ class UserActionController extends Controller
      *
      * @param  UserRolesUpdateRequest $request
      * @param  \App\Models\User $user
+     *
      * @return \Illuminate\Http\Response
      */
     public function updateRoles(UserRolesUpdateRequest $request, User $user)
@@ -30,6 +31,7 @@ class UserActionController extends Controller
      * Toggle user's account locked status.
      *
      * @param User $user
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function toggleBlockedStatus(User $user)
@@ -47,12 +49,13 @@ class UserActionController extends Controller
      * Send password reset email to user.
      *
      * @param User $user
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function sendPasswordResetEmail(User $user)
     {
         Password::sendResetLink([
-            'email' => $user->getEmailForPasswordReset()
+            'email' => $user->getEmailForPasswordReset(),
         ]);
 
         alert()->success('Password reset email was sent successfully.');

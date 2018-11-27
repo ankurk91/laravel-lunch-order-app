@@ -12,6 +12,7 @@ class OrderController extends Controller
      * Display a listing of the resource.
      *
      * @param  Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -61,6 +62,7 @@ class OrderController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -72,12 +74,13 @@ class OrderController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Order $order
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Order $order)
     {
         $order->loadMissing([
-            'createdByUser', 'orderProducts', 'orderProducts.product'
+            'createdByUser', 'orderProducts', 'orderProducts.product',
         ]);
 
         return view('orders.show', compact('order'));
@@ -87,6 +90,7 @@ class OrderController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Order $order
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Order $order)
@@ -99,6 +103,7 @@ class OrderController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \App\Models\Order $order
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Order $order)
@@ -110,6 +115,7 @@ class OrderController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Order $order
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Order $order)

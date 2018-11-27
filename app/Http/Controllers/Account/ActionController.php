@@ -15,6 +15,7 @@ class ActionController extends Controller
      * Logout current user from all other devices
      *
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function logoutOtherDevices(Request $request)
@@ -38,7 +39,7 @@ class ActionController extends Controller
     public function sendPasswordResetEmail()
     {
         Password::sendResetLink([
-            'email' => Auth::user()->getEmailForPasswordReset()
+            'email' => Auth::user()->getEmailForPasswordReset(),
         ]);
 
         alert()->success('Password reset email was sent successfully.');

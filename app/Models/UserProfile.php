@@ -19,6 +19,7 @@ class UserProfile extends Model
 
     /**
      * @param $value
+     *
      * @return null|string
      */
     public function getFullNameAttribute($value)

@@ -22,8 +22,9 @@ trait CreatedForUser
      * Scope a query to ensure resource was created for given user.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param $model Model|int
+     * @param $model    Model|int
      * @param $operator string
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeCreatedFor($query, $model, $operator = '=')

@@ -19,7 +19,7 @@ class PasswordController extends Controller
     public function edit()
     {
         return view('account.password', [
-            'user' => Auth::user()
+            'user' => Auth::user(),
         ]);
     }
 
@@ -27,6 +27,7 @@ class PasswordController extends Controller
      * Update the user password in storage.
      *
      * @param  PasswordUpdateRequest $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(PasswordUpdateRequest $request)

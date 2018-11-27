@@ -10,10 +10,10 @@
   'actionLabel' => 'Retry'
   ])
 
-    @empty(optional($exception)->getMessage())
+    @empty($exception->getMessage())
       We are performing a scheduled maintenance. <br>We should be back online shortly.
     @else
-      {{optional($exception)->getMessage()}}
+      {{$exception->getMessage()}}
     @endempty
 
   @endComponent

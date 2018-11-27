@@ -15,6 +15,7 @@ class SupplierController extends Controller
      * Display a listing of the resource.
      *
      * @param  Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -58,6 +59,7 @@ class SupplierController extends Controller
      * Store a newly created resource in storage.
      *
      * @param CreateRequest $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CreateRequest $request)
@@ -75,6 +77,7 @@ class SupplierController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Supplier $supplier
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Supplier $supplier)
@@ -87,6 +90,7 @@ class SupplierController extends Controller
      *
      * @param  UpdateRequest $request
      * @param  \App\Models\Supplier $supplier
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateRequest $request, Supplier $supplier)
@@ -104,6 +108,7 @@ class SupplierController extends Controller
      *
      * @param DeleteRequest $request
      * @param Supplier $supplier
+     *
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
