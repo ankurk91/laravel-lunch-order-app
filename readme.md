@@ -5,7 +5,7 @@
 * Apache v2.4.34 with ```mod_rewrite```
 * MySql v5.7.23
 * [Composer](https://getcomposer.org) v1.7
-* [node-js](https://github.com/creationix/nvm) >=8.9.3 and [yarn](https://yarnpkg.com/en/) >=1.10.x
+* [node-js](https://github.com/creationix/nvm) >=10.13 and [yarn](https://yarnpkg.com/en/) >=1.12.3
 
 ### Quick setup 
 * Clone this repo, checkout to ```dev``` branch
@@ -40,8 +40,8 @@ php artisan view:cache
 
 
 ### Asset building
-* This project is using [Laravel-Mix](https://github.com/JeffreyWay/laravel-mix)
-* You can use standard terminal commands:
+* This project is using a custom webpack solution [Laravel-Bundler](https://github.com/ankurk91/laravel-bundler)
+* You can still use standard terminal commands:
 * During development
 ```
 # incremental build
