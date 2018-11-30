@@ -2,18 +2,18 @@
   "name": "lunch-order-app",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack --mode development",
+    "dev": "cross-env NODE_ENV=development webpack --progress --mode development",
     "watch": "npm run dev -- --watch",
     "prod": "cross-env NODE_ENV=production webpack --progress --mode production",
     "hot": "cross-env NODE_ENV=development webpack-dev-server --hot --progress"
   },
   "devDependencies": {
-    "laravel-bundler": "^0.3.4"
+    "laravel-bundler": "^0.5.1"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.4.1",
     "bootstrap": "^4.1.3",
     "jquery": "^3.3.1",
-    "popper.js": "^1.14.4"
+    "popper.js": "^1.14.6"
   }
 }
