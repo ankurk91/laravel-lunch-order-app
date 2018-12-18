@@ -44,6 +44,7 @@ class ShopController extends Controller
     {
         DB::beginTransaction();
 
+        //todo use firstOrNew here
         $order = Order::createdFor($request->user()->id)
             ->whereDate('for_date', today())
             ->first();
