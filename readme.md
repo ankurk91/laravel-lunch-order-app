@@ -1,10 +1,10 @@
 # Lunch Order (Laravel 5 App)
 
 ### Prerequisites 
-* php v7.1.21, [see](https://laravel.com/docs/installation) Laravel specific requirements
+* php v7.2.13, [see](https://laravel.com/docs/installation) Laravel specific requirements
 * Apache v2.4.34 with ```mod_rewrite```
 * MySql v5.7.23
-* [Composer](https://getcomposer.org) v1.7
+* [Composer](https://getcomposer.org) v1.8
 * [node-js](https://github.com/creationix/nvm) >=10.13 and [yarn](https://yarnpkg.com/en/) >=1.12.3
 
 ### Quick setup 
@@ -63,4 +63,3 @@ php artisan create:user
 
 ### 3rd party services used
 * E-mail service
-* [Bugsnag](https://www.bugsnag.com/) error reporting service (optional)
