@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Supplier\CreateRequest;
 use App\Http\Requests\Supplier\DeleteRequest;
 use App\Http\Requests\Supplier\UpdateRequest;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class SupplierController extends Controller
 {

@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreatePaymentsTable extends Migration
 {
@@ -24,8 +24,8 @@ class CreatePaymentsTable extends Migration
 
             $table->decimal('amount', 10, 2);
 
-            $table->string('customer_notes')->nullable()->default(NULL);
-            $table->string('staff_notes')->nullable()->default(NULL);
+            $table->string('customer_notes')->nullable()->default(null);
+            $table->string('staff_notes')->nullable()->default(null);
 
             $table->enum('method', config('project.payment_methods'))->default('online');
             $table->enum('status', config('project.payment_status'))->default('pending');

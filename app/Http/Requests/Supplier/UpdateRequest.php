@@ -2,9 +2,6 @@
 
 namespace App\Http\Requests\Supplier;
 
-use App\Models\Supplier;
-use Illuminate\Foundation\Http\FormRequest;
-
 class UpdateRequest extends CreateRequest
 {
 

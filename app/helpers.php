@@ -5,6 +5,7 @@
  *
  * @param $pattern String
  * @param string $output
+ *
  * @return null|string
  */
 function active_route($pattern, $output = "active")
@@ -17,6 +18,7 @@ function active_route($pattern, $output = "active")
  *
  * @param $number
  * @param string $sign
+ *
  * @return string
  */
 function money($number, $sign = '₹')
@@ -29,6 +31,7 @@ function money($number, $sign = '₹')
  *
  * @param int $from
  * @param int $to
+ *
  * @return array
  */
 function months_with_names($from = 1, $to = 12)
@@ -46,6 +49,7 @@ function months_with_names($from = 1, $to = 12)
  * Return contents of svg file
  *
  * @param $filename
+ *
  * @return \Illuminate\Support\HtmlString
  */
 function svg($filename)

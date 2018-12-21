@@ -2,12 +2,12 @@
 
 namespace App\Console\Commands;
 
+use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
-use App\Models\User;
 
 
 class CreateUser extends Command
@@ -47,7 +47,7 @@ class CreateUser extends Command
     {
         $inputs = [
             'email' => $this->ask('Enter email address'),
-            'password' => $this->secret('Enter password (min:6)')
+            'password' => $this->secret('Enter password (min:6)'),
         ];
 
         $validator = Validator::make($inputs,

@@ -2,18 +2,23 @@
 
 namespace App\Events;
 
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Foundation\Events\Dispatchable;
 use App\Models\Order;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
 
 class OrderCreated
 {
     use Dispatchable, SerializesModels;
 
+    /**
+     * @var Order
+     */
     public $order;
 
     /**
      * Create a new event instance.
+     *
+     * @param Order $order
      *
      * @return void
      */

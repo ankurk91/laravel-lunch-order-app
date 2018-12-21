@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreatePermissionTables extends Migration
 {
@@ -35,7 +35,7 @@ class CreatePermissionTables extends Migration
 
             $table->string('model_type');
             $table->unsignedBigInteger($columnNames['model_morph_key']);
-            $table->index([$columnNames['model_morph_key'], 'model_type', ]);
+            $table->index([$columnNames['model_morph_key'], 'model_type',]);
 
             $table->foreign('permission_id')
                 ->references('id')
@@ -51,7 +51,7 @@ class CreatePermissionTables extends Migration
 
             $table->string('model_type');
             $table->unsignedBigInteger($columnNames['model_morph_key']);
-            $table->index([$columnNames['model_morph_key'], 'model_type', ]);
+            $table->index([$columnNames['model_morph_key'], 'model_type',]);
 
             $table->foreign('role_id')
                 ->references('id')
@@ -78,7 +78,9 @@ class CreatePermissionTables extends Migration
 
             $table->primary(['permission_id', 'role_id']);
 
-            app('cache')->forget('spatie.permission.cache');
+            app('cache')
+                ->store(config('permission.cache.store') != 'default' ? config('permission.cache.store') : null)
+                ->forget(config('permission.cache.key'));
         });
     }
 

@@ -30,7 +30,7 @@ class CreateRequest extends FormRequest
             'max_quantity' => 'required|numeric|min:1|max:9999',
             'unit_price' => 'required|numeric|min:1|max:9999',
             'active' => 'nullable',
-            'supplier_id' => 'bail|required|exists:' . with(new Supplier())->getTable() . ',id'
+            'supplier_id' => 'bail|required|exists:' . with(new Supplier())->getTable() . ',id',
         ];
     }
 }

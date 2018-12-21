@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\User;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Order;
+use Illuminate\Foundation\Http\FormRequest;
 
 class DeleteRequest extends FormRequest
 {
@@ -38,6 +38,7 @@ class DeleteRequest extends FormRequest
      * Configure the validator instance.
      *
      * @param  \Illuminate\Validation\Validator $validator
+     *
      * @return void
      */
     public function withValidator($validator)

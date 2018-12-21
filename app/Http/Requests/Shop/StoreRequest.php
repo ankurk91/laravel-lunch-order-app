@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Shop;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Product;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -38,6 +38,7 @@ class StoreRequest extends FormRequest
      * Configure the validator instance.
      *
      * @param  \Illuminate\Validation\Validator $validator
+     *
      * @return void
      */
     public function withValidator($validator)
@@ -59,7 +60,7 @@ class StoreRequest extends FormRequest
 
             $productsExists = Validator::make(
                 [
-                    'products' => $selectedProducts->pluck('id')->toArray()
+                    'products' => $selectedProducts->pluck('id')->toArray(),
                 ],
                 [
                     'products' => [

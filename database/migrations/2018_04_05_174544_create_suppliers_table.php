@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateSuppliersTable extends Migration
 {
@@ -17,11 +17,11 @@ class CreateSuppliersTable extends Migration
             $table->increments('id');
 
             $table->string('first_name');
-            $table->string('last_name')->nullable()->default(NULL);
+            $table->string('last_name')->nullable()->default(null);
             $table->string('email')->unique();
-            $table->string('primary_phone')->nullable()->default(NULL);
-            $table->string('alternate_phone')->nullable()->default(NULL);
-            $table->string('address')->nullable()->default(NULL);
+            $table->string('primary_phone')->nullable()->default(null);
+            $table->string('alternate_phone')->nullable()->default(null);
+            $table->string('address')->nullable()->default(null);
 
             $table->unsignedInteger('created_by_user_id');
             $table->foreign('created_by_user_id')->references('id')->on('users')->onDelete('restrict');

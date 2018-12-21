@@ -32,7 +32,7 @@ class CreateRequest extends FormRequest
             'address' => 'nullable|string|min:3|max:500',
             'primary_phone' => 'required|string|digits_between:10,20',
             'alternate_phone' => 'nullable|string|digits_between:10,20',
-            'active' => 'nullable'
+            'active' => 'nullable',
         ];
     }
 }

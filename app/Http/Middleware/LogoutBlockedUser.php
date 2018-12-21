@@ -14,6 +14,7 @@ class LogoutBlockedUser
      * @param  \Illuminate\Http\Request $request
      * @param  \Closure $next
      * @param  string|null $guard
+     *
      * @throws \Illuminate\Auth\AuthenticationException
      * @return mixed
      */

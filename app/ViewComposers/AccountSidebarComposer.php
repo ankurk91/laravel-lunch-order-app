@@ -2,8 +2,8 @@
 
 namespace App\Http\ViewComposers;
 
-use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class AccountSidebarComposer
 {
@@ -11,6 +11,7 @@ class AccountSidebarComposer
      * Bind data to the view.
      *
      * @param  View $view
+     *
      * @return void
      */
     public function compose(View $view)

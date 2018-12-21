@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Shop\StoreRequest;
-use Illuminate\Http\Request;
-use App\Models\Product;
 use App\Models\Order;
 use App\Models\OrderProduct;
-use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ShopController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $order = Order::createdFor(Auth::id())
@@ -87,6 +89,9 @@ class ShopController extends Controller
 
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function cancel()
     {
         $order = Order::createdFor(Auth::id())
@@ -100,6 +105,9 @@ class ShopController extends Controller
         return back();
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function restore()
     {
         $order = Order::createdFor(Auth::id())

@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateOrdersTable extends Migration
 {
@@ -25,8 +25,8 @@ class CreateOrdersTable extends Migration
             $table->date('for_date');
             $table->enum('status', config('project.order_status'))->default('pending');
 
-            $table->string('customer_notes')->nullable()->default(NULL);
-            $table->string('staff_notes')->nullable()->default(NULL);
+            $table->string('customer_notes')->nullable()->default(null);
+            $table->string('staff_notes')->nullable()->default(null);
 
             $table->softDeletes();
             $table->timestamps();

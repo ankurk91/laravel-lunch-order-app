@@ -40,6 +40,7 @@ class AdminOrderCreateRequest extends FormRequest
      * Configure the validator instance.
      *
      * @param  \Illuminate\Validation\Validator $validator
+     *
      * @return void
      */
     public function withValidator($validator)
@@ -62,7 +63,7 @@ class AdminOrderCreateRequest extends FormRequest
 
             $productsExists = Validator::make(
                 [
-                    'products' => $selectedProducts->pluck('id')->toArray()
+                    'products' => $selectedProducts->pluck('id')->toArray(),
                 ],
                 [
                     'products' => [

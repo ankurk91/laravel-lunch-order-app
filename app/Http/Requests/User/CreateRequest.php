@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\User;
 
-use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\PersonNameRule;
 use App\Models\User;
+use App\Rules\PersonNameRule;
+use Illuminate\Foundation\Http\FormRequest;
 use Spatie\Permission\Models\Role;
 
 class CreateRequest extends FormRequest

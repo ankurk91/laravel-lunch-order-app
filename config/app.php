@@ -54,6 +54,8 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'asset_url' => env('ASSET_URL', null),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -65,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'Asia/Kolkata',
+    'timezone' => 'UTC',
 
     /*
     |--------------------------------------------------------------------------
@@ -163,9 +165,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Vinkla\Alert\AlertServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class,
-        Spatie\Permission\PermissionServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -177,8 +176,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
         App\Providers\BladeServiceProvider::class,
-
-
     ],
 
     /*
@@ -227,15 +224,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        /**
-         * Packages
-         */
-        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 
-    'debug_blacklist' => [
-        '_SERVER' => array_keys($_SERVER),
-        '_ENV' => array_keys($_ENV),
-    ],
 ];

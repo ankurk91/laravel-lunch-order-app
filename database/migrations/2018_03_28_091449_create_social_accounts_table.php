@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateSocialAccountsTable extends Migration
 {
@@ -21,7 +21,7 @@ class CreateSocialAccountsTable extends Migration
 
             $table->string('provider_user_id')->index();
             $table->string('provider');
-            $table->unique([ 'provider_user_id','provider' ]);
+            $table->unique(['provider_user_id', 'provider']);
 
             $table->timestamps();
         });

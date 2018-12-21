@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateUserProfilesTable extends Migration
 {
@@ -17,9 +17,9 @@ class CreateUserProfilesTable extends Migration
             $table->increments('id');
 
             $table->string('first_name');
-            $table->string('last_name')->nullable()->default(NULL);
-            $table->string('primary_phone')->nullable()->default(NULL);
-            $table->string('avatar')->nullable()->default(NULL);
+            $table->string('last_name')->nullable()->default(null);
+            $table->string('primary_phone')->nullable()->default(null);
+            $table->string('avatar')->nullable()->default(null);
 
             // Belongs to a user
             $table->integer('user_id')->unsigned();

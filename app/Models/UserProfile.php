@@ -24,7 +24,7 @@ class UserProfile extends Model
      */
     public function getFullNameAttribute($value)
     {
-        if (is_null($this->first_name)) {
+        if (!$this->exists) {
             return null;
         }
         return trim($this->first_name . ' ' . $this->last_name);

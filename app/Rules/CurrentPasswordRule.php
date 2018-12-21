@@ -3,8 +3,8 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class CurrentPasswordRule implements Rule
 {
@@ -29,6 +29,7 @@ class CurrentPasswordRule implements Rule
      *
      * @param  string $attribute
      * @param  mixed $value
+     *
      * @return bool
      */
     public function passes($attribute, $value)

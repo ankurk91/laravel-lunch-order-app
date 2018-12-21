@@ -4,15 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Events\OrderCreated;
 use App\Events\OrderStatusChanged;
-use App\Http\Requests\Order\AdminOrderDeleteRequest;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Order\AdminOrderCreateRequest;
+use App\Http\Requests\Order\AdminOrderDeleteRequest;
 use App\Http\Requests\Order\AdminOrderUpdateRequest;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
