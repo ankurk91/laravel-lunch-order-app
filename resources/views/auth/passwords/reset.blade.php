@@ -7,10 +7,11 @@
     Reset password
   @endcomponent
 
-  @include('alert::bootstrap')
-
   <div class="row justify-content-center">
     <div class="col-md-5">
+
+      @include('alert::bootstrap')
+
       <div class="card">
 
         <div class="card-body">

@@ -51,7 +51,7 @@
             @endhasrole
             @auth
             <li class="nav-item dropdown {{active_route('account.*')}}">
-              <a class="nav-link dropdown-toggle" href="{{route('account.edit')}}" id="user-dropdown" role="button"
+              <a class="nav-link dropdown-toggle" href="#" id="user-dropdown" role="button"
                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-user"></i> {{auth()->user()->email}}
               </a>

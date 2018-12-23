@@ -59,7 +59,7 @@
   </section>
 
   <section class="table-responsive">
-    <table class="table table-striped table-light table-bordered table-hover" id="list-table">
+    <table class="table table-striped table-bordered table-hover" id="list-table">
       <thead>
       <tr>
         <th>ID</th>

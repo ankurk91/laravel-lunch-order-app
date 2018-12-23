@@ -6,19 +6,18 @@
     Forget password
   @endcomponent
 
-  @include('alert::bootstrap')
-
-  @if (session('status'))
-    <div class="alert alert-success alert-dismissible show" role="alert">
-      {{ session('status') }}
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-  @endif
-
   <div class="row justify-content-center">
     <div class="col-md-5">
+      @include('alert::bootstrap')
+
+      @if (session('status'))
+        <div class="alert alert-success alert-dismissible show" role="alert">
+          {{ session('status') }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      @endif
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Recover your lost password</h5>

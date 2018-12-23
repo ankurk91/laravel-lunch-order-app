@@ -56,6 +56,7 @@ class StoreRequest extends FormRequest
 
             if ($selectedProducts->isEmpty()) {
                 $validator->errors()->add('products', 'You need to select at least one product.');
+                return;
             }
 
             $productsExists = Validator::make(
