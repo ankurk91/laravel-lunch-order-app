@@ -17,7 +17,7 @@
       <ul class="nav justify-content-end">
         <li class="nav-item">
           <a class="nav-link" href="{{route('admin.orders.create',$order->createdForUser)}}">
-            <i class="fas fa-cart-plus"></i> Add new order
+            <i class="fas fa-cart-plus"></i> <span class="d-md-inline-block d-none">Add new order</span>
           </a>
         </li>
       </ul>

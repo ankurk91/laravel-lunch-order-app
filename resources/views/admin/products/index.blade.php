@@ -13,7 +13,7 @@
       <ul class="nav justify-content-end">
         <li class="nav-item">
           <a class="nav-link" href="{{route('admin.products.create')}}">
-            <i class="fas fa-plus-circle"></i> Add new product
+            <i class="fas fa-plus-circle"></i> <span class="d-md-inline-block d-none">Add new product</span>
           </a>
         </li>
       </ul>

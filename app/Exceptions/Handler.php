@@ -49,22 +49,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        $this->handleValidationException($exception);
         $this->renderMethodNotAllowedException($exception);
 
         return parent::render($request, $exception);
-    }
-
-    /**
-     * Display a generic message on all forms.
-     *
-     * @param Exception $exception
-     */
-    private function handleValidationException(Exception $exception)
-    {
-        if ($exception instanceof \Illuminate\Validation\ValidationException) {
-            alert()->error('Please correct the validation errors in the form and then retry.');
-        }
     }
 
     /**

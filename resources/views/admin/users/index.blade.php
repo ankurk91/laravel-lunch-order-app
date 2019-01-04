@@ -14,7 +14,7 @@
       <ul class="nav justify-content-end">
         <li class="nav-item">
           <a class="nav-link" href="{{route('admin.users.create')}}">
-            <i class="fas fa-user-plus"></i> Add new user
+            <i class="fas fa-user-plus"></i> <span class="d-md-inline-block d-none">Add new user</span>
           </a>
         </li>
       </ul>
