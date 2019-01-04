@@ -11,7 +11,7 @@
 
   <div class="row">
     <section class="col-sm-5 order-sm-first order-lg-last">
-      <div class="card">
+      <div class="card mb-3">
         <div class="card-body">
           <h5 class="card-title">Log in to your account</h5>
           <form method="POST" action="{{ route('login') }}">
@@ -65,7 +65,7 @@
         </div>
       </div>
       <div class="text-center">
-        <a class="btn btn-link" href="{{ route('password.request') }}">
+        <a href="{{ route('password.request') }}">
           Forgot your password?
         </a>
       </div>

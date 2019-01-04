@@ -12,7 +12,7 @@
 
       @include('alert::bootstrap')
 
-      <div class="card">
+      <div class="card mb-3">
 
         <div class="card-body">
           <h5 class="card-title">Reset your password</h5>
@@ -27,7 +27,7 @@
               <label for="email"> E-mail address</label>
 
               <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                     name="email" value="{{ $email or old('email') }}" placeholder="E-mail" required autofocus>
+                     name="email" value="{{ $email ?? old('email') }}" placeholder="E-mail" required autofocus>
 
               @if ($errors->has('email'))
                 <div class="invalid-feedback">
@@ -69,7 +69,7 @@
         </div>
       </div>
       <div class="text-center">
-        <a class="btn btn-link" href="{{ route('login') }}">
+        <a href="{{ route('login') }}">
           Back to Log in
         </a>
       </div>

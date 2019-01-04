@@ -46,7 +46,7 @@
 
               <input id="password" type="password"
                      class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password"
-                     placeholder="New password" required autofocus>
+                     placeholder="New password" required>
 
               @if ($errors->has('password'))
                 <div class="invalid-feedback">

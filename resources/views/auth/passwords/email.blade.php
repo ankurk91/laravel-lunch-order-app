@@ -18,7 +18,7 @@
           </button>
         </div>
       @endif
-      <div class="card">
+      <div class="card mb-3">
         <div class="card-body">
           <h5 class="card-title">Recover your lost password</h5>
           <h6 class="card-subtitle text-muted">You will receive an e-mail with password reset instructions.</h6>
@@ -47,7 +47,7 @@
         </div>
       </div>
       <div class="text-center">
-        <a class="btn btn-link" href="{{ route('login') }}">
+        <a href="{{ route('login') }}">
           Back to Log in
         </a>
       </div>
