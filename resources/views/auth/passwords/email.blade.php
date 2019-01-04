@@ -29,7 +29,7 @@
             <div class="form-group">
               <label for="email"> E-mail address</label>
               <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                     name="email" value="{{ old('email') }}" placeholder="E-mail" required>
+                     name="email" value="{{ old('email') }}" placeholder="E-mail" required autofocus>
 
               @if ($errors->has('email'))
                 <div class="invalid-feedback">
