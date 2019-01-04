@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class CurrentPasswordRule implements Rule
+class MatchCurrentPasswordRule implements Rule
 {
 
     /**

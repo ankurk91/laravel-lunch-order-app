@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Account;
 
-use App\Rules\CurrentPasswordRule;
+use App\Rules\MatchCurrentPasswordRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PasswordUpdateRequest extends FormRequest
@@ -25,7 +25,7 @@ class PasswordUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'current_password' => ['required', 'string', new CurrentPasswordRule()],
+            'current_password' => ['required', 'string', new MatchCurrentPasswordRule()],
             'password' => 'bail|required|string|min:6|different:current_password|confirmed',
         ];
     }

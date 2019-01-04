@@ -24,10 +24,10 @@ class UserProfile extends Model
      */
     public function getFullNameAttribute($value)
     {
-        if (!$this->exists) {
-            return null;
+        if ($this->exists) {
+            return trim($this->first_name . ' ' . $this->last_name);
         }
-        return trim($this->first_name . ' ' . $this->last_name);
+        return null;
     }
 
 }
