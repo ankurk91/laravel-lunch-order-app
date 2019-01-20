@@ -7,6 +7,7 @@ use App\Models\SocialAccount;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered as RegisteredEvent;
 use Illuminate\Foundation\Auth\RedirectsUsers;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Laravel\Socialite\Facades\Socialite;
@@ -147,8 +148,7 @@ class SocialiteController extends Controller
         return [
             'first_name' => $nameParts[0],
             'last_name' => optional($nameParts)[1],
-            // Get full size avatar url by removing `?sz=` query parameter
-            'avatar' => preg_replace('/\?sz=[\d]*$/', '', $providerUser->getAvatar()),
+            'avatar' => Arr::get($providerUser->getRaw(), 'avatar_original', $providerUser->getAvatar()),
         ];
     }
 }
