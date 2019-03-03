@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\User;
 
+use Illuminate\Support\Str;
 use App\Models\Order;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -56,7 +57,7 @@ class DeleteRequest extends FormRequest
                 ->count();
 
             if ($orderCount) {
-                $validator->errors()->add('user', 'Could not delete the user. This user has purchase history associated with ' . $orderCount . ' ' . str_plural('order', $orderCount) . '.');
+                $validator->errors()->add('user', 'Could not delete the user. This user has purchase history associated with ' . $orderCount . ' ' . Str::plural('order', $orderCount) . '.');
             }
         });
     }

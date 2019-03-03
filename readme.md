@@ -32,12 +32,8 @@ php artisan storage:link
 * Point your web server to **public** folder of this project
 * Additionally you can run these commands on production server
 ```
-php artisan route:cache
-php artisan config:cache
-php artisan view:cache
+php artisan optimize
 ```
-* You should rebuild these cache on each new deployment
-
 
 ### Asset building
 * This project is using a custom webpack solution [Laravel-Bundler](https://github.com/ankurk91/laravel-bundler)

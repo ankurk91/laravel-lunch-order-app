@@ -8,6 +8,7 @@ use App\Models\OrderProduct;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
 
 class ShopController extends Controller
 {
@@ -67,7 +68,7 @@ class ShopController extends Controller
 
         $productsWithQuantity = collect($request->input('products', []))
             ->filter(function ($product) {
-                return array_get($product, 'quantity');
+                return Arr::get($product, 'quantity');
             })->unique('id');
 
         $productsWithPrice = Product::active()->find($productsWithQuantity->pluck('id'));
@@ -75,7 +76,7 @@ class ShopController extends Controller
         $productsWithPrice->each(function ($product, $key) use ($order, $productsWithQuantity) {
             $orderProduct = new OrderProduct();
             $orderProduct->fill([
-                'quantity' => array_get($productsWithQuantity->where('id', $product->id)->first(), 'quantity'),
+                'quantity' => Arr::get($productsWithQuantity->where('id', $product->id)->first(), 'quantity'),
                 'unit_price' => $product->unit_price,
             ]);
             $orderProduct->product()->associate($product);

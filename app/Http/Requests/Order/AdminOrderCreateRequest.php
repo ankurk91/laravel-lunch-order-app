@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Arr;
 
 class AdminOrderCreateRequest extends FormRequest
 {
@@ -53,8 +54,8 @@ class AdminOrderCreateRequest extends FormRequest
             $products = collect($this->input('products', []));
 
             $selectedProducts = $products->filter(function ($product) {
-                return array_get($product, 'quantity') &&
-                    array_get($product, 'unit_price');
+                return Arr::get($product, 'quantity') &&
+                    Arr::get($product, 'unit_price');
             })->unique('id');
 
             if ($selectedProducts->isEmpty()) {

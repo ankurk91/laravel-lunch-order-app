@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Supplier;
 
+use Illuminate\Support\Str;
 use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -53,7 +54,7 @@ class DeleteRequest extends FormRequest
                 })->count();
 
             if ($productUsageCount) {
-                $validator->errors()->add('supplier', 'Could not delete the supplier because it is already associated with ' . $productUsageCount . ' ' . str_plural('product', $productUsageCount) . '.');
+                $validator->errors()->add('supplier', 'Could not delete the supplier because it is already associated with ' . $productUsageCount . ' ' . Str::plural('product', $productUsageCount) . '.');
             }
         });
     }

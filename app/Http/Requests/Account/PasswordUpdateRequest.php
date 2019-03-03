@@ -26,7 +26,7 @@ class PasswordUpdateRequest extends FormRequest
     {
         return [
             'current_password' => ['required', 'string', new MatchCurrentPasswordRule()],
-            'password' => 'bail|required|string|min:6|different:current_password|confirmed',
+            'password' => 'bail|required|string|min:8|different:current_password|confirmed',
         ];
     }
 

@@ -11,6 +11,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
 
 class SocialiteController extends Controller
 {
@@ -92,7 +93,7 @@ class SocialiteController extends Controller
         ]);
 
         if (!$user->exists) {
-            $user->password = bcrypt(str_random(30));
+            $user->password = bcrypt(Str::random(30));
             $user->save();
             $user->assignRole(config('project.default_role'));
             $user->profile()->create($this->getProfileData($providerUser));

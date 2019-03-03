@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Product;
 
+use Illuminate\Support\Str;
 use App\Models\Order;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -53,7 +54,7 @@ class DeleteRequest extends FormRequest
                 })->count();
 
             if ($productUsageCount) {
-                $validator->errors()->add('product', 'Could not delete the product because it is already being used in ' . $productUsageCount . ' ' . str_plural('order', $productUsageCount) . '.');
+                $validator->errors()->add('product', 'Could not delete the product because it is already being used in ' . $productUsageCount . ' ' . Str::plural('order', $productUsageCount) . '.');
             }
         });
     }

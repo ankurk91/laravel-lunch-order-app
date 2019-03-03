@@ -18,7 +18,7 @@
           <h5 class="card-title">Reset your password</h5>
           <h6 class="card-subtitle text-muted">You need to provide your registered e-mail address.</h6>
 
-          <form class="mt-2" method="POST" action="{{ route('password.request') }}">
+          <form class="mt-2" method="POST" action="{{ route('password.update') }}">
             @csrf
 
             <input type="hidden" name="token" value="{{ $token }}">

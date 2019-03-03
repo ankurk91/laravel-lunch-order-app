@@ -14,6 +14,7 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
 
 class OrderController extends Controller
 {
@@ -90,8 +91,8 @@ class OrderController extends Controller
 
         $products = collect($request->input('products', []))
             ->filter(function ($product) {
-                return array_get($product, 'quantity') &&
-                    array_get($product, 'unit_price');
+                return Arr::get($product, 'quantity') &&
+                    Arr::get($product, 'unit_price');
             })->unique('id');
 
         $products->each(function ($product, $key) use ($order) {
@@ -144,8 +145,8 @@ class OrderController extends Controller
 
         $products = collect($request->input('products', []))
             ->filter(function ($product) {
-                return array_get($product, 'quantity') &&
-                    array_get($product, 'unit_price');
+                return Arr::get($product, 'quantity') &&
+                    Arr::get($product, 'unit_price');
             })->unique('id');
 
         $order->orderProducts()->delete();

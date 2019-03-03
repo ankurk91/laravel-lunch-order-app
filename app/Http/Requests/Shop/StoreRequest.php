@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Arr;
 
 class StoreRequest extends FormRequest
 {
@@ -51,7 +52,7 @@ class StoreRequest extends FormRequest
             $products = collect($this->input('products', []));
 
             $selectedProducts = $products->filter(function ($product) {
-                return array_get($product, 'quantity');
+                return Arr::get($product, 'quantity');
             })->unique('id');
 
             if ($selectedProducts->isEmpty()) {

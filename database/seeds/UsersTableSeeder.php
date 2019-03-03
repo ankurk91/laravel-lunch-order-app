@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Support\Arr;
 
 class UsersTableSeeder extends Seeder
 {
@@ -24,7 +25,7 @@ class UsersTableSeeder extends Seeder
         }
 
         factory(\App\Models\User::class, rand(50, 100))->create()->each(function ($user) use ($roles) {
-            $user->assignRole(array_random($roles));
+            $user->assignRole(Arr::random($roles));
             if (rand(0, 1)) {
                 $user->profile()->save(factory(App\Models\UserProfile::class)->make());
             }

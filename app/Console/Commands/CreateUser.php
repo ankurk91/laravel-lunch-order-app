@@ -47,13 +47,13 @@ class CreateUser extends Command
     {
         $inputs = [
             'email' => $this->ask('Enter email address'),
-            'password' => $this->secret('Enter password (min:6)'),
+            'password' => $this->secret('Enter password (min:8)'),
         ];
 
         $validator = Validator::make($inputs,
             [
                 'email' => 'bail|required|string|email|unique:users',
-                'password' => 'required|string|min:6',
+                'password' => 'required|string|min:8',
             ]
         );
 

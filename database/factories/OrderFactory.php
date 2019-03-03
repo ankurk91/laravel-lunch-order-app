@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use Illuminate\Support\Arr;
 
 $factory->define(App\Models\Order::class, function (Faker $faker) {
 
@@ -9,7 +10,7 @@ $factory->define(App\Models\Order::class, function (Faker $faker) {
     return [
         'customer_notes' => rand(0, 1) ? $faker->text(rand(50, 150)) : null,
         'staff_notes' => rand(0, 1) ? $faker->text(rand(50, 150)) : null,
-        'status' => array_random($status),
+        'status' => Arr::random($status),
         'for_date' => today()->toDateString(),
     ];
 });

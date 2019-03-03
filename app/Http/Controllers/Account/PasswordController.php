@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Account\PasswordUpdateRequest;
 use Illuminate\Auth\Events\PasswordReset as PasswordResetEvent;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PasswordController extends Controller
 {
@@ -33,7 +34,7 @@ class PasswordController extends Controller
     {
         $user = Auth::user();
         $user->password = bcrypt($request->input('password'));
-        $user->setRememberToken(str_random(60));
+        $user->setRememberToken(Str::random(60));
         $user->save();
 
         event(new PasswordResetEvent($user));

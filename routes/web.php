@@ -24,7 +24,7 @@ Route::group(
     Route::get('reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('request');
     Route::post('email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('email');
     Route::get('reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('reset');
-    Route::post('reset', 'Auth\ResetPasswordController@reset');
+    Route::post('reset', 'Auth\ResetPasswordController@reset')->name('update');
 });
 
 // Social login routes ...

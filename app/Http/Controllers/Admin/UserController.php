@@ -13,6 +13,7 @@ use App\Models\UserProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -87,7 +88,7 @@ class UserController extends Controller
         DB::beginTransaction();
 
         $user = new User();
-        $user->password = bcrypt(str_random(30));
+        $user->password = bcrypt(Str::random(30));
         $user = $user->fill($request->only([
             'email',
         ]));
