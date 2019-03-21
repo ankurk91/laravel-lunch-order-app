@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1bd6c62830d6e647ec6afd4d703e9dad",
+    "content-hash": "36c820c302c48c9e9c1a055ad3e36d00",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -639,16 +639,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.8.2",
+            "version": "v5.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "c3b7cbe700efb0f4c9a5359feaedb0a1f0a741ca"
+                "reference": "d36d74acd3added5abbe7e7a84342b54bb0b0521"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/c3b7cbe700efb0f4c9a5359feaedb0a1f0a741ca",
-                "reference": "c3b7cbe700efb0f4c9a5359feaedb0a1f0a741ca",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/d36d74acd3added5abbe7e7a84342b54bb0b0521",
+                "reference": "d36d74acd3added5abbe7e7a84342b54bb0b0521",
                 "shasum": ""
             },
             "require": {
@@ -782,7 +782,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-02-27T14:02:36+00:00"
+            "time": "2019-03-05T13:51:19+00:00"
         },
         {
             "name": "laravel/socialite",
@@ -1795,16 +1795,16 @@
         },
         {
             "name": "spatie/laravel-permission",
-            "version": "2.36.0",
+            "version": "2.36.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "5bd1e3f212f97d21645ad730c35ec6b81f292d49"
+                "reference": "0d9c442dc4361ce829986697bc436578d816a9ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/5bd1e3f212f97d21645ad730c35ec6b81f292d49",
-                "reference": "5bd1e3f212f97d21645ad730c35ec6b81f292d49",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/0d9c442dc4361ce829986697bc436578d816a9ca",
+                "reference": "0d9c442dc4361ce829986697bc436578d816a9ca",
                 "shasum": ""
             },
             "require": {
@@ -1856,7 +1856,7 @@
                 "security",
                 "spatie"
             ],
-            "time": "2019-03-04T19:19:31+00:00"
+            "time": "2019-03-05T14:58:35+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2987,16 +2987,16 @@
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "v3.3.2",
+            "version": "v3.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "1ee9369cfbf26cfcf1f2515d98f15fab54e9647a"
+                "reference": "dbcc609971dd9b55f48b8008b553d79fd372ddde"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/1ee9369cfbf26cfcf1f2515d98f15fab54e9647a",
-                "reference": "1ee9369cfbf26cfcf1f2515d98f15fab54e9647a",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/dbcc609971dd9b55f48b8008b553d79fd372ddde",
+                "reference": "dbcc609971dd9b55f48b8008b553d79fd372ddde",
                 "shasum": ""
             },
             "require": {
@@ -3035,7 +3035,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2019-01-30T10:43:17+00:00"
+            "time": "2019-03-06T09:39:45+00:00"
         }
     ],
     "packages-dev": [
@@ -3834,16 +3834,16 @@
         },
         {
             "name": "nunomaduro/collision",
-            "version": "v2.1.1",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/collision.git",
-                "reference": "b5feb0c0d92978ec7169232ce5d70d6da6b29f63"
+                "reference": "af42d339fe2742295a54f6fdd42aaa6f8c4aca68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/b5feb0c0d92978ec7169232ce5d70d6da6b29f63",
-                "reference": "b5feb0c0d92978ec7169232ce5d70d6da6b29f63",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/af42d339fe2742295a54f6fdd42aaa6f8c4aca68",
+                "reference": "af42d339fe2742295a54f6fdd42aaa6f8c4aca68",
                 "shasum": ""
             },
             "require": {
@@ -3853,10 +3853,10 @@
                 "symfony/console": "~2.8|~3.3|~4.0"
             },
             "require-dev": {
-                "laravel/framework": "5.7.*",
+                "laravel/framework": "5.8.*",
                 "nunomaduro/larastan": "^0.3.0",
-                "phpstan/phpstan": "^0.10",
-                "phpunit/phpunit": "~7.3"
+                "phpstan/phpstan": "^0.11",
+                "phpunit/phpunit": "~8.0"
             },
             "type": "library",
             "extra": {
@@ -3894,7 +3894,7 @@
                 "php",
                 "symfony"
             ],
-            "time": "2018-11-21T21:40:54+00:00"
+            "time": "2019-03-07T21:35:13+00:00"
         },
         {
             "name": "seld/jsonlint",
