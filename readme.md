@@ -5,7 +5,7 @@
 * Apache v2.4.34 with ```mod_rewrite```
 * MySql v5.7.23
 * [Composer](https://getcomposer.org) v1.8
-* [node-js](https://github.com/creationix/nvm) >=10.13 and [yarn](https://yarnpkg.com/en/) >=1.12.3
+* [node-js](https://github.com/creationix/nvm) >=10.13 and [yarn](https://yarnpkg.com/en/) >=1.16
 
 ### Quick setup 
 * Clone this repo, checkout to ```dev``` branch
