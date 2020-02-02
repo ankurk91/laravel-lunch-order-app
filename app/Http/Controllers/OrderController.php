@@ -44,7 +44,7 @@ class OrderController extends Controller
         $years = Order::createdFor($request->user()->id)->select(DB::raw('EXTRACT(year from for_date) as year'))
             ->groupBy('year')->get();
 
-        return view('orders.index', compact('orders', 'years', 'months'));
+        return view('orders.index', compact('orders', 'years'));
     }
 
 
